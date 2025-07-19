@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Meta-Heuristic Track Building",
+    "desc": "Fast, headless-safe TrackML reconstruction with a helical EKF core and a family of meta-heuristics (A*, ACO, GA, PSO, SA, per-layer Hungarian). The pipeline is vectorized/NumPy-first, exploits robust Cholesky factorizations (no explicit matrix inverses), and scales via collaborative multithreading with conflict-free shared hit ownership. It ships an optimizer to tune brancher hyper-parameters on your event(s).",
+    "image": "https://placehold.co/400x250/1a1a2e/ffffff?text=Track+Builder",
+    "tech": ["Python", "TrackML"],
+    "status": "Active",
+    "link": "https://github.com/dbontr/Particle-Track-Building"
+  }
+]

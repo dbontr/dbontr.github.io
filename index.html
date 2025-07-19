@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>dbontr — retro hi-tech</title>
+  <meta name="description" content="dbontr — pushing the boundaries of technology, AI, and digital innovation." />
+  <link rel="canonical" href="https://dbontr.github.io/" />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="black"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="64" fill="%23a5b4fc">d</text></svg>'/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['VT323', 'monospace'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          },
+          colors: { ink: '#0a0a0a' }
+        }
+      },
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#000000"/>
+  <link rel="manifest" href="./site.webmanifest">
+
+  <!-- Dots utility (used by Home lower half via app.js) -->
+  <style>
+    .bg-dot {
+      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: 0 0;
+    }
+  </style>
+</head>
+<body class="bg-black text-gray-200 antialiased font-mono overflow-x-hidden">
+  <!-- NAV -->
+  <!-- z lowered so your cart drawer (z-[60]) shows above it -->
+  <nav class="fixed top-0 left-0 right-0 z-[40] bg-black/80 backdrop-blur-sm border-b border-gray-900" role="navigation" aria-label="Primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Mobile: flex; Desktop: 3-col grid to center menu -->
+      <div class="h-16 relative flex items-center justify-between lg:grid lg:grid-cols-[auto,1fr,auto]">
+        <!-- Left: logo (wrapper ignores events; child receives them) -->
+        <div class="flex items-center lg:pointer-events-none">
+          <h1 class="pointer-events-auto text-2xl font-bold grad-bpo-text bg-clip-text text-transparent font-display tracking-widest">
+            dbontr
+          </h1>
+        </div>
+
+        <!-- Center: desktop menu -->
+        <div class="hidden lg:flex justify-center">
+          <ul class="flex items-center gap-6">
+            <li><button class="nav-btn text-gray-300 hover:text-white" data-nav="home"><i data-lucide="home" class="w-4 h-4"></i><span class="ml-1">Home</span></button></li>
+            <li><button class="nav-btn text-gray-300 hover:text-white" data-nav="shop"><i data-lucide="store" class="w-4 h-4"></i><span class="ml-1">Shop</span></button></li>
+            <li><button class="nav-btn text-gray-300 hover:text-white" data-nav="projects"><i data-lucide="code-2" class="w-4 h-4"></i><span class="ml-1">Projects</span></button></li>
+            <li><button class="nav-btn text-gray-300 hover:text-white" data-nav="papers"><i data-lucide="book-open" class="w-4 h-4"></i><span class="ml-1">Papers</span></button></li>
+            <li><button class="nav-btn text-gray-300 hover:text-white" data-nav="about"><i data-lucide="user" class="w-4 h-4"></i><span class="ml-1">About</span></button></li>
+            <li><button class="nav-btn text-gray-300 hover:text-white" data-nav="contact"><i data-lucide="mail" class="w-4 h-4"></i><span class="ml-1">Contact</span></button></li>
+          </ul>
+        </div>
+
+        <!-- Right: cart + hamburger -->
+        <div class="flex items-center justify-end lg:pointer-events-none">
+          <button class="pointer-events-auto relative p-2 text-gray-400 hover:text-white" data-cart-toggle aria-label="Cart">
+            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+          </button>
+          <button id="menuToggle" class="pointer-events-auto lg:hidden ml-2 p-2 text-gray-400 hover:text-white transition-colors duration-200" aria-label="Toggle menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-black/90 border-t border-gray-900">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <button class="nav-mobile" data-nav="home"><i data-lucide="home" class="w-4 h-4"></i><span>Home</span></button>
+        <button class="nav-mobile" data-nav="shop"><i data-lucide="store" class="w-4 h-4"></i><span>Shop</span></button>
+        <button class="nav-mobile" data-nav="projects"><i data-lucide="code-2" class="w-4 h-4"></i><span>Projects</span></button>
+        <button class="nav-mobile" data-nav="papers"><i data-lucide="book-open" class="w-4 h-4"></i><span>Papers</span></button>
+        <button class="nav-mobile" data-nav="about"><i data-lucide="user" class="w-4 h-4"></i><span>About</span></button>
+        <button class="nav-mobile" data-nav="contact"><i data-lucide="mail" class="w-4 h-4"></i><span>Contact</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- APP -->
+  <main id="app" class="pt-0"></main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 border-t border-gray-800 py-12 mt-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2">
+          <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-[#E7EE9D] bg-clip-text text-transparent mb-4 font-display tracking-widest">
+            dbontr
+          </h3>
+          <p class="text-gray-400 mb-4 max-w-md">
+            Pushing the boundaries of technology, AI, and digital innovation.
+            Creating the future, one line of code at a time.
+          </p>
+          <div class="flex space-x-2">
+            <a href="https://github.com/dbontr" target="_blank" rel="noopener" class="social"><i data-lucide="github" class="w-4 h-4"></i></a>
+            <a href="https://twitter.com/youruser" target="_blank" rel="noopener" class="social"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="https://www.linkedin.com/in/devon-bontrager" target="_blank" rel="noopener" class="social"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="https://instagram.com/youruser" target="_blank" rel="noopener" class="social"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Pages</h4>
+          <ul class="space-y-2">
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="home">Home</button></li>
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="shop">Shop</button></li>
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="projects">Projects</button></li>
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="papers">Papers</button></li>
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="about">About</button></li>
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="contact">Contact</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Connect</h4>
+          <ul class="space-y-2">
+            <li><a href="mailto:devonlbontrager@ku.edu" class="ft-a text-sm text-gray-300 hover:text-white font-medium">devonlbontrager@ku.edu</a></li>
+            <li><button class="ft-link text-sm text-gray-300 hover:text-white font-medium" data-nav="contact">Newsletter</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p class="text-gray-400 text-sm">
+          © <span id="year"></span> dbontr. All rights reserved. Built for GitHub Pages.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart drawer portal (unused by app.js but harmless) -->
+  <div id="cartRoot"></div>
+
+  <script defer src="./app.js"></script>
+</body>
+</html>
