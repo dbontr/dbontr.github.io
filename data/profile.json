@@ -16,10 +16,10 @@
   ],
   "skills": {
     "Languages": ["Python", "C++", "JavaScript", "HTML"],
-    "Tools": ["Linux", "Git", "Docker", "Qiskit", "CUDA"],
+    "Tools": ["Linux", "Git", "Docker", "Qiskit"],
     "Domains": [
-      "Kalman Filtering",
-      "Tracking",
+      "Algorithm Design",
+      "High Energy Physics",
       "Statistics",
       "Optimization",
       "Quantum Computing",
