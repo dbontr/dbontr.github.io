@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Linear Algebra Essentials",
+    "subtitle": "Vectors, inner products, matrices, and tensors",
+    "estimated_minutes": 11
+  },
+  "slides": [
+    {
+      "title": "Vectors and basis",
+      "body": [
+        "A vector is an ordered list of numbers.",
+        "A basis is a set of vectors used to describe all others.",
+        "For qubits we use $|0\\rangle$ and $|1\\rangle$ as the basis.",
+        "Why basis matters: the coordinates of a vector depend on which basis you choose."
+      ]
+    },
+    {
+      "title": "Linear combinations",
+      "body": [
+        "Any vector is a weighted sum of basis vectors.",
+        "Example: $a|0\\rangle + b|1\\rangle$ is a linear combination.",
+        "Why this matters: superposition is just a linear combination with complex weights."
+      ]
+    },
+    {
+      "title": "Inner product",
+      "body": [
+        "The inner product measures overlap between two vectors: $$\\langle a|b\\rangle = a^\\dagger b$$",
+        "The norm is $\\|v\\| = \\sqrt{\\langle v|v\\rangle}$.",
+        "Why conjugate: it makes lengths positive and keeps physics consistent with phases."
+      ],
+      "check": {
+        "prompt": "Check: What is $\\langle 0|1\\rangle$?",
+        "answer": "0",
+        "hint": "Basis vectors are orthonormal.",
+        "explain": "Correct - orthonormal basis vectors have zero overlap."
+      }
+    },
+    {
+      "title": "Bras, kets, conjugates",
+      "body": [
+        "The conjugate transpose turns a ket into a bra.",
+        "If $|v\\rangle = \\begin{bmatrix}a\\\\b\\end{bmatrix}$ then $\\langle v| = [a^*, b^*]$.",
+        "Complex conjugation flips the sign of the imaginary part, which affects phase."
+      ]
+    },
+    {
+      "title": "Matrices as linear maps",
+      "body": [
+        "A matrix maps vectors to vectors: $v \\mapsto Mv$.",
+        "Example 2x2 matrix: $$M = \\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}$$",
+        "Why matrices: they describe how a gate acts on every basis vector at once."
+      ],
+      "quiz": {
+        "question": "If $M$ is 2x2 and $v$ is 2x1, what is the shape of $Mv$?",
+        "options": ["2x1", "1x2", "2x2", "1x1"],
+        "answer": 0,
+        "explain": "A 2x2 matrix times a 2x1 vector yields a 2x1 vector."
+      }
+    },
+    {
+      "title": "Matrix multiplication",
+      "body": [
+        "Matrix multiplication composes linear maps.",
+        "Order matters: generally $AB \\ne BA$.",
+        "Why this matters: the order of quantum gates changes the result."
+      ]
+    },
+    {
+      "title": "Eigenvalues and eigenvectors",
+      "body": [
+        "An eigenvector keeps its direction under $M$: $$Mv = \\lambda v$$",
+        "Eigenvalues and eigenvectors describe the structure of $M$.",
+        "Why it matters: measurement outcomes correspond to eigenvalues of observables."
+      ]
+    },
+    {
+      "title": "Unitary matrices",
+      "body": [
+        "Quantum gates must preserve norm.",
+        "A unitary matrix satisfies: $$U^\\dagger U = I$$",
+        "Why unitary: it preserves inner products and keeps total probability equal to 1."
+      ],
+      "quiz": {
+        "question": "Which condition defines a unitary matrix?",
+        "options": ["$U^T U = I$", "$U^\\dagger U = I$", "$U U = I$", "$U^2 = I$"],
+        "answer": 1,
+        "explain": "Unitarity means the conjugate transpose is the inverse."
+      }
+    },
+    {
+      "title": "Hermitian observables",
+      "body": [
+        "Hermitian matrices satisfy $A = A^\\dagger$.",
+        "They have real eigenvalues and orthogonal eigenvectors.",
+        "Why this matters: measurement results must be real numbers."
+      ]
+    },
+    {
+      "title": "Tensor products",
+      "body": [
+        "Multi-qubit states use tensor products.",
+        "Example basis for two qubits: $|00\\rangle$, $|01\\rangle$, $|10\\rangle$, $|11\\rangle$.",
+        "$$|a\\rangle \\otimes |b\\rangle$$",
+        "Why tensor products: they describe independent systems and scale the state space exponentially."
+      ],
+      "check": {
+        "prompt": "Check: How many basis states are there for 3 qubits?",
+        "answer": "8",
+        "hint": "Each qubit doubles the dimension.",
+        "explain": "Correct - 2^3 = 8."
+      }
+    }
+  ]
+}

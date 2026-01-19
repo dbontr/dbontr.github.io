@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "title": "A Practical Quantum Solver for Multidimensional Partial Differential Equations",
+      "authors": "Manu Chaudhary, Kareem El-Araby, Alvir Nobel, Ishraq Islam, Manish Singh, Sunday Ogundele, Kieran Egan, Sneha Thomas, Vincent Vordtriede, Devon Bontrager, Serom Kim, Esam El-Araby",
+      "venue": "SC25",
+      "year": 2025,
+      "summary": "This work introduces a faster, more accurate, and scalable quantum algorithm for solving multidimensional PDEs, outperforming VQA-based methods on IBM simulators and showing promising results on real quantum hardware.",
+      "tags": ["Quantum Computing", "PDE"],
+      "links": {
+        "doi": "https://doi.org/10.1145/3731599.3767550"
+      }
+    },
+    {
+      "title": "Quantum Circuit Synthesis Using Fuzzy-Logic-Assisted Genetic Algorithms",
+      "authors": "Ishraq Islam, Vinayak Jha, Sneha Thomas, Kieran F. Egan, Alvir Nobel,Serom Kim, Manu Chaudhary, Sunday Ogundele, Dylan Kneidel, Ben Phillips, Manish Singh, Kareem El-Araby, Devon Bontrager, Esam El-Araby",
+      "venue": "MDPI Algorithms 2025",
+      "year": 2025,
+      "summary": "This paper uses a fuzzy-logic-assisted genetic algorithm to synthesize hardware-ready quantum circuits, optimizing approximation error, multi-qubit gate count, and circuit depth for efficient execution on noisy NISQ devices.",
+      "tags": ["Quantum Computing", "AI", "Genetic Algorithms", "Fuzzy Logic"],
+      "links": {
+        "doi": "https://doi.org/10.3390/a18040178"
+      }
+    },
+    {
+      "title": "A Practical Quantum Solver for Multidimensional Partial Differential Equations",
+      "authors": "Manu Chaudhary, Kareem El-Araby, Alvir Nobel, Vinayak Jha, Dylan Kneidel, Ishraq Islam, Manish Singh, Sunday Ogundele, Ben Phillips, Kieran Egan, Sneha Thomas, Devon Bontrager, Serom Kim, Esam El-Araby",
+      "venue": "MDPI Algorithms 2025",
+      "year": 2025,
+      "summary": "This paper proposes two efficient quantum-circuit-based methods for solving multidimensional PDEs, achieving better accuracy, scalability, and runtime than VQA solvers on IBM simulators and real quantum hardware.",
+      "tags": ["Quantum Computing", "PDE"],
+      "links": {
+        "doi": "https://doi.org/10.3390/a18030176"
+      }
+    }
+  ]
+}

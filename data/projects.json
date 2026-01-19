@@ -1,10 +1,38 @@
-[
-  {
-    "title": "Meta-Heuristic Track Building",
-    "desc": "Fast, headless-safe TrackML reconstruction with a helical EKF core and a family of meta-heuristics (A*, ACO, GA, PSO, SA, per-layer Hungarian). The pipeline is vectorized/NumPy-first, exploits robust Cholesky factorizations (no explicit matrix inverses), and scales via collaborative multithreading with conflict-free shared hit ownership. It ships an optimizer to tune brancher hyper-parameters on your event(s).",
-    "image": "https://placehold.co/400x250/1a1a2e/ffffff?text=Track+Builder",
-    "tech": ["Python", "TrackML"],
-    "status": "Active",
-    "link": "https://github.com/dbontr/Particle-Track-Building"
-  }
-]
+{
+  "items": [
+    {
+      "title": "Meta-Heuristic-EKF-Track-Building",
+      "subtitle": "Helical EKF + meta-heuristics for TrackML reconstruction",
+      "year": 2025,
+      "summary": "Fast, headless-safe TrackML reconstruction built on a helical EKF core with A*, ACO, GA, PSO, SA, and per-layer Hungarian branching; vectorized NumPy-first kernels, robust Cholesky gating, collaborative multithreading, and built-in hyperparameter optimization.",
+      "tags": ["HEP", "tracking", "EKF", "TrackML", "metaheuristics", "Python", "HPC"],
+      "links": {
+        "code": "https://github.com/dbontr/Particle-Track-Building",
+        "notes": ""
+      }
+    },
+    {
+      "title": "mkbench",
+      "subtitle": "Docker-first mkFit benchmarking harness",
+      "year": 2025,
+      "summary": "Reproducible build/run/compare workflow for mkFit variants with TrackML geometry artifacts, conversion tools, and automated performance + quality reporting (scaling sweeps, plots, JSON metrics).",
+      "tags": ["HEP", "mkFit", "Docker", "benchmarking", "TrackML", "HPC"],
+      "links": {
+        "code": "https://github.com/dbontr/mkbench",
+        "notes": ""
+      }
+    },
+    {
+      "title": "VaR-Backtesting-Toolkit",
+      "subtitle": "Kupiec + Christoffersen tests with Yahoo data + rolling VaR",
+      "year": 2025,
+      "summary": "Command-line VaR backtesting script that pulls Yahoo Finance data (or reads a CSV), computes 1-day 99% historical and Gaussian VaR, flags exceptions, and runs Kupiec POF + Christoffersen independence tests with a combined conditional coverage report.",
+      "tags": ["quant", "risk", "VaR", "backtesting", "statistics", "Python"],
+      "links": {
+        "code": "https://github.com/dbontr/VarBacktest",
+        "notes": ""
+      }
+    }
+
+  ]
+}

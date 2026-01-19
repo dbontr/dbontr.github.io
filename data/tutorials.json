@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "key": "quantum-101",
+      "title": "Quantum 101",
+      "subtitle": "Foundations, linear algebra, and circuits",
+      "type": "deck",
+      "year": 2026,
+      "summary": "A longer, MathJax-ready primer with a single-qubit simulator.",
+      "tags": ["quantum", "tutorial", "interactive"],
+      "lessons": [
+        { "label": "lesson 1", "entry": "qubit-foundations" },
+        { "label": "lesson 2", "entry": "linear-algebra-essentials" },
+        { "label": "lesson 3", "entry": "quantum-circuits-and-entanglement" }
+      ]
+    }
+  ]
+}

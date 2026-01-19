@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "title": "Quantum Circuits and Entanglement",
+    "subtitle": "Controlled gates, Bell states, and circuit depth",
+    "estimated_minutes": 10
+  },
+  "slides": [
+    {
+      "title": "Circuit model",
+      "body": [
+        "A circuit is a sequence of gates on wires (qubits).",
+        "Time flows left to right.",
+        "Each gate is a matrix applied to the state.",
+        "Why circuits: they let us compose many linear operations into one unitary."
+      ]
+    },
+    {
+      "title": "Circuit notation",
+      "body": [
+        "Each horizontal line is a qubit wire.",
+        "Boxes are gates; dots and lines indicate control.",
+        "Measurement is drawn with a meter symbol and produces classical bits.",
+        "Why the diagram works: it mirrors matrix multiplication order."
+      ]
+    },
+    {
+      "title": "Single-qubit layers",
+      "body": [
+        "Layers apply gates in parallel on different qubits.",
+        "Depth measures the number of sequential layers.",
+        "Reducing depth can reduce error and decoherence.",
+        "Why depth matters: real devices have short coherence times."
+      ]
+    },
+    {
+      "title": "Controlled gates",
+      "body": [
+        "A controlled gate applies an operation if the control is 1.",
+        "The most common is CNOT: $$|a,b\\rangle \\to |a, b \\oplus a\\rangle$$",
+        "Why control is powerful: it creates correlations between qubits."
+      ],
+      "quiz": {
+        "question": "With the first qubit as control, what is CNOT applied to $|1,0\\rangle$?",
+        "options": ["$|1,1\\rangle$", "$|1,0\\rangle$", "$|0,1\\rangle$", "$|0,0\\rangle$"],
+        "answer": 0,
+        "explain": "Control is 1, so the target bit flips to 1."
+      }
+    },
+    {
+      "title": "Bell state",
+      "body": [
+        "Create entanglement with H and CNOT:",
+        "1) Apply H to the first qubit.",
+        "2) Apply CNOT with the first as control.",
+        "Result: $$|\\Phi^+\\rangle = (|00\\rangle + |11\\rangle)/\\sqrt{2}$$",
+        "Why it is special: this state cannot be written as a product of two single-qubit states."
+      ],
+      "check": {
+        "prompt": "Check: Start with $|00\\rangle$, apply H on qubit 1 then CNOT ($1 \\to 2$). What state do you get?",
+        "answer": "(|00> + |11>)/sqrt(2)",
+        "answers": ["(|00> + |11>)/sqrt(2)", "bell state", "phi", "phi plus", "phi+"],
+        "answer_html": "$$(|00\\rangle + |11\\rangle)/\\sqrt{2}$$",
+        "hint": "It becomes the Bell state $|\\Phi^+\\rangle$.",
+        "explain": "Correct - the circuit prepares an entangled Bell pair."
+      }
+    },
+    {
+      "title": "Measurement in circuits",
+      "body": [
+        "Measurement collapses qubits to classical bits.",
+        "Measurements can be placed at the end or mid-circuit.",
+        "Repeated runs estimate probabilities and expectation values.",
+        "Why measurement changes things: it is not unitary and discards phase information."
+      ]
+    },
+    {
+      "title": "Circuit depth and width",
+      "body": [
+        "Width is the number of qubits used.",
+        "Depth is the number of sequential gate layers.",
+        "Hardware limits often cap depth more than width.",
+        "Why: noise accumulates with each layer."
+      ]
+    },
+    {
+      "title": "Swap and controlled-Z",
+      "body": [
+        "SWAP exchanges two qubits and can be built from 3 CNOTs.",
+        "Controlled-Z flips the phase when both qubits are 1.",
+        "Both are common building blocks in larger circuits.",
+        "Why use them: hardware connectivity often forces explicit swaps or phase controls."
+      ]
+    },
+    {
+      "title": "Composing larger circuits",
+      "body": [
+        "Large circuits are built from small reusable blocks.",
+        "Common patterns: prepare $\\to$ compute $\\to$ uncompute.",
+        "This keeps extra qubits clean and reduces error.",
+        "Why uncompute: it removes unwanted entanglement and resets ancilla qubits."
+      ],
+      "check": {
+        "prompt": "Check: Is $(|00\\rangle + |11\\rangle)/\\sqrt{2}$ separable?",
+        "answer": "no",
+        "answers": ["no", "not separable", "entangled"],
+        "hint": "Try writing it as $|a\\rangle \\otimes |b\\rangle$.",
+        "explain": "Correct - it is entangled and not separable."
+      }
+    }
+  ]
+}

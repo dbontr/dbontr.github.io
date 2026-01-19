@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "title": "Qubit Foundations",
+    "subtitle": "States, measurement, phase, and single-qubit gates",
+    "estimated_minutes": 15
+  },
+  "slides": [
+    {
+      "title": "Welcome",
+      "body": [
+        "Quantum computing uses linear algebra because quantum states are vectors and isolated evolution is linear.",
+        "Linearity means amplitudes add and can interfere, which is where quantum advantage comes from.",
+        "We build intuition with a single qubit and explain why gates must be unitary.",
+        "Use the interactive checks and sims to test each idea."
+      ]
+    },
+    {
+      "title": "Bits vs qubits",
+      "body": [
+        "A classical bit stores one of two values: 0 or 1.",
+        "A qubit is a normalized vector in a 2D complex space spanned by $|0\\rangle$ and $|1\\rangle$.",
+        "We write: $$|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle$$",
+        "Why this form: any 2D vector can be expressed in this basis with coefficients $\\alpha$ and $\\beta$."
+      ]
+    },
+    {
+      "title": "Dirac notation quick read",
+      "body": [
+        "Kets $|\\psi\\rangle$ are column vectors; bras $\\langle\\psi|$ are their conjugate transpose.",
+        "Basis vectors: $$|0\\rangle = \\begin{bmatrix}1\\\\0\\end{bmatrix},\\; |1\\rangle = \\begin{bmatrix}0\\\\1\\end{bmatrix}$$",
+        "Inner products like $\\langle 0|1\\rangle = 0$ measure overlap. Orthogonal states do not overlap.",
+        "More generally, $\\langle a|b\\rangle$ is the amplitude of projecting $|b\\rangle$ onto $|a\\rangle$, and $|\\langle a|b\\rangle|^2$ is the probability.",
+        "The conjugate in the bra ensures phases combine correctly so probabilities are real."
+      ]
+    },
+    {
+      "title": "Normalization",
+      "body": [
+        "Every measurement must output something, so total probability is 1: $$|\\alpha|^2 + |\\beta|^2 = 1$$",
+        "A state with amplitudes $(\\alpha, \\beta)$ is valid only if it is normalized.",
+        "Quantum gates are built to preserve this normalization."
+      ],
+      "check": {
+        "prompt": "Check: If $\\alpha = 3/5$ and $\\beta = 4/5$, what is $|\\alpha|^2 + |\\beta|^2$ ?",
+        "answer": "1",
+        "hint": "Square then add: 9/25 + 16/25.",
+        "explain": "Correct - 9/25 + 16/25 = 1."
+      }
+    },
+    {
+      "title": "Complex amplitudes",
+      "body": [
+        "Amplitudes can be complex numbers, not just real.",
+        "Why complex: phase is needed to model interference, and complex numbers encode phase rotations.",
+        "A global phase does not change measurement outcomes: $$e^{i\\phi}|\\psi\\rangle \\equiv |\\psi\\rangle$$"
+      ]
+    },
+    {
+      "title": "Global vs relative phase",
+      "body": [
+        "Relative phase changes the state even if probabilities stay the same.",
+        "$$|+\\rangle = (|0\\rangle + |1\\rangle)/\\sqrt{2}$$",
+        "$$|-\\rangle = (|0\\rangle - |1\\rangle)/\\sqrt{2}$$",
+        "These two states measure 50/50, but behave differently under further gates."
+      ]
+    },
+    {
+      "title": "Measurement",
+      "body": [
+        "Measurement in the computational basis returns 0 or 1.",
+        "The probabilities come from squared magnitudes (Born rule): $P(0)=|\\alpha|^2$ and $P(1)=|\\beta|^2$.",
+        "Why collapse: measurement projects onto a basis state, updating the state to match the observed outcome."
+      ],
+      "quiz": {
+        "question": "If $$|\\psi\\rangle = \\sqrt{3}/2 |0\\rangle + 1/2 |1\\rangle$$, what is P(1)?",
+        "options": ["1/4", "1/2", "3/4", "1"],
+        "answer": 0,
+        "explain": "P(1)=|1/2|^2 = 1/4."
+      }
+    },
+    {
+      "title": "Bloch sphere intuition",
+      "body": [
+        "Any single qubit can be written as: $$|\\psi\\rangle = \\cos(\\theta/2)|0\\rangle + e^{i\\phi}\\sin(\\theta/2)|1\\rangle$$",
+        "$\\theta$ and $\\phi$ locate the state on the Bloch sphere.",
+        "Why only two angles: normalization removes one degree of freedom and global phase removes another."
+      ]
+    },
+    {
+      "title": "State explorer",
+      "body": [
+        "Use $\\theta$ and $\\phi$ to move on the Bloch sphere.",
+        "Notice $P(0)=\\cos^2(\\theta/2)$ and $P(1)=\\sin^2(\\theta/2)$.",
+        "$\\phi$ changes phase, not probabilities, but it affects interference with later gates."
+      ],
+      "widget": "state_explorer"
+    },
+    {
+      "title": "Gates are matrices",
+      "body": [
+        "Quantum gates are unitary matrices acting on states.",
+        "Why unitary: they preserve inner products, so probabilities stay consistent and evolution is reversible.",
+        "Common single-qubit gates: $$X = \\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$$ $$Z = \\begin{bmatrix}1&0\\\\0&-1\\end{bmatrix}$$ $$H = \\frac{1}{\\sqrt{2}}\\begin{bmatrix}1&1\\\\1&-1\\end{bmatrix}$$"
+      ]
+    },
+    {
+      "title": "Superposition with H",
+      "body": [
+        "The Hadamard gate creates superposition: $$H|0\\rangle = (|0\\rangle + |1\\rangle)/\\sqrt{2}$$",
+        "Why: H is a basis change to the $|+\\rangle, |-\\rangle$ basis.",
+        "Now both outcomes are possible with 50% probability."
+      ],
+      "quiz": {
+        "question": "Which gate maps $|0\\rangle$ to $(|0\\rangle+|1\\rangle)/\\sqrt{2}$?",
+        "options": ["X", "Z", "H", "I"],
+        "answer": 2,
+        "explain": "The Hadamard creates equal superposition."
+      }
+    },
+    {
+      "title": "Interference",
+      "body": [
+        "Amplitudes add before you square, which is why interference is possible.",
+        "Two Hadamards cancel: $$H(H|0\\rangle)=|0\\rangle$$",
+        "Why: the paths add with opposite phases, so the $|1\\rangle$ amplitude cancels."
+      ],
+      "check": {
+        "prompt": "Check: What is the gate identity $$H Z H = ?$$",
+        "answer": "X",
+        "hint": "It turns phase into a bit flip.",
+        "explain": "Correct - H Z H equals X."
+      }
+    },
+    {
+      "title": "Phase vs bit",
+      "body": [
+        "The Z gate flips the phase of $|1\\rangle$: $$Z|1\\rangle = -|1\\rangle$$",
+        "A phase flip can become a bit flip after a Hadamard: $$HZH = X$$",
+        "Why: H swaps the phase and computational bases, converting phase into amplitude."
+      ]
+    },
+    {
+      "title": "Rotations",
+      "body": [
+        "Rotation gates move you smoothly on the Bloch sphere.",
+        "A common example is the Y rotation: $$R_y(\\theta)=\\begin{bmatrix}\\cos(\\theta/2)&-\\sin(\\theta/2)\\\\\\sin(\\theta/2)&\\cos(\\theta/2)\\end{bmatrix}$$",
+        "Why rotations matter: any single-qubit unitary can be built from rotations."
+      ]
+    },
+    {
+      "title": "Expectation values",
+      "body": [
+        "Repeated measurements estimate probabilities.",
+        "Example expectation value of Z: $$\\langle Z \\rangle = |\\alpha|^2 - |\\beta|^2$$",
+        "This tells you how biased the state is toward $|0\\rangle$.",
+        "Why use it: expectation values summarize many shots into a single observable."
+      ]
+    },
+    {
+      "title": "Interactive qubit lab",
+      "body": [
+        "Apply gates, watch the state update, then measure.",
+        "Try: H $\\to$ Z $\\to$ H (a phase flip becomes a bit flip).",
+        "Try: H $\\to$ Measure multiple times to see 50/50 outcomes.",
+        "Use $R_y$ to rotate by a custom angle and watch probabilities change."
+      ],
+      "widget": "qubit_lab"
+    },
+    {
+      "title": "Next steps",
+      "body": [
+        "Two-qubit systems introduce entanglement: $$|\\Phi^+\\rangle = (|00\\rangle + |11\\rangle)/\\sqrt{2}$$",
+        "Why it matters: entangled states cannot be factored into separate qubits.",
+        "See the next lessons for circuits and multi-qubit ideas."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "handle": "dbontr",
+  "name": "Devon Bontrager",
+  "title": "Engineering Physics @ University of Kansas • Digital Electronic Systems • Math & Stats",
+  "focus": [
+    "Quantitative Research",
+    "Computational Physics / R&D",
+    "Quantum Computing",
+    "HPC + Scientific Software"
+  ],
+  "bio": "Hi, I'm an Engineering Physics student at the University of Kansas with minors in Mathematics and Statistics. /n I build research-focused projects in Python/C++, and I'm especially interested in quantitative research, computational physics, and quantum computing.",
+  "highlights": [
+    "EKF-based track-building framework for TrackML / HEP",
+    "Quantum computing experiments (circuit-based toy solvers + real SDK workflows)",
+    "AI for finance (feature pipelines, modeling, backtesting, and research tooling)"
+  ],
+  "skills": {
+    "Languages": ["Python", "C++", "JavaScript", "HTML"],
+    "Tools": ["Linux", "Git", "Docker", "Qiskit", "CUDA"],
+    "Domains": [
+      "Kalman Filtering",
+      "Tracking",
+      "Statistics",
+      "Optimization",
+      "Quantum Computing",
+      "Scientific Computing"
+    ]
+  }
+}
+

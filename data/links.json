@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "key": "github",
+      "label": "GitHub",
+      "url": "https://github.com/dbontr"
+    },
+    {
+      "key": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/devon-bontrager/"
+    },
+    {
+      "key": "email",
+      "label": "Email",
+      "url": "devonlbontrager@ku.edu"
+    }
+  ]
+}
