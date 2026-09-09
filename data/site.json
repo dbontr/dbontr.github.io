@@ -1,0 +1,81 @@
+{
+  "site": {
+    "name": "Devon Bontrager",
+    "url": "https://dbontr.github.io/",
+    "navigation": [
+      { "key": "home", "label": "Home", "href": "index.html" },
+      { "key": "publications", "label": "Publications", "href": "publications.html" },
+      { "key": "research", "label": "Research", "href": "research.html" },
+      { "key": "about", "label": "About", "href": "about.html" },
+      { "key": "contact", "label": "Contact", "href": "contact.html" }
+    ],
+    "footer": {
+      "copyright": "Devon Bontrager",
+      "link": { "label": "Contact", "href": "contact.html" }
+    }
+  },
+  "pages": {
+    "home": {
+      "browserTitle": "Devon Bontrager",
+      "description": "Devon Bontrager — electrical engineering, computational physics, quantum computing, optimization, and scientific software.",
+      "canonical": "https://dbontr.github.io/",
+      "intro": {
+        "affiliation": "Electrical Engineering · University of Kansas",
+        "name": "Devon Bontrager",
+        "role": "Researcher interested in computational methods for physics and engineering.",
+        "paragraphs": [
+          "My work spans quantum computing, computational physics, numerical optimization, and high-performance scientific software. I am particularly interested in algorithms and computational systems that make difficult scientific problems more tractable."
+        ],
+        "interestsLabel": "Research interests",
+        "interests": [
+          "quantum computing",
+          "computational physics",
+          "optimization",
+          "scientific computing",
+          "high-performance algorithms"
+        ]
+      },
+      "directory": {
+        "title": "Explore",
+        "items": [
+          { "label": "Publications", "href": "publications.html", "description": "Peer-reviewed papers, conference work, and research posters." },
+          { "label": "Research", "href": "research.html", "description": "Selected technical projects and computational systems." },
+          { "label": "About", "href": "about.html", "description": "Background, research focus, methods, and tools." },
+          { "label": "Contact", "href": "contact.html", "description": "Email and external profiles." }
+        ]
+      }
+    },
+    "publications": {
+      "browserTitle": "Publications — Devon Bontrager",
+      "description": "Publications and research presentations by Devon Bontrager in quantum computing and computational methods.",
+      "canonical": "https://dbontr.github.io/publications.html",
+      "heading": "Publications",
+      "intro": "Peer-reviewed papers, conference work, and research posters."
+    },
+    "research": {
+      "browserTitle": "Research — Devon Bontrager",
+      "description": "Selected research and technical work by Devon Bontrager.",
+      "canonical": "https://dbontr.github.io/research.html",
+      "heading": "Research",
+      "intro": "Selected research software and computational systems built around concrete technical problems."
+    },
+    "about": {
+      "browserTitle": "About — Devon Bontrager",
+      "description": "About Devon Bontrager, an electrical engineering researcher at the University of Kansas.",
+      "canonical": "https://dbontr.github.io/about.html",
+      "heading": "About",
+      "sections": {
+        "focus": "Research focus",
+        "skills": "Methods & tools",
+        "profiles": "Profiles"
+      }
+    },
+    "contact": {
+      "browserTitle": "Contact — Devon Bontrager",
+      "description": "Contact Devon Bontrager.",
+      "canonical": "https://dbontr.github.io/contact.html",
+      "heading": "Contact",
+      "intro": "Email and external profiles."
+    }
+  }
+}
