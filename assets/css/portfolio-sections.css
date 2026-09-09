@@ -7,13 +7,14 @@
 .directory-list a:hover span:first-child{color:var(--accent)}
 
 .publication-list,.research-list{border-top:1px solid var(--line)}
-.publication-item{display:grid;grid-template-columns:72px minmax(0,1fr) 118px;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
+.publication-item{display:grid;grid-template-columns:64px minmax(0,1fr) 190px;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
 .publication-index,.entry-year{font-size:12px;line-height:1.5;color:var(--muted);font-variant-numeric:tabular-nums}
 .publication-title{margin:0;font-size:17px;line-height:1.45;font-weight:620;letter-spacing:-.012em}
 .publication-meta{margin:7px 0 0;font-size:12.5px;line-height:1.58;color:var(--muted)}
 .publication-summary{display:none}
 .publication-side{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:2px}
-.publication-venue{font-size:11px;line-height:1.45;color:var(--muted)}
+.publication-venue{font-size:11px;line-height:1.5;color:var(--muted)}
+.publication-award{font-size:11px;line-height:1.45;font-weight:650;color:var(--accent)}
 .publication-link{font-size:12px;font-weight:600;color:var(--accent)}
 .publication-link:hover{text-decoration:underline;text-underline-offset:3px}
 
@@ -50,6 +51,7 @@
   .directory-list a{grid-template-columns:130px minmax(0,1fr);gap:20px}
   .publication-item,.research-entry{grid-template-columns:56px minmax(0,1fr);gap:16px;padding:24px 0}
   .publication-side,.entry-side{grid-column:2;flex-direction:row;flex-wrap:wrap;align-items:center;margin-top:4px}
+  .publication-venue{width:100%}
   .entry-tags{display:flex;flex-wrap:wrap;gap:0 10px}
   .entry-tags span{display:inline}
   .about-grid{grid-template-columns:1fr;gap:56px}
