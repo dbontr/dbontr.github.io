@@ -44,7 +44,9 @@ Every object in `projects.json` appears on `research.html` and automatically get
   "year": "2026–2027",
   "category": "Quantum computing",
   "summary": "Short research-page summary.",
-  "visual": "assets/images/research/example.svg",
+  "visual": "assets/images/research/project-output.png",
+  "visualAlt": "Describe the real output shown in the image.",
+  "visualCaption": "Optional short provenance/caption for the project output.",
   "tags": ["Quantum Computing", "Scientific Computing"],
   "overview": [
     "First overview paragraph.",
@@ -60,12 +62,12 @@ Every object in `projects.json` appears on `research.html` and automatically get
   "relatedPublications": ["publication-id-from-publications-json"],
   "links": {
     "code": "https://github.com/...",
-    "external": "https://example.org/project"
+    "Benchmark repository": "https://github.com/..."
   }
 }
 ```
 
-Research visuals should be project-specific scientific graphics rather than stock imagery. SVG is preferred.
+`visual`, `visualAlt`, and `visualCaption` are optional. Research visuals must be genuine public/project-approved artifacts from the work itself, such as plots, benchmark outputs, screenshots, or figures. Never add confidential, embargoed, internal-only, or otherwise non-public material. If no approved public visual exists, omit the visual rather than creating a decorative substitute.
 
 ## Change the home page or page copy
 
