@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f2efe7" />
+  <meta name="theme-color" content="#f6f5f1" />
   <title>Devon Bontrager — Research & Engineering</title>
   <meta name="description" content="Devon Bontrager — research in quantum computing, computational physics, optimization, and scientific software." />
   <meta property="og:title" content="Devon Bontrager — Research & Engineering" />
@@ -21,7 +21,7 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <a class="identity" href="#top">Devon Bontrager</a>
+      <a class="identity" href="#top" aria-label="Devon Bontrager, home">Devon Bontrager</a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#publications">Publications</a>
         <a href="#research">Research</a>
@@ -33,23 +33,28 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="page-shell hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Electrical Engineering · Computational Research</p>
+      <div class="page-shell hero-layout">
+        <div class="hero-main">
+          <p class="hero-kicker">Electrical Engineering · University of Kansas</p>
           <h1 id="hero-title">Devon Bontrager</h1>
-          <p class="hero-affiliation">University of Kansas</p>
-          <p class="hero-intro">I work on computational methods for difficult problems in physics and engineering, with current interests in quantum computing, optimization, and high-performance scientific software.</p>
+          <p class="hero-role">Researcher working on computational methods for problems in physics, quantum computing, optimization, and scientific software.</p>
+          <p class="hero-summary">I am interested in rigorous computational approaches that make difficult physical and engineering problems more tractable, with an emphasis on efficient algorithms and high-performance implementations.</p>
           <div class="hero-links" aria-label="Primary links">
-            <a href="#publications">Publications</a>
-            <a href="#research">Research</a>
-            <a href="#about">About</a>
+            <a href="#publications">View publications</a>
+            <a href="#research">Selected research</a>
           </div>
         </div>
 
-        <div class="hero-footer" aria-label="Research interests">
-          <span class="label">Current interests</span>
-          <p>Quantum computing · Computational physics · Optimization · Scientific computing</p>
-        </div>
+        <aside class="hero-aside" aria-label="Research profile">
+          <div class="hero-detail">
+            <span class="detail-label">Research areas</span>
+            <p>Quantum computing<br />Computational physics<br />Optimization<br />Scientific computing</p>
+          </div>
+          <div class="hero-detail">
+            <span class="detail-label">Location</span>
+            <p>Lawrence, Kansas</p>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -67,14 +72,14 @@
       </div>
     </section>
 
-    <section class="section section-tint" id="research" aria-labelledby="research-title">
+    <section class="section section-alt" id="research" aria-labelledby="research-title">
       <div class="page-shell">
         <header class="section-header">
           <div>
-            <p class="section-label">Research & systems</p>
+            <p class="section-label">Research</p>
             <h2 id="research-title">Selected technical work</h2>
           </div>
-          <p class="section-intro">Research-oriented software and computational systems built around measurable technical problems.</p>
+          <p class="section-intro">Research software and computational systems built around concrete technical problems.</p>
         </header>
         <div class="research-list" id="projects-list" aria-live="polite"></div>
       </div>
@@ -84,7 +89,7 @@
       <div class="page-shell about-layout">
         <div class="about-main">
           <p class="section-label">About</p>
-          <h2 id="about-title">Research, engineering, and computation.</h2>
+          <h2 id="about-title">Research and engineering from first principles.</h2>
           <p id="profile-bio" class="about-bio">Electrical engineering researcher focused on computational systems, numerical methods, and scientific software.</p>
         </div>
         <aside class="about-aside" aria-label="Research profile details">
