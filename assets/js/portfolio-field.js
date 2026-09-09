@@ -13,7 +13,7 @@
     uniform vec2 uResolution;
     uniform float uTime;
     uniform vec2 uPointer;
-    #define MAX_STEPS 78
+    #define MAX_STEPS 60
     #define FAR 12.0
 
     float hash21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
@@ -60,13 +60,15 @@
     const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
     const pos=gl.getAttribLocation(program,'position');gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
     const uRes=gl.getUniformLocation(program,'uResolution'),uTime=gl.getUniformLocation(program,'uTime'),uPointer=gl.getUniformLocation(program,'uPointer');
-    const pointer={x:0,y:0,tx:0,ty:0};const started=performance.now();let raf=0,visible=true;
+    const pointer={x:0,y:0,tx:0,ty:0};const started=performance.now();let raf=0,visible=!document.hidden,onscreen=true;
 
-    const resize=()=>{const rect=canvas.parentElement.getBoundingClientRect();const dpr=Math.min(devicePixelRatio||1,innerWidth<760?1.05:1.45);const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h)}};
-    const frame=now=>{if(!visible)return;resize();pointer.x+=(pointer.tx-pointer.x)*.045;pointer.y+=(pointer.ty-pointer.y)*.045;gl.uniform2f(uRes,canvas.width,canvas.height);gl.uniform1f(uTime,reduced.matches?0:(now-started)/1000);gl.uniform2f(uPointer,pointer.x,pointer.y);gl.drawArrays(gl.TRIANGLES,0,3);raf=requestAnimationFrame(frame)};
+    const resize=()=>{const rect=canvas.parentElement.getBoundingClientRect();const dpr=Math.min(devicePixelRatio||1,innerWidth<760?.78:1);const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h)}};
+    const frame=now=>{raf=0;if(!visible||!onscreen)return;resize();pointer.x+=(pointer.tx-pointer.x)*.045;pointer.y+=(pointer.ty-pointer.y)*.045;gl.uniform2f(uRes,canvas.width,canvas.height);gl.uniform1f(uTime,reduced.matches?0:(now-started)/1000);gl.uniform2f(uPointer,pointer.x,pointer.y);gl.drawArrays(gl.TRIANGLES,0,3);raf=requestAnimationFrame(frame)};
+    const sync=()=>{const shouldRun=visible&&onscreen;if(shouldRun&&!raf)raf=requestAnimationFrame(frame);if(!shouldRun&&raf){cancelAnimationFrame(raf);raf=0}};
     addEventListener('pointermove',e=>{pointer.tx=(e.clientX/innerWidth-.5)*2;pointer.ty=(e.clientY/innerHeight-.5)*-2},{passive:true});
     addEventListener('resize',resize,{passive:true});
-    document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(visible&&!raf)raf=requestAnimationFrame(frame);if(!visible&&raf){cancelAnimationFrame(raf);raf=0}});
-    resize();raf=requestAnimationFrame(frame);if(status)status.textContent=reduced.matches?'MOTION LOCKED':'REALTIME';
+    document.addEventListener('visibilitychange',()=>{visible=!document.hidden;sync()});
+    if('IntersectionObserver'in window){new IntersectionObserver(([entry])=>{onscreen=entry.isIntersecting;sync()},{rootMargin:'100px'}).observe(canvas)}
+    resize();sync();if(status)status.textContent=reduced.matches?'MOTION LOCKED':'REALTIME';
   }catch(error){console.warn('WebGL field renderer unavailable.',error);if(status)status.textContent='STATIC FALLBACK'}
 })();
