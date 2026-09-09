@@ -8,13 +8,25 @@ The site takes inspiration from the directness of simple academic personal sites
 
 ## Information architecture
 Five small pages:
-1. `index.html` — Home: identity, affiliation, concise research statement, interests, and links into the site.
-2. `publications.html` — Publications: compact citation-style records from `data/publications.json`.
-3. `research.html` — Research: selected research software and technical work from `data/projects.json`.
-4. `about.html` — About: biography, research focus, methods/tools, and external profiles.
-5. `contact.html` — Contact: email and external profile links from `data/links.json`.
+1. `index.html` — Home.
+2. `publications.html` — Publications.
+3. `research.html` — Research.
+4. `about.html` — About.
+5. `contact.html` — Contact.
 
-The same small top navigation appears on every page. Do not use a sidebar; this is a personal site, not a research group or documentation portal.
+The HTML files are intentionally thin page shells. Visible content is rendered from JSON by `assets/js/portfolio-content.js`.
+
+## JSON content architecture
+- `data/site.json` — shared navigation, site identity, page metadata, page headings, home copy, and home directory links.
+- `data/profile.json` — biography, research focus, and skills used by About.
+- `data/publications.json` — publication, paper, poster, award, venue, and link records used by Publications.
+- `data/projects.json` — research and technical project records used by Research.
+- `data/links.json` — email and external profiles used by About and Contact.
+- `data/README.md` — editing guide and example record formats.
+
+Ordinary content updates must not require editing HTML. Adding a publication, research project, profile link, or changing page copy should be a JSON-only change.
+
+The same small top navigation appears on every page and is generated from `data/site.json`. Do not use a sidebar; this is a personal site, not a research group or documentation portal.
 
 ## Control dials
 - Expression: 1/10
@@ -61,5 +73,5 @@ No decorative motion. Native link and scroll behavior only.
 - No runtime framework.
 - No external font dependency.
 - No WebGL or continuous render loop.
-- Static HTML/CSS plus small JSON-loading JavaScript only.
-- Keep publication, project, profile, and contact content sourced from repository JSON where already structured so factual content remains independently maintainable.
+- Small HTML shells + CSS + one JSON-rendering JavaScript file.
+- Keep content structured and maintainable in JSON so factual updates remain independent from page layout and styling.
