@@ -128,7 +128,7 @@
       <div class="publication-list" id="publications-list">
         ${items.map(item => {
           const href = safeURL(item?.links?.doi || item?.links?.url || '');
-          const details = [item.type, item.venue, item.date, item.location].filter(Boolean);
+          const details = [item.type, item.venue, item.date, item.location, item.publisher, item.pages].filter(Boolean);
           return `
             <article class="publication-item">
               <div class="publication-index">${esc(item.year || '')}</div>
