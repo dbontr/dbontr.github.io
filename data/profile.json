@@ -2,6 +2,8 @@
   "handle": "dbontr",
   "name": "Devon Bontrager",
   "title": "Electrical Engineering @ University of Kansas • Mathematics & Statistics",
+  "portrait": "https://avatars.githubusercontent.com/u/139504713?v=4",
+  "portraitAlt": "Devon Bontrager",
   "focus": [
     "Computational Physics / R&D",
     "Quantum Computing",
@@ -9,6 +11,30 @@
     "HPC + Scientific Software"
   ],
   "bio": "I'm an Electrical Engineering student at the University of Kansas with a research focus on computational methods. I build research-focused systems in Python and C++, with interests spanning quantum computing, numerical optimization, high-performance computing, and scientific software.",
+  "education": [
+    {
+      "institution": "University of Kansas",
+      "program": "Electrical Engineering",
+      "detail": "Mathematics & Statistics",
+      "status": "Undergraduate"
+    }
+  ],
+  "experience": [
+    {
+      "organization": "IRIS-HEP",
+      "role": "Fellow",
+      "period": "2025 · 2026",
+      "summary": "Research on cooperative particle track building with heuristic and quantum acceleration.",
+      "url": "https://iris-hep.org/fellows/dbontr.html"
+    },
+    {
+      "organization": "KUARQ Research Group",
+      "role": "Research member",
+      "period": "Current",
+      "summary": "Research in quantum algorithms, quantum hardware integration, and quantum circuit optimization.",
+      "url": "https://sites.google.com/view/esam-el-araby/research-group/member-biographies"
+    }
+  ],
   "highlights": [
     "EKF-based track-building framework for TrackML / HEP",
     "Quantum computing experiments and published quantum algorithms",
