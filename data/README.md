@@ -1,14 +1,14 @@
 # Site content
 
-All visible site content is loaded from JSON. The HTML files are only lightweight page shells.
+All visible site content is loaded from JSON. The HTML files are lightweight page shells.
 
 ## Files
 
-- `site.json` — global navigation, page titles/descriptions, home-page copy, section labels, and directory links.
-- `profile.json` — biography, research focus, skills, and profile details used by the About page.
-- `publications.json` — every publication, paper, poster, award, and publication link shown on the Publications page.
-- `projects.json` — research and technical projects shown on the Research page.
-- `links.json` — email and external profiles used by the About and Contact pages.
+- `site.json` — global navigation, page titles/descriptions, home copy, section labels, and contact copy.
+- `profile.json` — portrait, biography, education, research experience, interests, and skills.
+- `publications.json` — publications, papers, posters, awards, and publication links.
+- `projects.json` — research index entries plus the content for each research detail page.
+- `links.json` — email and external profiles used by About and Contact.
 
 ## Add a publication
 
@@ -16,45 +16,67 @@ Add a new object near the top of `publications.json`:
 
 ```json
 {
-  "id": "2026-short-unique-id",
+  "id": "2027-short-unique-id",
   "title": "Publication title",
   "authors": "Author One, Devon Bontrager, Author Three",
   "type": "Journal article",
   "venue": "Journal or conference",
-  "year": 2026,
-  "date": "September 2026",
+  "year": 2027,
+  "date": "March 2027",
   "location": "Optional location",
   "award": "Optional award",
   "tags": ["Quantum Computing", "PDE"],
-  "links": {
-    "doi": "https://doi.org/..."
-  }
+  "links": { "doi": "https://doi.org/..." }
 }
 ```
 
-Use `links.url` instead of `links.doi` when the record has a normal web page or poster/PDF link rather than a DOI. `location`, `award`, `tags`, and links are optional.
+Use `links.url` instead of `links.doi` for a normal web page, poster, or PDF. Optional fields can simply be omitted.
 
-## Add a research project
+## Add a research item
 
-Add an object to `projects.json`:
+Every object in `projects.json` appears on `research.html` and automatically gets a detail view at `research-item.html?id=<id>`.
 
 ```json
 {
-  "title": "Project name",
-  "subtitle": "Short technical description",
-  "year": 2026,
-  "summary": "What the project does and why it matters.",
-  "tags": ["HPC", "Physics"],
+  "id": "short-unique-id",
+  "title": "Research title",
+  "subtitle": "One-line technical description",
+  "year": "2026–2027",
+  "category": "Quantum computing",
+  "summary": "Short research-page summary.",
+  "visual": "assets/images/research/example.svg",
+  "tags": ["Quantum Computing", "Scientific Computing"],
+  "overview": [
+    "First overview paragraph.",
+    "Second overview paragraph."
+  ],
+  "sections": [
+    {
+      "heading": "Methods",
+      "paragraphs": ["Optional explanatory paragraph."],
+      "items": ["Method one", "Method two"]
+    }
+  ],
+  "relatedPublications": ["publication-id-from-publications-json"],
   "links": {
-    "code": "https://github.com/..."
+    "code": "https://github.com/...",
+    "external": "https://example.org/project"
   }
 }
 ```
 
-## Change navigation or page copy
+Research visuals should be project-specific scientific graphics rather than stock imagery. SVG is preferred.
 
-Edit `site.json`. Each page has its own entry under `pages`, and the top navigation is controlled by `site.navigation`.
+## Change the home page or page copy
 
-## Change biography or contact links
+Edit `site.json`. The Home page intentionally has no Explore/directory block; primary navigation lives in the shared header.
 
-Edit `profile.json` or `links.json`. No HTML changes are required for ordinary content updates.
+## Change portrait, biography, education, or research experience
+
+Edit `profile.json`. `portrait` may be a local asset path or an HTTPS image URL.
+
+## Change contact/profile links
+
+Edit `links.json`. Each item can include `label`, `url`, and an optional short `detail` string.
+
+No HTML editing is required for ordinary content updates.
