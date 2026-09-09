@@ -2,7 +2,7 @@
   "handle": "dbontr",
   "name": "Devon Bontrager",
   "title": "Electrical Engineering @ University of Kansas • Mathematics & Statistics",
-  "portrait": "https://avatars.githubusercontent.com/u/139504713?v=4",
+  "portrait": "assets/images/profile.jpg",
   "portraitAlt": "Devon Bontrager",
   "focus": [
     "Computational Physics / R&D",
@@ -41,8 +41,25 @@
     "Optimization, simulation, and scientific computing systems"
   ],
   "skills": {
-    "Languages": ["Python", "C++", "JavaScript", "HTML"],
-    "Tools": ["Linux", "Git", "Docker", "Qiskit"],
-    "Domains": ["Algorithm Design", "High Energy Physics", "Statistics", "Optimization", "Quantum Computing", "Scientific Computing"]
+    "Languages": [
+      "Python",
+      "C++",
+      "JavaScript",
+      "HTML"
+    ],
+    "Tools": [
+      "Linux",
+      "Git",
+      "Docker",
+      "Qiskit"
+    ],
+    "Domains": [
+      "Algorithm Design",
+      "High Energy Physics",
+      "Statistics",
+      "Optimization",
+      "Quantum Computing",
+      "Scientific Computing"
+    ]
   }
 }
