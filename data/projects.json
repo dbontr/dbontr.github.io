@@ -1,28 +1,122 @@
 {
   "items": [
     {
-      "title": "Meta-Heuristic-EKF-Track-Building",
-      "subtitle": "Helical EKF + meta-heuristics for TrackML reconstruction",
-      "year": 2025,
-      "summary": "Fast TrackML reconstruction built on a helical EKF core with A*, ACO, GA, PSO, SA, per-layer branching, vectorized kernels, robust gating, and built-in hyperparameter optimization.",
+      "id": "quantum-pde",
+      "title": "Quantum algorithms for multidimensional partial differential equations",
+      "subtitle": "Quantum linear-algebra methods for scientific PDE workloads",
+      "year": "2025–2026",
+      "category": "Quantum computing",
+      "summary": "Research on quantum methods for solving multidimensional PDEs, including circuit-efficient formulations, practical case studies, and singular-value-based approaches.",
+      "visual": "assets/images/research/quantum-pde.svg",
+      "tags": ["Quantum Computing", "PDE", "QSVT", "Scientific Computing"],
+      "overview": [
+        "This research explores how quantum linear-algebra techniques can be used to formulate and solve multidimensional partial differential equations that arise across scientific and engineering applications.",
+        "The work emphasizes practical circuit structure, scalability, and validation across representative PDE families rather than treating the quantum algorithm as an isolated mathematical primitive."
+      ],
+      "sections": [
+        {
+          "heading": "Research direction",
+          "paragraphs": [
+            "The central question is how to map structured PDE problems into quantum computations while keeping the circuit construction efficient enough to study on simulators and available hardware.",
+            "Recent work extends this direction toward singular-value decomposition and transformation methods for PDEs in areas such as computational fluid dynamics and nuclear physics."
+          ]
+        },
+        {
+          "heading": "Representative problems",
+          "items": ["Poisson and heat equations", "Black–Scholes-type equations", "Navier–Stokes-related case studies", "Multidimensional scientific PDE systems"]
+        }
+      ],
+      "relatedPublications": [
+        "2026-algorithms-quantum-pde-case-studies",
+        "2026-qce-qsvt-pde",
+        "2026-qcuf-qsvt-pde",
+        "2025-sc25-pde-poster",
+        "2025-scworkshops-practical-quantum-pde",
+        "2025-qcuf-quantum-pde",
+        "2025-algorithms-efficient-quantum-pde"
+      ],
+      "links": {
+        "publication": "publications.html"
+      }
+    },
+    {
+      "id": "particle-track-building",
+      "title": "Cooperative particle track building",
+      "subtitle": "Heuristic and quantum acceleration for high-energy physics reconstruction",
+      "year": "2025–2026",
+      "category": "High-energy physics",
+      "summary": "TrackML reconstruction built around a helical EKF core, cooperative candidate search, and a collection of heuristic optimization methods.",
+      "visual": "assets/images/research/track-building.svg",
       "tags": ["HEP", "Tracking", "EKF", "Optimization", "HPC"],
-      "links": { "code": "https://github.com/dbontr/Particle-Track-Building" }
+      "overview": [
+        "This project studies particle track reconstruction as a search and estimation problem rather than a single fixed pipeline.",
+        "Parallel track hypotheses can share quality information and prune weaker candidates while heuristic methods explore alternatives to conventional combinatorial search."
+      ],
+      "sections": [
+        {
+          "heading": "Methods",
+          "items": ["Helical extended Kalman filtering", "A* and best-first search", "Ant colony and particle swarm optimization", "Genetic algorithms and simulated annealing", "QUBO-based quantum proof-of-concept work"]
+        },
+        {
+          "heading": "Research objective",
+          "paragraphs": [
+            "The objective is to compare reconstruction quality, execution cost, and search behavior across classical and hybrid approaches for high-pileup tracking workloads."
+          ]
+        }
+      ],
+      "relatedPublications": [],
+      "links": {
+        "code": "https://github.com/dbontr/Particle-Track-Building",
+        "external": "https://iris-hep.org/fellows/dbontr.html"
+      }
     },
     {
-      "title": "mkbench",
-      "subtitle": "Docker-first mkFit benchmarking harness",
-      "year": 2025,
-      "summary": "A reproducible build, run, and comparison workflow for mkFit variants with TrackML geometry artifacts, scaling sweeps, plots, and machine-readable performance reports.",
+      "id": "mkbench",
+      "title": "mkFit performance and reproducibility benchmarking",
+      "subtitle": "A reproducible harness for track-reconstruction experiments",
+      "year": "2025",
+      "category": "Scientific computing",
+      "summary": "A Docker-first workflow for building, running, comparing, and reporting mkFit variants across controlled scaling and performance experiments.",
+      "visual": "assets/images/research/mkbench.svg",
       "tags": ["HEP", "mkFit", "Docker", "Benchmarking", "HPC"],
-      "links": { "code": "https://github.com/dbontr/mkbench" }
+      "overview": [
+        "mkbench is designed to make performance experiments repeatable rather than dependent on a one-off local environment.",
+        "The harness packages build and run configuration, geometry artifacts, scaling sweeps, plots, and machine-readable reports so comparisons can be reproduced and audited."
+      ],
+      "sections": [
+        {
+          "heading": "What it measures",
+          "items": ["Build and runtime behavior", "Scaling across controlled runs", "Performance comparisons between variants", "Machine-readable experiment outputs"]
+        }
+      ],
+      "relatedPublications": [],
+      "links": {
+        "code": "https://github.com/dbontr/mkbench"
+      }
     },
     {
-      "title": "VaR-Backtesting-Toolkit",
-      "subtitle": "Statistical validation for rolling risk models",
-      "year": 2025,
-      "summary": "A command-line backtesting system for historical and Gaussian Value-at-Risk models using Kupiec and Christoffersen statistical tests with automated conditional-coverage reporting.",
+      "id": "var-backtesting",
+      "title": "Statistical validation of rolling risk models",
+      "subtitle": "Backtesting Value-at-Risk forecasts with formal coverage tests",
+      "year": "2025",
+      "category": "Quantitative methods",
+      "summary": "A command-line backtesting system for historical and Gaussian Value-at-Risk models using Kupiec and Christoffersen statistical tests.",
+      "visual": "assets/images/research/var-backtesting.svg",
       "tags": ["Quant", "Risk", "Statistics", "Backtesting", "Python"],
-      "links": { "code": "https://github.com/dbontr/VarBacktest" }
+      "overview": [
+        "This work treats risk forecasts as statistical claims that should be tested rather than accepted from a model output alone.",
+        "The toolkit evaluates rolling Value-at-Risk estimates with unconditional and conditional coverage tests and produces repeatable reporting for model comparison."
+      ],
+      "sections": [
+        {
+          "heading": "Validation methods",
+          "items": ["Historical and Gaussian Value-at-Risk", "Kupiec unconditional coverage test", "Christoffersen independence test", "Conditional coverage reporting"]
+        }
+      ],
+      "relatedPublications": [],
+      "links": {
+        "code": "https://github.com/dbontr/VarBacktest"
+      }
     }
   ]
 }
