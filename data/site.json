@@ -34,15 +34,6 @@
           "scientific computing",
           "high-performance algorithms"
         ]
-      },
-      "directory": {
-        "title": "Explore",
-        "items": [
-          { "label": "Publications", "href": "publications.html", "description": "Peer-reviewed papers, conference work, and research posters." },
-          { "label": "Research", "href": "research.html", "description": "Selected technical projects and computational systems." },
-          { "label": "About", "href": "about.html", "description": "Background, research focus, methods, and tools." },
-          { "label": "Contact", "href": "contact.html", "description": "Email and external profiles." }
-        ]
       }
     },
     "publications": {
@@ -54,20 +45,28 @@
     },
     "research": {
       "browserTitle": "Research — Devon Bontrager",
-      "description": "Selected research and technical work by Devon Bontrager.",
+      "description": "Research areas and technical work by Devon Bontrager.",
       "canonical": "https://dbontr.github.io/research.html",
       "heading": "Research",
-      "intro": "Selected research software and computational systems built around concrete technical problems."
+      "intro": "Research areas and technical projects. Open a project for a fuller description, methods, related work, and code when available."
+    },
+    "research-item": {
+      "browserTitle": "Research — Devon Bontrager",
+      "description": "Research by Devon Bontrager.",
+      "canonical": "https://dbontr.github.io/research-item.html"
     },
     "about": {
       "browserTitle": "About — Devon Bontrager",
-      "description": "About Devon Bontrager, an electrical engineering researcher at the University of Kansas.",
+      "description": "About Devon Bontrager, a researcher at the University of Kansas.",
       "canonical": "https://dbontr.github.io/about.html",
       "heading": "About",
       "sections": {
-        "focus": "Research focus",
+        "background": "Background",
+        "education": "Education",
+        "experience": "Research experience",
+        "focus": "Current interests",
         "skills": "Methods & tools",
-        "profiles": "Profiles"
+        "profiles": "Elsewhere"
       }
     },
     "contact": {
@@ -75,7 +74,14 @@
       "description": "Contact Devon Bontrager.",
       "canonical": "https://dbontr.github.io/contact.html",
       "heading": "Contact",
-      "intro": "Email and external profiles."
+      "intro": "Email is the best way to reach me.",
+      "lead": "I am happy to hear about research collaboration, technical discussions, academic opportunities, or related engineering work.",
+      "location": "Lawrence, Kansas",
+      "sections": {
+        "primary": "Get in touch",
+        "profiles": "Profiles",
+        "location": "Based in"
+      }
     }
   }
 }
