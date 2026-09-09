@@ -1,41 +1,49 @@
 # Design Contract — dbontr.github.io
 
 ## Concept
-**Research Profile** — a personal academic website for a serious technical researcher. Publications, research, and technical interests carry the page; visual design exists to improve credibility, clarity, and reading rather than to perform for the visitor.
+**Personal Researcher Site** — a simple one-page academic website for an individual researcher. It should feel closer to a well-maintained faculty or research-scientist homepage than a portfolio, startup landing page, lab website, or design showcase.
+
+## Reference principle
+The site takes inspiration from the directness of simple academic personal pages such as `swutw.github.io`: identity first, a short research introduction, straightforward navigation, and research content immediately available. Do not copy another site's distinctive assets or text; preserve only the simplicity and information-first approach.
 
 ## Control dials
-- Expression: 2/10
+- Expression: 1/10
 - Motion: 0/10
-- Density: 3/10
+- Density: 4/10
 - Interaction complexity: 1/10
 
 ## Hierarchy
-1. Name, affiliation, and concise research statement.
-2. Peer-reviewed publications.
-3. Selected technical research and systems.
-4. Biography, research focus, methods, and external profiles.
+1. Name, affiliation, and a short explanation of research interests.
+2. Publications.
+3. Selected research and technical work.
+4. About, methods, and profile links.
 
 ## Visual language
-- Quiet off-white research-paper surface rather than decorative texture.
-- Near-black text with a restrained desaturated blue accent.
-- Generous whitespace and long reading rhythms.
-- Hairline rules used only for information structure.
-- No simulations, stock imagery, rendered hero objects, fake telemetry, ornamental HUD language, dashboards, cards, gradients, glass, or portfolio-agency effects.
-- No fabricated metrics, quotations, awards, papers, or research claims.
+- White background.
+- Neutral dark text and restrained muted blue links.
+- Sans-serif typography throughout.
+- No side navigation; this is a personal site, not a research group or documentation portal.
+- Small top navigation with section anchors only.
+- Narrow, readable content column with generous but not theatrical whitespace.
+- Thin dividers used only to separate records and major sections.
+- No simulations, rendered objects, stock imagery, decorative photos, dashboards, cards, gradients, glass, fake telemetry, coordinates, numbered navigation, oversized slogans, or decorative research graphics.
+- No fabricated metrics, awards, quotes, publications, or claims.
 
 ## Typography
-- Entire interface uses a neutral system sans-serif stack: ui-sans-serif / San Francisco / Segoe UI / Helvetica / Arial.
-- Headings rely on weight, size, tracking, and whitespace rather than a decorative display face.
-- Body text stays comfortably sized with generous line height.
-- Monospace is not used as a generic signal for technical credibility.
-- Display typography must never overlap adjacent content.
+- Native system sans-serif stack: San Francisco / Segoe UI / Helvetica / Arial.
+- Name is prominent but normal for an academic homepage, not an agency hero.
+- Publication and research titles use moderate semibold weights.
+- Body copy is 14–16px with comfortable line height.
+- Monospace is not used as a visual shorthand for technical credibility.
 
 ## Layout
-- Maximum content width approximately 1240 px.
-- Hero uses a spacious two-column research-profile composition: identity and research statement on the left, concise research metadata on the right.
-- Publications are the first substantive section after the introduction.
-- Research items and publications are full-width records with generous vertical separation rather than cards.
-- Responsive layouts stack semantically instead of compressing desktop grids.
+- One page with top anchors: Publications, Research, About, plus GitHub as an external link.
+- Maximum content width approximately 980px.
+- Intro occupies only as much space as needed to establish identity and research direction.
+- Publications are compact citation-style rows.
+- Research items are text records, not cards.
+- About is a simple text section with research focus, tools, and external links.
+- Mobile stacks naturally without introducing a hamburger menu unless the navigation materially grows.
 
 ## Motion
 No decorative motion. Native scrolling and link states only.
@@ -44,12 +52,12 @@ No decorative motion. Native scrolling and link states only.
 - WCAG 2.2 AA contrast target.
 - Semantic headings, sections, articles, and navigation.
 - Visible keyboard focus.
-- Essential content remains textual and does not depend on imagery, canvas, hover, or animation.
+- Essential content is textual and does not depend on imagery, hover, or animation.
 - Mobile typography and spacing preserve reading order and comfortable measure.
 
 ## Performance rules
 - No runtime framework.
 - No external font dependency.
 - No WebGL or continuous render loop.
-- Static HTML/CSS plus small data-loading JavaScript only.
+- Static HTML/CSS plus small JSON-loading JavaScript only.
 - Keep publication and project content sourced from repository JSON so factual content remains independently maintainable.
