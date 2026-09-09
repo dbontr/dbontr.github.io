@@ -1,19 +1,34 @@
 {
   "items": [
     {
+      "key": "email",
+      "label": "Email",
+      "url": "devonlbontrager@ku.edu",
+      "detail": "devonlbontrager@ku.edu"
+    },
+    {
       "key": "github",
       "label": "GitHub",
-      "url": "https://github.com/dbontr"
+      "url": "https://github.com/dbontr",
+      "detail": "github.com/dbontr"
     },
     {
       "key": "linkedin",
       "label": "LinkedIn",
-      "url": "https://linkedin.com/in/devon-bontrager/"
+      "url": "https://linkedin.com/in/devon-bontrager/",
+      "detail": "linkedin.com/in/devon-bontrager"
     },
     {
-      "key": "email",
-      "label": "Email",
-      "url": "devonlbontrager@ku.edu"
+      "key": "orcid",
+      "label": "ORCID",
+      "url": "https://orcid.org/0009-0002-5008-4647",
+      "detail": "0009-0002-5008-4647"
+    },
+    {
+      "key": "iris-hep",
+      "label": "IRIS-HEP",
+      "url": "https://iris-hep.org/fellows/dbontr.html",
+      "detail": "Fellow profile"
     }
   ]
 }
