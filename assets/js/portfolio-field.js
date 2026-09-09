@@ -38,7 +38,7 @@
 
     void main(){
       vec2 frag=gl_FragCoord.xy;vec2 uv=(frag*2.-uResolution.xy)/uResolution.y;vec2 suv=frag/uResolution.xy;
-      vec3 bg=stars(suv);float vignette=smoothstep(1.15,.18,length(uv*vec2(.62,.85)));bg*=.68+.32*vignette;
+      vec3 bg=stars(suv);float vignette=1.-smoothstep(.18,1.15,length(uv*vec2(.62,.85)));bg*=.68+.32*vignette;
       vec3 ro=vec3(0.,.05,4.05);ro.x+=uPointer.x*.18;ro.y+=uPointer.y*.10;
       float shift=(uResolution.x/uResolution.y<.9)?0.:.30;vec3 rd=normalize(vec3((uv.x-shift)*.80,uv.y*.80,-1.58));
       vec3 p;float depth=march(ro,rd,p);vec3 color=bg;
