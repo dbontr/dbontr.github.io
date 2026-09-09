@@ -1,10 +1,10 @@
 # Design Contract — dbontr.github.io
 
 ## Concept
-**Research Profile** — a personal academic website for a serious technical researcher. The work, publications, and research interests carry the page; visual design exists to improve credibility and reading rather than to perform for the visitor.
+**Research Profile** — a personal academic website for a serious technical researcher. Publications, research, and technical interests carry the page; visual design exists to improve credibility, clarity, and reading rather than to perform for the visitor.
 
 ## Control dials
-- Expression: 3/10
+- Expression: 2/10
 - Motion: 0/10
 - Density: 3/10
 - Interaction complexity: 1/10
@@ -16,22 +16,23 @@
 4. Biography, research focus, methods, and external profiles.
 
 ## Visual language
-- Warm archival paper rather than pure white.
-- Near-black ink with a restrained institutional green accent.
+- Quiet off-white research-paper surface rather than decorative texture.
+- Near-black text with a restrained desaturated blue accent.
 - Generous whitespace and long reading rhythms.
-- Hairline rules used as structure, not decoration.
+- Hairline rules used only for information structure.
 - No simulations, stock imagery, rendered hero objects, fake telemetry, ornamental HUD language, dashboards, cards, gradients, glass, or portfolio-agency effects.
 - No fabricated metrics, quotations, awards, papers, or research claims.
 
 ## Typography
-- Research titles and long-form statements: Iowan Old Style / Palatino / Georgia serif stack.
-- Navigation and utility copy: Arial / Helvetica system sans.
-- Metadata: system monospace, used sparingly.
+- Entire interface uses a neutral system sans-serif stack: ui-sans-serif / San Francisco / Segoe UI / Helvetica / Arial.
+- Headings rely on weight, size, tracking, and whitespace rather than a decorative display face.
+- Body text stays comfortably sized with generous line height.
+- Monospace is not used as a generic signal for technical credibility.
 - Display typography must never overlap adjacent content.
 
 ## Layout
-- Maximum reading width of approximately 1180 px.
-- Hero is spacious and text-first, occupying most of the first viewport without oversized agency typography.
+- Maximum content width approximately 1240 px.
+- Hero uses a spacious two-column research-profile composition: identity and research statement on the left, concise research metadata on the right.
 - Publications are the first substantive section after the introduction.
 - Research items and publications are full-width records with generous vertical separation rather than cards.
 - Responsive layouts stack semantically instead of compressing desktop grids.
