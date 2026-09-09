@@ -1,21 +1,145 @@
 (() => {
   'use strict';
-  const DATA={profile:'data/profile.json',projects:'data/projects.json',publications:'data/publications.json',links:'data/links.json'};
-  const $=(s,r=document)=>r.querySelector(s);
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-  const esc=(v='')=>String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-  const safeURL=(v='')=>{const raw=String(v).trim();if(!raw)return'';if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw))return`mailto:${raw}`;try{const u=new URL(raw,location.href);return['http:','https:','mailto:'].includes(u.protocol)?u.href:''}catch{return''}};
-  async function getJSON(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(`${path}: ${r.status}`);return r.json()}
 
-  function renderProjects(data){const root=$('#projects-list');if(!root)return;const items=Array.isArray(data?.items)?data.items:[];root.innerHTML=items.map((item,i)=>{const href=safeURL(item?.links?.code||item?.links?.project||'');const tags=(item.tags||[]).slice(0,5).map(t=>`<span>${esc(t)}</span>`).join('');return`<a class="work-item" data-reveal href="${esc(href||'#')}" ${href?'target="_blank" rel="noopener"':'aria-disabled="true"'}><span class="work-number">${String(i+1).padStart(2,'0')}</span><div class="work-title-wrap"><h3 class="work-title">${esc(item.title)}</h3><span class="work-subtitle">${esc(item.subtitle||'')}</span></div><div class="work-copy"><p>${esc(item.summary||'')}</p><div class="tag-list">${tags}</div></div><div class="work-action"><span class="work-year">${esc(item.year||'')}</span><br><span aria-hidden="true">↗</span></div></a>`}).join('')}
+  const DATA = {
+    profile: 'data/profile.json',
+    projects: 'data/projects.json',
+    publications: 'data/publications.json',
+    links: 'data/links.json'
+  };
 
-  function renderPublications(data){const root=$('#publications-list');if(!root)return;const items=Array.isArray(data?.items)?data.items:[];root.innerHTML=items.map((item,i)=>{const href=safeURL(item?.links?.doi||item?.links?.url||'');return`<article class="publication-item" data-reveal><span class="publication-index">${String(i+1).padStart(2,'0')}</span><div><h3 class="publication-title">${esc(item.title)}</h3><p class="publication-meta">${esc(item.authors||'')}</p></div><div class="publication-side"><span class="publication-venue">${esc(item.venue||'')}<br>${esc(item.year||'')}</span>${href?`<a class="publication-link" href="${esc(href)}" target="_blank" rel="noopener">Published record ↗</a>`:''}</div></article>`}).join('')}
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const esc = (value = '') => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
 
-  function renderProfile(profile,links){const bio=$('#profile-bio'),focus=$('#focus-list'),skills=$('#skills-list'),linkRoot=$('#links-list');if(bio){const clean=String(profile?.bio||'').replace(/\s*\/n\s*/gi,' ').replace(/Hi, I['’]m\s+/i,'').trim();bio.textContent=clean||'Electrical engineering researcher focused on computational systems, numerical methods, and scientific software.'}if(focus)focus.innerHTML=(profile?.focus||[]).map(x=>`<li>${esc(x)}</li>`).join('');if(skills){const g=profile?.skills||{};skills.textContent=[...new Set([...(g.Languages||[]),...(g.Tools||[])])].join(' · ')}if(linkRoot){const items=Array.isArray(links?.items)?links.items:[];linkRoot.innerHTML=items.map(item=>{const href=safeURL(item.url||'');return href?`<a href="${esc(href)}" ${href.startsWith('mailto:')?'':'target="_blank" rel="noopener"'}>${esc(item.label||item.key||'Link')} ↗</a>`:''}).join('')}}
+  const safeURL = (value = '') => {
+    const raw = String(value).trim();
+    if (!raw) return '';
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw)) return `mailto:${raw}`;
+    try {
+      const url = new URL(raw, location.href);
+      return ['http:', 'https:', 'mailto:'].includes(url.protocol) ? url.href : '';
+    } catch {
+      return '';
+    }
+  };
 
-  function reveal(){const items=document.querySelectorAll('[data-reveal]:not(.is-visible)');if(!items.length||reduced.matches||!('IntersectionObserver'in window)){items.forEach(x=>x.classList.add('is-visible'));return}const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});items.forEach(x=>io.observe(x))}
+  async function getJSON(path) {
+    const response = await fetch(path, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`${path}: ${response.status}`);
+    return response.json();
+  }
 
-  async function load(){const r=await Promise.allSettled([getJSON(DATA.profile),getJSON(DATA.projects),getJSON(DATA.publications),getJSON(DATA.links)]);if(r[1].status==='fulfilled')renderProjects(r[1].value);if(r[2].status==='fulfilled')renderPublications(r[2].value);renderProfile(r[0].status==='fulfilled'?r[0].value:{},r[3].status==='fulfilled'?r[3].value:{});if(r.some(x=>x.status==='rejected'))console.warn('Some portfolio metadata could not be loaded.',r.filter(x=>x.status==='rejected'));reveal()}
+  function renderPublications(data) {
+    const root = $('#publications-list');
+    if (!root) return;
+    const items = Array.isArray(data?.items) ? data.items : [];
 
-  const year=$('#footer-year');if(year)year.textContent=new Date().getFullYear();load();
+    root.innerHTML = items.map((item, index) => {
+      const href = safeURL(item?.links?.doi || item?.links?.url || '');
+      return `
+        <article class="publication-item">
+          <div class="publication-index">${esc(item.year || String(index + 1).padStart(2, '0'))}</div>
+          <div>
+            <h3 class="publication-title">${esc(item.title || '')}</h3>
+            <p class="publication-meta">${esc(item.authors || '')}</p>
+            ${item.summary ? `<p class="publication-summary">${esc(item.summary)}</p>` : ''}
+          </div>
+          <div class="publication-side">
+            <span class="publication-venue">${esc(item.venue || '')}</span>
+            ${href ? `<a class="publication-link" href="${esc(href)}" target="_blank" rel="noopener">Published record ↗</a>` : ''}
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  function renderProjects(data) {
+    const root = $('#projects-list');
+    if (!root) return;
+    const items = Array.isArray(data?.items) ? data.items : [];
+
+    root.innerHTML = items.map((item) => {
+      const href = safeURL(item?.links?.code || item?.links?.project || '');
+      const tags = (item.tags || []).slice(0, 5)
+        .map(tag => `<span>${esc(tag)}</span>`)
+        .join('');
+
+      return `
+        <article class="research-entry">
+          <div class="entry-year">${esc(item.year || '')}</div>
+          <div>
+            <h3 class="entry-title">${esc(item.title || '')}</h3>
+            ${item.subtitle ? `<p class="entry-subtitle">${esc(item.subtitle)}</p>` : ''}
+            ${item.summary ? `<p class="entry-summary">${esc(item.summary)}</p>` : ''}
+          </div>
+          <div class="entry-side">
+            ${tags ? `<div class="entry-tags">${tags}</div>` : ''}
+            ${href ? `<a class="entry-link" href="${esc(href)}" target="_blank" rel="noopener">Repository ↗</a>` : ''}
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  function renderProfile(profile, links) {
+    const bio = $('#profile-bio');
+    const focus = $('#focus-list');
+    const skills = $('#skills-list');
+    const linkRoot = $('#links-list');
+
+    if (bio) {
+      const clean = String(profile?.bio || '')
+        .replace(/\s*\/n\s*/gi, ' ')
+        .replace(/Hi, I['’]m\s+/i, '')
+        .trim();
+      bio.textContent = clean || 'Electrical engineering researcher focused on computational systems, numerical methods, and scientific software.';
+    }
+
+    if (focus) {
+      focus.innerHTML = (profile?.focus || []).map(item => `<li>${esc(item)}</li>`).join('');
+    }
+
+    if (skills) {
+      const groups = profile?.skills || {};
+      const values = [...new Set([...(groups.Languages || []), ...(groups.Tools || [])])];
+      skills.textContent = values.join(' · ');
+    }
+
+    if (linkRoot) {
+      const items = Array.isArray(links?.items) ? links.items : [];
+      linkRoot.innerHTML = items.map(item => {
+        const href = safeURL(item.url || '');
+        if (!href) return '';
+        const external = !href.startsWith('mailto:');
+        return `<a href="${esc(href)}" ${external ? 'target="_blank" rel="noopener"' : ''}>${esc(item.label || item.key || 'Link')}</a>`;
+      }).join('');
+    }
+  }
+
+  async function load() {
+    const results = await Promise.allSettled([
+      getJSON(DATA.profile),
+      getJSON(DATA.projects),
+      getJSON(DATA.publications),
+      getJSON(DATA.links)
+    ]);
+
+    if (results[1].status === 'fulfilled') renderProjects(results[1].value);
+    if (results[2].status === 'fulfilled') renderPublications(results[2].value);
+    renderProfile(
+      results[0].status === 'fulfilled' ? results[0].value : {},
+      results[3].status === 'fulfilled' ? results[3].value : {}
+    );
+
+    if (results.some(result => result.status === 'rejected')) {
+      console.warn('Some portfolio metadata could not be loaded.');
+    }
+  }
+
+  const year = $('#footer-year');
+  if (year) year.textContent = new Date().getFullYear();
+  load();
 })();
