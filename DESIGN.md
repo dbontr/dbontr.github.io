@@ -9,7 +9,7 @@ The site takes inspiration from the directness of simple academic personal sites
 ## Information architecture
 1. `index.html` — Home: concise introduction plus a personal portrait.
 2. `publications.html` — Publications.
-3. `research.html` — Research themes and projects with scientific visuals.
+3. `research.html` — Research themes and projects with scientific visuals when a public project artifact is available.
 4. `research-item.html?id=...` — JSON-driven research detail view.
 5. `about.html` — Biography, portrait, education, experience, interests, tools, and profiles.
 6. `contact.html` — Primary email, collaboration context, location, and external profiles.
@@ -38,12 +38,14 @@ Ordinary content updates must not require editing HTML. Adding a publication, re
 - Narrow, readable content width with generous but ordinary academic-site whitespace.
 - Thin dividers only where they improve scanning.
 - A personal portrait is appropriate on Home and About.
-- Research visuals must explain the work: plots, diagrams, detector geometry, field/circuit sketches, or other project-specific graphics. They are not decorative stock images.
-- No simulations, glossy renders, dashboards, gradients, glass, fake telemetry, numbered navigation, oversized slogans, or fabricated research graphics.
+- Research visuals must be genuine, public/project-approved artifacts from the work itself: plots, benchmark outputs, screenshots, figures, detector views, or other real outputs.
+- Never publish confidential, embargoed, internal-only, or otherwise non-public research material as a site visual.
+- If no approved public visual exists, show the research item without one rather than fabricating or substituting a decorative graphic.
+- No simulations, glossy renders, dashboards, gradients, glass, fake telemetry, numbered navigation, oversized slogans, AI-generated research graphics, or fabricated scientific imagery.
 - No fabricated metrics, awards, publications, or claims.
 
 ## Research pattern
-The Research page is not a repository directory. It is a topical research index. Each entry has a concise scientific visual, summary, and a detail view. The detail view can contain an overview, methods, research questions, related publications, and repositories when available. Call these research items, projects, areas, or work — not articles.
+The Research page is not a repository directory. It is a topical research index. Each entry has a concise summary, a detail view, and an optional real project visual. The detail view can contain an overview, methods, research questions, related publications, and multiple repositories when available. Call these research items, projects, areas, or work — not articles.
 
 ## Typography
 - Native system sans-serif stack: San Francisco / Segoe UI / Helvetica / Arial.
@@ -55,7 +57,7 @@ The Research page is not a repository directory. It is a topical research index.
 ## Layout
 - Maximum content width approximately 1040px.
 - Home stays simple and does not contain an Explore/directory section.
-- Research uses a restrained two-column visual index on wider screens and one column on narrow screens.
+- Research gives real project outputs substantial space when present and remains readable when an item has no image.
 - About pairs a portrait with substantive profile sections.
 - Contact uses its available page space rather than presenting only a short list of links.
 - Responsive layouts stack naturally; the top navigation wraps instead of adding unnecessary UI.
@@ -75,5 +77,5 @@ No decorative motion. Native link and scroll behavior only.
 - No runtime framework.
 - No external font dependency.
 - No WebGL or continuous render loop.
-- SVG research graphics where possible.
+- Prefer existing project assets over introducing new visual dependencies.
 - Small HTML shells + CSS + one JSON-rendering JavaScript file.
