@@ -7,7 +7,6 @@
       "year": "2025–2026",
       "category": "Quantum computing",
       "summary": "Research on quantum methods for solving multidimensional PDEs, including circuit-efficient formulations, practical case studies, and singular-value-based approaches.",
-      "visual": "assets/images/research/quantum-pde.svg",
       "tags": ["Quantum Computing", "PDE", "QSVT", "Scientific Computing"],
       "overview": [
         "This research explores how quantum linear-algebra techniques can be used to formulate and solve multidimensional partial differential equations that arise across scientific and engineering applications.",
@@ -41,57 +40,62 @@
     },
     {
       "id": "particle-track-building",
-      "title": "Cooperative particle track building",
-      "subtitle": "Heuristic and quantum acceleration for high-energy physics reconstruction",
+      "title": "Collaborative and Heuristic Particle Track Reconstruction",
+      "subtitle": "Collaborative reconstruction, search algorithms, and reproducible performance studies for high-energy physics",
       "year": "2025–2026",
       "category": "High-energy physics",
-      "summary": "TrackML reconstruction built around a helical EKF core, cooperative candidate search, and a collection of heuristic optimization methods.",
-      "visual": "assets/images/research/track-building.svg",
-      "tags": ["HEP", "Tracking", "EKF", "Optimization", "HPC"],
+      "summary": "Research on particle track building using helical EKF reconstruction, collaborative candidate sharing, metaheuristic search, and reproducible mkFit benchmarking.",
+      "visual": "assets/images/research/track-optimization.png",
+      "visualAlt": "Optimization progress plot produced by the Particle-Track-Building project, showing reconstruction objective and runtime across trials.",
+      "visualCaption": "Optimizer progress output from the particle track reconstruction work.",
+      "tags": ["HEP", "Tracking", "EKF", "Collaborative Methods", "Optimization", "mkFit", "HPC"],
       "overview": [
-        "This project studies particle track reconstruction as a search and estimation problem rather than a single fixed pipeline.",
-        "Parallel track hypotheses can share quality information and prune weaker candidates while heuristic methods explore alternatives to conventional combinatorial search."
+        "This research treats particle track reconstruction as both an estimation problem and a search problem. A helical extended Kalman filter provides the reconstruction core while multiple candidate-building strategies explore how to improve quality, throughput, and robustness.",
+        "A major direction is collaborative reconstruction: parallel track candidates share information and coordinate hit usage rather than behaving as completely independent searches. The work also studies heuristic and metaheuristic algorithms and uses mkFit benchmarking infrastructure to evaluate performance and reproducibility."
       ],
       "sections": [
         {
-          "heading": "Methods",
-          "items": ["Helical extended Kalman filtering", "A* and best-first search", "Ant colony and particle swarm optimization", "Genetic algorithms and simulated annealing", "QUBO-based quantum proof-of-concept work"]
+          "heading": "Reconstruction and search methods",
+          "items": [
+            "Helical extended Kalman filtering",
+            "Collaborative and parallel candidate building",
+            "A* and best-first search",
+            "Ant colony and particle swarm optimization",
+            "Genetic algorithms and simulated annealing",
+            "Per-layer Hungarian assignment",
+            "QUBO-based quantum proof-of-concept work"
+          ]
+        },
+        {
+          "heading": "Collaborative reconstruction",
+          "paragraphs": [
+            "The collaborative methods investigate how parallel reconstruction workers can share candidate quality information, coordinate hit ownership, and prune weaker hypotheses while preserving reconstruction quality."
+          ]
+        },
+        {
+          "heading": "Performance and reproducibility",
+          "paragraphs": [
+            "The mkbench tooling provides a Docker-first workflow for building and comparing mkFit variants, running controlled scaling studies, preserving geometry and run configuration, and producing machine-readable performance reports."
+          ],
+          "items": [
+            "Thread and CPU scaling studies",
+            "Throughput, latency, CPU, and memory measurements",
+            "Track-quality guardrails and truth-matching metrics",
+            "Reproducible experiment configuration and reporting"
+          ]
         },
         {
           "heading": "Research objective",
           "paragraphs": [
-            "The objective is to compare reconstruction quality, execution cost, and search behavior across classical and hybrid approaches for high-pileup tracking workloads."
+            "The broader objective is to understand which collaborative, heuristic, and high-performance strategies make track building more efficient without sacrificing reconstruction quality."
           ]
         }
       ],
       "relatedPublications": [],
       "links": {
         "code": "https://github.com/dbontr/Particle-Track-Building",
+        "Benchmark repository": "https://github.com/dbontr/mkbench",
         "external": "https://iris-hep.org/fellows/dbontr.html"
-      }
-    },
-    {
-      "id": "mkbench",
-      "title": "mkFit performance and reproducibility benchmarking",
-      "subtitle": "A reproducible harness for track-reconstruction experiments",
-      "year": "2025",
-      "category": "Scientific computing",
-      "summary": "A Docker-first workflow for building, running, comparing, and reporting mkFit variants across controlled scaling and performance experiments.",
-      "visual": "assets/images/research/mkbench.svg",
-      "tags": ["HEP", "mkFit", "Docker", "Benchmarking", "HPC"],
-      "overview": [
-        "mkbench is designed to make performance experiments repeatable rather than dependent on a one-off local environment.",
-        "The harness packages build and run configuration, geometry artifacts, scaling sweeps, plots, and machine-readable reports so comparisons can be reproduced and audited."
-      ],
-      "sections": [
-        {
-          "heading": "What it measures",
-          "items": ["Build and runtime behavior", "Scaling across controlled runs", "Performance comparisons between variants", "Machine-readable experiment outputs"]
-        }
-      ],
-      "relatedPublications": [],
-      "links": {
-        "code": "https://github.com/dbontr/mkbench"
       }
     },
     {
@@ -101,7 +105,9 @@
       "year": "2025",
       "category": "Quantitative methods",
       "summary": "A command-line backtesting system for historical and Gaussian Value-at-Risk models using Kupiec and Christoffersen statistical tests.",
-      "visual": "assets/images/research/var-backtesting.svg",
+      "visual": "assets/images/research/var-backtesting-output.png",
+      "visualAlt": "Rolling Value-at-Risk exception frequencies generated by VarBacktest for SPY data.",
+      "visualCaption": "VarBacktest output for SPY: rolling exception frequencies against the 1% target.",
       "tags": ["Quant", "Risk", "Statistics", "Backtesting", "Python"],
       "overview": [
         "This work treats risk forecasts as statistical claims that should be tested rather than accepted from a model output alone.",

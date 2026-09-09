@@ -123,7 +123,7 @@
       const grouped = items.filter(item => (item.category || 'Research') === category);
       return `<section class="research-group"><h2 class="research-group-title">${esc(category)}</h2><div class="research-grid">${grouped.map(item => {
         const visual = safeURL(item.visual || '');
-        return `<a class="research-card" href="research-item.html?id=${encodeURIComponent(item.id || '')}">${visual ? `<img src="${esc(visual)}" alt="" loading="lazy">` : ''}<div class="research-card-body"><div class="research-card-meta"><span>${esc(item.year || '')}</span><span>${esc(item.subtitle || '')}</span></div><h3>${esc(item.title || '')}</h3><p>${esc(item.summary || '')}</p><span class="research-card-link">View research →</span></div></a>`;
+        return `<a class="research-card" href="research-item.html?id=${encodeURIComponent(item.id || '')}">${visual ? `<img src="${esc(visual)}" alt="${esc(item.visualAlt || `${item.title || 'Research'} project output`)}" loading="lazy">` : ''}<div class="research-card-body"><div class="research-card-meta"><span>${esc(item.year || '')}</span><span>${esc(item.subtitle || '')}</span></div><h3>${esc(item.title || '')}</h3><p>${esc(item.summary || '')}</p><span class="research-card-link">View research →</span></div></a>`;
       }).join('')}</div></section>`;
     }).join('')}</div>`;
   }
@@ -168,7 +168,7 @@
         <h1>${esc(item.title || '')}</h1>
         ${item.subtitle ? `<p class="research-detail-subtitle">${esc(item.subtitle)}</p>` : ''}
       </header>
-      ${visual ? `<figure class="research-detail-visual"><img src="${esc(visual)}" alt=""></figure>` : ''}
+      ${visual ? `<figure class="research-detail-visual"><img src="${esc(visual)}" alt="${esc(item.visualAlt || `${item.title || 'Research'} project output`)}">${item.visualCaption ? `<figcaption>${esc(item.visualCaption)}</figcaption>` : ''}</figure>` : ''}
       <div class="research-detail-layout">
         <article class="research-detail-body">
           ${overview.map(text => `<p class="research-lede">${esc(text)}</p>`).join('')}
