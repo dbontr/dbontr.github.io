@@ -138,12 +138,30 @@
     }).join('');
   }
 
+  function renderResearchFigure(figure) {
+    const src = safeURL(figure?.src || '');
+    if (!src) return '';
+    return `<figure class="research-inline-figure"><img src="${esc(src)}" alt="${esc(figure?.alt || 'Research result figure')}" loading="lazy" decoding="async">${figure?.caption ? `<figcaption>${esc(figure.caption)}</figcaption>` : ''}</figure>`;
+  }
+
+  function renderResearchMetrics(metrics) {
+    if (!Array.isArray(metrics) || !metrics.length) return '';
+    return `<dl class="research-metrics">${metrics.map(metric => `<div><dt>${esc(metric?.value || '')}</dt><dd>${esc(metric?.label || '')}${metric?.note ? `<small>${esc(metric.note)}</small>` : ''}</dd></div>`).join('')}</dl>`;
+  }
+
+  function renderResearchSection(section) {
+    const figures = Array.isArray(section?.figures) ? section.figures : [];
+    const paragraphs = Array.isArray(section?.paragraphs) ? section.paragraphs : [];
+    const items = Array.isArray(section?.items) ? section.items : [];
+    return `<section><h2>${esc(section?.heading || '')}</h2>${paragraphs.map(text => `<p>${esc(text)}</p>`).join('')}${renderResearchMetrics(section?.metrics)}${items.length ? `<ul>${items.map(point => `<li>${esc(point)}</li>`).join('')}</ul>` : ''}${figures.map(renderResearchFigure).join('')}</section>`;
+  }
+
   function renderResearchItem(page, data, publications) {
     const root = $('#main');
     if (!root) return;
     root.className = 'page-shell page-main research-detail-page';
     const id = new URLSearchParams(location.search).get('id');
-    const item = (data?.items || []).find(entry => entry.id === id);
+    const item = (data?.items || []).find(entry => entry.id === id || (Array.isArray(entry.aliases) && entry.aliases.includes(id)));
     if (!item) {
       root.innerHTML = '<p class="back-link"><a href="research.html">← Research</a></p><header class="page-heading"><h1>Research item not found</h1><p>The requested research entry does not exist.</p></header>';
       return;
@@ -172,7 +190,7 @@
       <div class="research-detail-layout">
         <article class="research-detail-body">
           ${overview.map(text => `<p class="research-lede">${esc(text)}</p>`).join('')}
-          ${sections.map(section => `<section><h2>${esc(section.heading || '')}</h2>${(section.paragraphs || []).map(text => `<p>${esc(text)}</p>`).join('')}${Array.isArray(section.items) ? `<ul>${section.items.map(point => `<li>${esc(point)}</li>`).join('')}</ul>` : ''}</section>`).join('')}
+          ${sections.map(renderResearchSection).join('')}
           ${related.length ? `<section><h2>Related publications</h2><div class="related-publications">${related.map(pub => { const href = safeURL(pub?.links?.doi || pub?.links?.url || 'publications.html'); return `<a href="${esc(href || 'publications.html')}" ${href && href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><span>${esc(pub.year || '')}</span><strong>${esc(pub.title || '')}</strong></a>`; }).join('')}</div></section>` : ''}
         </article>
         <aside class="research-detail-aside"><div><span class="aside-label">Topics</span><p>${(item.tags || []).map(esc).join(' · ')}</p></div>${Object.keys(item.links || {}).length ? `<div><span class="aside-label">Links</span><div class="detail-links">${researchLinks(item)}</div></div>` : ''}</aside>

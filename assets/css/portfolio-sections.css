@@ -124,3 +124,17 @@
   .about-record-heading{display:block}.about-record-heading small{margin-top:5px}
   .profile-link-list a,.contact-profile-list a{display:block}.profile-link-list small,.contact-profile-list small{display:block;margin-top:4px;text-align:left}
 }
+
+.research-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:26px 0 8px;padding:0;background:var(--line);border:1px solid var(--line)}
+.research-metrics>div{min-width:0;padding:18px 16px;background:var(--bg)}
+.research-metrics dt{margin:0;font-size:24px;line-height:1.1;font-weight:650;letter-spacing:-.03em;color:var(--text);font-variant-numeric:tabular-nums}
+.research-metrics dd{margin:7px 0 0;font-size:12px;line-height:1.45;color:#464d54}
+.research-metrics small{display:block;margin-top:4px;font-size:10px;line-height:1.45;color:var(--muted)}
+.research-inline-figure{margin:30px 0 2px}
+.research-inline-figure img{width:100%;height:auto;background:#fff;border:1px solid #edf0f2}
+.research-inline-figure figcaption{margin-top:9px;font-size:10.5px;line-height:1.55;color:var(--muted)}
+
+@media(max-width:560px){
+  .research-metrics{grid-template-columns:1fr}
+  .research-metrics dt{font-size:22px}
+}

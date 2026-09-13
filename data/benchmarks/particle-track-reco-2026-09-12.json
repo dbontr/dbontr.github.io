@@ -1,0 +1,89 @@
+{
+  "generated": "2026-09-12",
+  "hardware": {
+    "cpu": "Intel Core Ultra 7 265K",
+    "cores": 20,
+    "logical_processors": 20
+  },
+  "dataset": {
+    "source_event": "TrackML event000001000",
+    "selection": "500 highest-pT charged tracks with pT >= 0.5 GeV, |eta| <= 2.5, >= 4 hits",
+    "tracks": 500,
+    "hits": 5605,
+    "truth_seed_hits_per_track": 3
+  },
+  "truth_seeded_quality": {
+    "efficiency": 1.0,
+    "fake_rate": 0.0,
+    "duplicate_rate": 0.0
+  },
+  "automatic_seeding": {
+    "default": {
+      "efficiency": 0.262,
+      "fake_rate": 0.478516,
+      "duplicate_rate": 0.393555
+    },
+    "fusion_20k": {
+      "efficiency": 0.538,
+      "fake_rate": 0.690219,
+      "duplicate_rate": 0.252705
+    }
+  },
+  "branchers": {
+    "ekf": {
+      "median_tracks_per_second": 23704.6,
+      "min_tracks_per_second": 23594.0,
+      "max_tracks_per_second": 23824.7
+    },
+    "astar": {
+      "median_tracks_per_second": 23634.9,
+      "min_tracks_per_second": 23520.7,
+      "max_tracks_per_second": 23793.7
+    },
+    "aco": {
+      "median_tracks_per_second": 23471.7,
+      "min_tracks_per_second": 23407.9,
+      "max_tracks_per_second": 23697.6
+    },
+    "pso": {
+      "median_tracks_per_second": 23527.7,
+      "min_tracks_per_second": 23273.6,
+      "max_tracks_per_second": 23720.2
+    },
+    "sa": {
+      "median_tracks_per_second": 23606.9,
+      "min_tracks_per_second": 23383.0,
+      "max_tracks_per_second": 23802.2
+    },
+    "hungarian": {
+      "median_tracks_per_second": 23028.7,
+      "min_tracks_per_second": 22916.0,
+      "max_tracks_per_second": 23126.3
+    }
+  },
+  "thread_scaling": {
+    "threads": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "particle_track_reco_speedup": [
+      1.0,
+      0.9595396739152638,
+      0.9490119820412366,
+      0.9304036636531132
+    ],
+    "mkfit_clone_engine_speedup": [
+      1.0,
+      1.8706110735989196,
+      3.2458992384299945,
+      5.263120398955118
+    ]
+  },
+  "method_notes": [
+    "Absolute particle-track-reco versus mkFit speed ratios are not claimed because their timing scopes differ.",
+    "mkFit is used only as a same-machine relative scaling reference in the published scaling figure.",
+    "The current repository passed 32 of 33 tests on this host; the excluded LP18 scoreboard test is a timing-threshold microbenchmark assertion."
+  ]
+}
