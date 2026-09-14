@@ -4,8 +4,9 @@ This site update is based on measured outputs from the current particle reconstr
 
 ## Project and benchmark sources
 
-- `dbontr/particle-track-reco` — current clean-room reconstruction implementation used for the September 12, 2026 benchmark runs: https://github.com/dbontr/particle-track-reco
-- Reproducible benchmark summary committed with this site: `data/benchmarks/particle-track-reco-2026-09-12.json`
+- `dbontr/particle-track-reco` — clean-room reconstruction implementation used for the September 14, 2026 benchmark runs: https://github.com/dbontr/particle-track-reco
+- Optimization commit used for the published measurements: `06a5072` (`Optimize TrackML reconstruction and parallel scaling`).
+- Reproducible benchmark summary committed with this site: `data/benchmarks/particle-track-reco-2026-09-14.json`
 - `trackreco/mkFit` — upstream vectorized and parallelized tracking implementation used as the comparison reference: https://github.com/trackreco/mkFit
 
 ## Dataset sources
@@ -17,4 +18,6 @@ This site update is based on measured outputs from the current particle reconstr
 
 ## Benchmark interpretation
 
-Absolute particle-track-reco versus mkFit speedup claims are intentionally omitted because the available timers instrument different code scopes. The published mkFit figure compares relative thread scaling only, with each implementation normalized to its own one-thread result.
+The published absolute mkFit comparison is deliberately limited to candidate building. Both implementations receive the same 500 TrackML tracks with the same three truth-derived seed hits on the same Intel Core Ultra 7 265K. `particle-track-reco` disables hit sharing, track refinement, and trajectory completion for this comparison; mkFit uses `TrackMLGeom`, `--seed-input cmssw`, `--build-ce`, one event thread, and the CEMX clone-engine timer.
+
+The article does not claim that this result establishes end-to-end superiority over a complete CMS reconstruction workflow, other detectors, other event occupancies, or other hardware. The published 1–8-thread values use seven 100-event repetitions per thread count; 16-thread raw measurements are retained in the benchmark JSON but omitted from the headline comparison because the `particle-track-reco` measurements were materially noisier at that point.

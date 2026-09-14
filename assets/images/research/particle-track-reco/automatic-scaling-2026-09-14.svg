@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="540" viewBox="0 0 920 540">
+<rect width="100%" height="100%" fill="white"/>
+<text x="88" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#20262d">The full automatic pipeline reaches about 535k tracks/s at 8 threads</text>
+<text x="88" y="57" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#626a73">98.0% efficiency · 4.28% fake · 4.47% duplicate across the plotted runs</text>
+<line x1="88" y1="462.0" x2="890" y2="462.0" stroke="#e2e6e9"/>
+<text x="76" y="467.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#626a73">0</text>
+<line x1="88" y1="388.0" x2="890" y2="388.0" stroke="#e2e6e9"/>
+<text x="76" y="393.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#626a73">120</text>
+<line x1="88" y1="314.0" x2="890" y2="314.0" stroke="#e2e6e9"/>
+<text x="76" y="319.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#626a73">240</text>
+<line x1="88" y1="240.0" x2="890" y2="240.0" stroke="#e2e6e9"/>
+<text x="76" y="245.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#626a73">360</text>
+<line x1="88" y1="166.0" x2="890" y2="166.0" stroke="#e2e6e9"/>
+<text x="76" y="171.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#626a73">480</text>
+<line x1="88" y1="92.0" x2="890" y2="92.0" stroke="#e2e6e9"/>
+<text x="76" y="97.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="end" fill="#626a73">600</text>
+<text x="88.0" y="498" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4b5158">1</text>
+<text x="202.57142857142856" y="498" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4b5158">2</text>
+<text x="431.7142857142857" y="498" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4b5158">4</text>
+<text x="890.0" y="498" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#4b5158">8</text>
+<polyline points="88.0,316.8 202.6,266.3 431.7,188.8 890.0,132.1" fill="none" stroke="#245c8f" stroke-width="3"/>
+<circle cx="88.0" cy="316.8" r="5" fill="#245c8f"/>
+<text x="88.0" y="304.76081666666664" font-family="Arial, sans-serif" font-size="11" font-weight="normal" text-anchor="middle" fill="#20262d">236k</text>
+<circle cx="202.6" cy="266.3" r="5" fill="#245c8f"/>
+<text x="202.57142857142856" y="254.3335166666667" font-family="Arial, sans-serif" font-size="11" font-weight="normal" text-anchor="middle" fill="#20262d">317k</text>
+<circle cx="431.7" cy="188.8" r="5" fill="#245c8f"/>
+<text x="431.7142857142857" y="176.80124999999998" font-family="Arial, sans-serif" font-size="11" font-weight="normal" text-anchor="middle" fill="#20262d">443k</text>
+<circle cx="890.0" cy="132.1" r="5" fill="#245c8f"/>
+<text x="890.0" y="120.10491666666667" font-family="Arial, sans-serif" font-size="11" font-weight="normal" text-anchor="middle" fill="#20262d">535k</text>
+<line x1="102" y1="71" x2="126" y2="71" stroke="#245c8f" stroke-width="3"/>
+<text x="134" y="75" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#4b5158">Automatic pipeline</text>
+<text x="489.0" y="528" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#626a73">Threads</text>
+<text x="22" y="277.0" font-family="Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#626a73">Median reconstructed tracks / second (thousands)</text>
+</svg>

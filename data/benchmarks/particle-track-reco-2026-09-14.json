@@ -1,0 +1,158 @@
+{
+  "generated": "2026-09-14",
+  "code_commit": "06a5072",
+  "tests": {
+    "passed": 33,
+    "total": 33
+  },
+  "hardware": {
+    "cpu": "Intel Core Ultra 7 265K",
+    "cores": 20,
+    "logical_processors": 20
+  },
+  "dataset": {
+    "source_event": "TrackML event000001000",
+    "selection": "500 highest-pT charged tracks with pT >= 0.5 GeV, |eta| <= 2.5, >= 4 hits",
+    "tracks": 500,
+    "hits": 5605,
+    "truth_seed_hits_per_track": 3
+  },
+  "automatic_reconstruction": {
+    "baseline_2026_09_12": {
+      "efficiency": 0.262,
+      "fake_rate": 0.478516,
+      "duplicate_rate": 0.393555
+    },
+    "current": {
+      "seed_count": 661,
+      "unique_truth_particles_covered": 490,
+      "seed_recall": 0.98,
+      "seed_purity": 0.993711,
+      "seed_duplicate_rate": 0.220877,
+      "efficiency": 0.98,
+      "fake_rate": 0.0428305,
+      "duplicate_rate": 0.0446927,
+      "throughput": {
+        "1": {
+          "median": 235523,
+          "min": 232135,
+          "max": 239216
+        },
+        "2": {
+          "median": 317297,
+          "min": 313791,
+          "max": 320851
+        },
+        "4": {
+          "median": 443025,
+          "min": 433863,
+          "max": 444760
+        },
+        "8": {
+          "median": 534965,
+          "min": 517483,
+          "max": 547645
+        },
+        "16": {
+          "median": 545596,
+          "min": 274018,
+          "max": 589039
+        }
+      }
+    }
+  },
+  "truth_seeded_quality": {
+    "efficiency": 1.0,
+    "fake_rate": 0.0,
+    "duplicate_rate": 0.0
+  },
+  "candidate_building_comparison": {
+    "threads_published": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "iterations_per_repetition": 100,
+    "repetitions": 7,
+    "particle_track_reco_median_tracks_per_second": {
+      "1": 762348,
+      "2": 1082180.0,
+      "4": 1540400.0,
+      "8": 1930620.0
+    },
+    "mkfit_cemx_median_seed_tracks_per_second": {
+      "1": 234345.7067866517,
+      "2": 432900.4329004329,
+      "4": 757002.271006813,
+      "8": 1091464.7456887143
+    },
+    "particle_track_reco_vs_mkfit_ratio": {
+      "1": 3.2530913856,
+      "2": 2.4998358,
+      "4": 2.0348684,
+      "8": 1.7688340439999999
+    },
+    "particle_track_reco_all_threads": {
+      "1": {
+        "median": 762348,
+        "min": 733419,
+        "max": 780593
+      },
+      "2": {
+        "median": 1082180.0,
+        "min": 1058300.0,
+        "max": 1086620.0
+      },
+      "4": {
+        "median": 1540400.0,
+        "min": 1491900.0,
+        "max": 1592890.0
+      },
+      "8": {
+        "median": 1930620.0,
+        "min": 1893110.0,
+        "max": 1993200.0
+      },
+      "16": {
+        "median": 1508170.0,
+        "min": 629398,
+        "max": 1868950.0
+      }
+    },
+    "mkfit_all_threads": {
+      "1": {
+        "median": 234345.7067866517,
+        "min": 226572.41254304876,
+        "max": 234708.72647045017
+      },
+      "2": {
+        "median": 432900.4329004329,
+        "min": 424844.931599966,
+        "max": 438404.20868040336
+      },
+      "4": {
+        "median": 757002.271006813,
+        "min": 747272.4555372889,
+        "max": 767695.3784738217
+      },
+      "8": {
+        "median": 1091464.7456887143,
+        "min": 1039933.4442595674,
+        "max": 1144164.7597254005
+      },
+      "16": {
+        "median": 1491646.7780429593,
+        "min": 1412429.3785310735,
+        "max": 1621796.951021732
+      }
+    }
+  },
+  "method_notes": [
+    "Candidate-building comparison uses the same 500 truth-seeded TrackML tracks and the same CPU.",
+    "particle-track-reco disables hit sharing, track refinement, and trajectory completion for the candidate-building comparison.",
+    "mkFit uses TrackMLGeom, --seed-input cmssw, --build-ce, one event thread, and the CEMX clone-engine timer.",
+    "The published absolute comparison is limited to 1, 2, 4, and 8 threads; 16-thread particle-track-reco timings were materially noisier.",
+    "This is a controlled candidate-building benchmark, not a claim about a complete CMS reconstruction workflow."
+  ]
+}
