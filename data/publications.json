@@ -7,13 +7,7 @@
       "type": "Accepted research poster",
       "venue": "The International Conference for High Performance Computing, Networking, Storage, and Analysis (SC26)",
       "year": 2026,
-      "tags": [
-        "Quantum Computing",
-        "QSVT",
-        "CFD",
-        "Nuclear Physics",
-        "HPC"
-      ],
+      "tags": ["Quantum Computing", "QSVT", "CFD", "Nuclear Physics", "HPC"],
       "links": {}
     },
     {
@@ -24,14 +18,8 @@
       "venue": "Algorithms 19(7), 556",
       "year": 2026,
       "date": "July 2026",
-      "tags": [
-        "Quantum Computing",
-        "PDE",
-        "Scientific Computing"
-      ],
-      "links": {
-        "doi": "https://doi.org/10.3390/a19070556"
-      }
+      "tags": ["Quantum Computing", "PDE", "Scientific Computing"],
+      "links": { "doi": "https://doi.org/10.3390/a19070556" }
     },
     {
       "id": "2026-qce-qsvt-pde",
@@ -42,11 +30,7 @@
       "year": 2026,
       "date": "September 2026",
       "location": "Toronto, Ontario, Canada",
-      "tags": [
-        "Quantum Computing",
-        "QSVT",
-        "PDE"
-      ],
+      "tags": ["Quantum Computing", "QSVT", "PDE"],
       "links": {}
     },
     {
@@ -59,12 +43,7 @@
       "date": "July 2026",
       "location": "Oak Ridge, Tennessee, USA",
       "award": "Best Poster Award",
-      "tags": [
-        "Quantum Computing",
-        "QSVT",
-        "CFD",
-        "Nuclear Physics"
-      ],
+      "tags": ["Quantum Computing", "QSVT", "CFD", "Nuclear Physics"],
       "links": {}
     },
     {
@@ -77,14 +56,8 @@
       "date": "November 2025",
       "location": "St. Louis, Missouri, USA",
       "award": "Best Research Poster Award Finalist",
-      "tags": [
-        "Quantum Computing",
-        "PDE",
-        "HPC"
-      ],
-      "links": {
-        "url": "https://sc25.supercomputing.org/proceedings/posters/poster_files/post141s2-file3.pdf"
-      }
+      "tags": ["Quantum Computing", "PDE", "HPC"],
+      "links": { "url": "https://sc25.supercomputing.org/proceedings/posters/poster_files/post141s2-file3.pdf" }
     },
     {
       "id": "2025-scworkshops-practical-quantum-pde",
@@ -97,14 +70,8 @@
       "location": "St. Louis, Missouri, USA",
       "publisher": "ACM, New York, NY, USA",
       "pages": "10 pages",
-      "tags": [
-        "Quantum Computing",
-        "PDE",
-        "HPC"
-      ],
-      "links": {
-        "doi": "https://doi.org/10.1145/3731599.3767550"
-      }
+      "tags": ["Quantum Computing", "PDE", "HPC"],
+      "links": { "doi": "https://doi.org/10.1145/3731599.3767550" }
     },
     {
       "id": "2025-qcuf-quantum-pde",
@@ -116,10 +83,7 @@
       "date": "July 2025",
       "location": "Oak Ridge, Tennessee, USA",
       "award": "Best Poster Award",
-      "tags": [
-        "Quantum Computing",
-        "PDE"
-      ],
+      "tags": ["Quantum Computing", "PDE"],
       "links": {}
     },
     {
@@ -130,14 +94,8 @@
       "venue": "Algorithms 18(4), 178",
       "year": 2025,
       "date": "March 2025",
-      "tags": [
-        "Quantum Computing",
-        "Genetic Algorithms",
-        "Fuzzy Logic"
-      ],
-      "links": {
-        "doi": "https://doi.org/10.3390/a18040178"
-      }
+      "tags": ["Quantum Computing", "Genetic Algorithms", "Fuzzy Logic"],
+      "links": { "doi": "https://doi.org/10.3390/a18040178" }
     },
     {
       "id": "2025-algorithms-efficient-quantum-pde",
@@ -147,13 +105,8 @@
       "venue": "Algorithms 18(3), 176",
       "year": 2025,
       "date": "March 2025",
-      "tags": [
-        "Quantum Computing",
-        "PDE"
-      ],
-      "links": {
-        "doi": "https://doi.org/10.3390/a18030176"
-      }
+      "tags": ["Quantum Computing", "PDE"],
+      "links": { "doi": "https://doi.org/10.3390/a18030176" }
     }
   ]
 }
