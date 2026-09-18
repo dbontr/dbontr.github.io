@@ -1,12 +1,12 @@
 ﻿.publication-list{border-top:1px solid var(--line)}
-.publication-item{display:grid;grid-template-columns:64px minmax(0,1fr) 220px;gap:26px;padding:24px 0;border-bottom:1px solid var(--line)}
-.publication-index{font-size:14px;line-height:1.5;color:var(--muted);font-variant-numeric:tabular-nums}
-.publication-title{margin:0;font-size:19px;line-height:1.42;font-weight:620;letter-spacing:-.012em}
-.publication-meta{margin:8px 0 0;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.publication-item{display:grid;grid-template-columns:64px minmax(0,1fr) 190px;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.publication-index{font-size:12px;line-height:1.5;color:var(--muted);font-variant-numeric:tabular-nums}
+.publication-title{margin:0;font-size:17px;line-height:1.45;font-weight:620;letter-spacing:-.012em}
+.publication-meta{margin:7px 0 0;font-size:12.5px;line-height:1.58;color:var(--muted)}
 .publication-side{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:2px}
-.publication-venue{font-size:14px;line-height:1.55;color:var(--muted)}
-.publication-award{font-size:13.5px;line-height:1.45;font-weight:650;color:var(--accent)}
-.publication-link{font-size:13.5px;font-weight:600;color:var(--accent)}
+.publication-venue{font-size:11px;line-height:1.5;color:var(--muted)}
+.publication-award{font-size:11px;line-height:1.45;font-weight:650;color:var(--accent)}
+.publication-link{font-size:12px;font-weight:600;color:var(--accent)}
 .publication-link:hover{text-decoration:underline;text-underline-offset:3px}
 
 body[data-page="research"] .page-main{padding-top:clamp(24px,2.2vw,32px)}
