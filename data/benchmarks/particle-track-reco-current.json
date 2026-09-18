@@ -2,9 +2,9 @@
   "project": "particle-track-reco",
   "status": "current",
   "source_revision": {
-    "merge_commit": "16ebe3becf9d9c965b9467684840d512d2b07d7c",
-    "merged_pull_request": 1,
-    "head_commit": "1c87353202f31158f8fea4fd3e407f6fab3d3124"
+    "merge_commit": "4decac5073f66a41a5c56c48ca7d2c068977283f",
+    "merged_pull_request": 2,
+    "head_commit": "69a92aeb81a720e6a168a27ce4fd990b3b841587"
   },
   "workload": {
     "dataset": "TrackML event000001000",
@@ -19,19 +19,46 @@
     "measured_hits": 5605
   },
   "automatic_reconstruction": {
+    "reco_tracks": 508,
     "efficiency": 1,
+    "matched_tracks": 507,
     "matched_reference_tracks": 500,
     "reference_tracks": 500,
-    "fake_rate": 0.09294,
-    "duplicate_rate": 0.04647
+    "fake_tracks": 1,
+    "duplicate_tracks": 7,
+    "fake_rate": 0.0019685,
+    "duplicate_rate": 0.0137795
   },
   "front_end_diagnostic": {
-    "seed_recall": 0.998,
-    "seed_purity": 0.98397
+    "seed_count": 694,
+    "seed_recall": 1,
+    "seed_purity": 0.990821,
+    "seed_duplicate_rate": 0.273775
+  },
+  "robustness_matrix": {
+    "source_event": "TrackML event000001000",
+    "windows": 4,
+    "tracks_per_window": 250,
+    "seed_recall_range": [
+      0.996,
+      1
+    ],
+    "reconstruction_efficiency_range": [
+      0.992,
+      1
+    ],
+    "fake_rate_range": [
+      0.003704,
+      0.014545
+    ],
+    "duplicate_rate_range": [
+      0.023166,
+      0.083636
+    ]
   },
   "verification": {
     "configured_tests_passed": 34,
     "configured_tests_total": 34
   },
-  "interpretation": "The 100% value is automatic reconstruction efficiency on this controlled subset. Seed recall is 99.8%; downstream reconstruction and recovery close the remaining reference track."
+  "interpretation": "The 100% value is automatic reconstruction efficiency on the fixed 500-track subset. Seed recall also reaches 100% on that subset and is reported separately as a front-end diagnostic. The four-window matrix broadens validation within the same public event; it is not a multi-event result."
 }
