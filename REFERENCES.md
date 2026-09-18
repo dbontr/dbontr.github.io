@@ -5,10 +5,11 @@ The TrackReco research page uses the current reconstruction state plus primary e
 ## Current project state
 
 - `dbontr/particle-track-reco` — clean-room C++ particle-track reconstruction implementation: https://github.com/dbontr/particle-track-reco
-- Current merged reconstruction revision: `16ebe3b` (`Improve TrackML fusion seed recovery` merged through pull request #1).
+- Current merged reconstruction revision: `4decac5` (`Improve TrackML reconstruction quality and validation`, pull request #2).
 - Validation source: `data/benchmarks/particle-track-reco-current.json`.
-- Controlled automatic result: 500 / 500 reference tracks reconstructed, 9.294% fake rate, 4.647% duplicate rate, and 34 / 34 configured tests passing.
-- Front-end diagnostic on the same workload: 99.8% seed recall and 98.397% seed purity. The 100% figure on the research page is end-to-end automatic reconstruction efficiency.
+- Controlled automatic result: 500 / 500 reference tracks reconstructed, 0.197% fake rate, 1.378% duplicate rate, and 34 / 34 configured tests passing.
+- Front-end diagnostic on the same workload: 100% seed recall, 99.082% seed purity, and 27.378% seed duplicate rate.
+- Robustness matrix: four disjoint 250-track windows from the same public event span 99.2–100% reconstruction efficiency.
 
 ## Dataset sources
 
@@ -23,4 +24,4 @@ The TrackReco research page uses the current reconstruction state plus primary e
 
 ## Interpretation
 
-The current 100% reconstruction result applies to the fixed 500-track TrackML validation subset described in the snapshot. It does not establish perfect efficiency for other events, detector geometries, occupancies, hardware, or experiment-specific reconstruction chains. The public TrackReco page therefore treats quality metrics as scoped validation evidence and does not publish older stage-matched throughput runs as current performance claims.
+The 100% reconstruction result applies to the fixed 500-track TrackML validation subset described in the snapshot. The four-window matrix broadens validation within that same public event; it does not establish multi-event performance. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation. The public TrackReco page therefore treats quality metrics as scoped evidence and does not publish older stage-matched timing runs as current performance claims.
