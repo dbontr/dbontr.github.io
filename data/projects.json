@@ -6,7 +6,7 @@
       "subtitle": "Quantum linear-algebra methods for scientific PDE workloads",
       "year": "2025–2026",
       "category": "Quantum computing",
-      "summary": "Research on quantum methods for solving multidimensional PDEs, including circuit-efficient formulations, practical case studies, and singular-value-based approaches.",
+      "summary": "Research on quantum and hybrid quantum-classical methods for solving multidimensional PDEs, including circuit-efficient formulations, practical case studies, and singular-value-based approaches for scientific workloads.",
       "tags": [
         "Quantum Computing",
         "PDE",
@@ -22,7 +22,7 @@
           "heading": "Research direction",
           "paragraphs": [
             "The central question is how to map structured PDE problems into quantum computations while keeping the circuit construction efficient enough to study on simulators and available hardware.",
-            "Recent work extends this direction toward singular-value decomposition and transformation methods for PDEs in areas such as computational fluid dynamics and nuclear physics."
+            "Recent work extends this direction toward quantum singular-value decomposition and transformation and hybrid quantum-classical workflows for computational fluid dynamics and nuclear-physics equations."
           ]
         },
         {
@@ -36,6 +36,7 @@
         }
       ],
       "relatedPublications": [
+        "2026-sc26-hybrid-qsvd-qsvt-cfd-nuclear-poster",
         "2026-algorithms-quantum-pde-case-studies",
         "2026-qce-qsvt-pde",
         "2026-qcuf-qsvt-pde",
