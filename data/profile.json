@@ -1,65 +1,108 @@
 {
   "handle": "dbontr",
   "name": "Devon Bontrager",
-  "title": "Electrical Engineering @ University of Kansas • Mathematics & Statistics",
+  "title": "Electrical Engineering @ University of Kansas • Mathematics & Statistics Minors",
   "portrait": "assets/images/profile.jpg",
   "portraitAlt": "Devon Bontrager",
   "focus": [
     "Computational Physics / R&D",
     "Quantum Computing",
+    "High-Energy Physics & Particle Tracking",
     "Optimization & Algorithms",
     "HPC + Scientific Software"
   ],
-  "bio": "I'm an Electrical Engineering student at the University of Kansas with a research focus on computational methods. I build research-focused systems in Python and C++, with interests spanning quantum computing, numerical optimization, high-performance computing, and scientific software.",
+  "bio": "I'm an Electrical Engineering student at the University of Kansas with minors in Mathematics and Statistics. My research spans particle-track reconstruction, quantum algorithms for scientific PDEs, quantum-circuit benchmarking, numerical optimization, and high-performance scientific software. I build reproducible research systems primarily in Python and C++ and focus on careful validation, benchmarking, and experiment design.",
   "education": [
     {
       "institution": "University of Kansas",
-      "program": "Electrical Engineering",
-      "detail": "Mathematics & Statistics",
-      "status": "Undergraduate"
+      "program": "B.S. Electrical Engineering",
+      "detail": "Minors in Mathematics and Statistics",
+      "status": "Expected May 2027 · GPA 3.5/4.0"
     }
   ],
   "experience": [
     {
       "organization": "IRIS-HEP",
-      "role": "Fellow",
-      "period": "2025 · 2026",
-      "summary": "Research on cooperative particle track building with heuristic and quantum acceleration.",
+      "role": "Research Fellow",
+      "period": "May 2026 – Sep 2026",
+      "summary": "Designed and optimized quantum circuits for benchmarking quantum computers on Schwinger-model physics, with emphasis on reproducible simulator and hardware-facing evaluation workflows.",
+      "url": "https://iris-hep.org/fellows/dbontr.html"
+    },
+    {
+      "organization": "IRIS-HEP",
+      "role": "Research Fellow",
+      "period": "May 2025 – Oct 2025",
+      "summary": "Worked on HL-LHC particle-track reconstruction, including cooperative hit-sharing, mkFit-style track building, heuristic branching, reproducible benchmarks, and runtime-versus-quality evaluation.",
       "url": "https://iris-hep.org/fellows/dbontr.html"
     },
     {
       "organization": "KUARQ Research Group",
-      "role": "Research member",
-      "period": "Current",
-      "summary": "Research in quantum algorithms, quantum hardware integration, and quantum circuit optimization.",
+      "role": "Research Contributor",
+      "period": "Nov 2024 – Present",
+      "summary": "Contributes to quantum-algorithm research, including multidimensional PDE solvers, QSVT-based methods, experiment validation, research-code testing, data preparation, figures, tables, and reproducibility checks.",
       "url": "https://sites.google.com/view/esam-el-araby/research-group/member-biographies"
     }
   ],
+  "workExperience": [
+    {
+      "organization": "The Good Game",
+      "role": "Customer Support & App Testing",
+      "period": "May 2024 – Present",
+      "summary": "Performs feature and regression testing, documents reproducible bugs and severity, provides UX and reliability feedback, and supports daily customer operations."
+    }
+  ],
+  "memberships": [
+    "IEEE"
+  ],
+  "certifications": [
+    "Microsoft Excel Certification"
+  ],
   "highlights": [
-    "EKF-based track-building framework for TrackML / HEP",
-    "Quantum computing experiments and published quantum algorithms",
-    "Optimization, simulation, and scientific computing systems"
+    "Clean-room C++ particle tracker with controlled TrackML and mkFit benchmarking",
+    "Published and accepted work in quantum PDE algorithms and QSVT",
+    "Quantum-circuit benchmarking for Schwinger-model physics",
+    "Optimization, simulation, and reproducible scientific-computing systems"
   ],
   "skills": {
     "Languages": [
       "Python",
       "C++",
+      "MATLAB",
+      "SQL",
       "JavaScript",
-      "HTML"
+      "HTML/CSS",
+      "VHDL",
+      "LaTeX"
     ],
-    "Tools": [
+    "Scientific Computing": [
+      "NumPy",
+      "Pandas",
+      "SciPy",
+      "Matplotlib",
+      "Numerical methods",
+      "Benchmarking",
+      "Statistical evaluation"
+    ],
+    "Systems & Tools": [
       "Linux",
       "Git",
       "Docker",
+      "Profiling",
+      "Multithreaded programming",
+      "JSON/YAML",
       "Qiskit"
     ],
-    "Domains": [
-      "Algorithm Design",
-      "High Energy Physics",
-      "Statistics",
+    "Methods & Domains": [
+      "Kalman filtering",
+      "Particle tracking",
+      "High-energy physics",
+      "Quantum computing",
+      "QSVT",
       "Optimization",
-      "Quantum Computing",
-      "Scientific Computing"
+      "Monte Carlo methods",
+      "Numerical simulation",
+      "Experiment design",
+      "Scientific computing"
     ]
   }
 }
