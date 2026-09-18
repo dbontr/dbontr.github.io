@@ -1,6 +1,22 @@
 {
   "items": [
     {
+      "id": "2026-sc26-hybrid-qsvd-qsvt-cfd-nuclear-poster",
+      "title": "A Hybrid Quantum-Classical Framework for Solving Computational Fluid Dynamics and Nuclear Physics Equations using Quantum Singular Value Decomposition and Transformation",
+      "authors": "Devon Bontrager, Kareem El-Araby, Manu Chaudhary, Alvir Nobel, Pruthviraj Sadhankar, Shivansh Shrivas, Trey Campbell, Jacob Spry, Naveed Mahmud, Chao Lu, Kalyan Gottiparthi, Muralikrishnan Gopalakrishnan Meena, Zain Karriem, Esam El-Araby",
+      "type": "Accepted research poster",
+      "venue": "The International Conference for High Performance Computing, Networking, Storage, and Analysis (SC26)",
+      "year": 2026,
+      "tags": [
+        "Quantum Computing",
+        "QSVT",
+        "CFD",
+        "Nuclear Physics",
+        "HPC"
+      ],
+      "links": {}
+    },
+    {
       "id": "2026-algorithms-quantum-pde-case-studies",
       "title": "A Quantum Algorithm for Multidimensional Partial Differential Equations with Practical Case Studies",
       "authors": "Manu Chaudhary, Kareem El-Araby, Devon Bontrager, Alvir Nobel, Shima Mohaghegh, Kieran Egan, Manish Singh, Trey Campbell, Jacob Spry, Luis Aviles, Naveed Mahmud, Pranav Reddy, Pruthviraj Sadhankar, Shivansh Shrivas, Esam El-Araby",
@@ -8,8 +24,14 @@
       "venue": "Algorithms 19(7), 556",
       "year": 2026,
       "date": "July 2026",
-      "tags": ["Quantum Computing", "PDE", "Scientific Computing"],
-      "links": { "doi": "https://doi.org/10.3390/a19070556" }
+      "tags": [
+        "Quantum Computing",
+        "PDE",
+        "Scientific Computing"
+      ],
+      "links": {
+        "doi": "https://doi.org/10.3390/a19070556"
+      }
     },
     {
       "id": "2026-qce-qsvt-pde",
@@ -20,7 +42,11 @@
       "year": 2026,
       "date": "September 2026",
       "location": "Toronto, Ontario, Canada",
-      "tags": ["Quantum Computing", "QSVT", "PDE"],
+      "tags": [
+        "Quantum Computing",
+        "QSVT",
+        "PDE"
+      ],
       "links": {}
     },
     {
@@ -33,7 +59,12 @@
       "date": "July 2026",
       "location": "Oak Ridge, Tennessee, USA",
       "award": "Best Poster Award",
-      "tags": ["Quantum Computing", "QSVT", "CFD", "Nuclear Physics"],
+      "tags": [
+        "Quantum Computing",
+        "QSVT",
+        "CFD",
+        "Nuclear Physics"
+      ],
       "links": {}
     },
     {
@@ -46,8 +77,14 @@
       "date": "November 2025",
       "location": "St. Louis, Missouri, USA",
       "award": "Best Research Poster Award Finalist",
-      "tags": ["Quantum Computing", "PDE", "HPC"],
-      "links": { "url": "https://sc25.supercomputing.org/proceedings/posters/poster_files/post141s2-file3.pdf" }
+      "tags": [
+        "Quantum Computing",
+        "PDE",
+        "HPC"
+      ],
+      "links": {
+        "url": "https://sc25.supercomputing.org/proceedings/posters/poster_files/post141s2-file3.pdf"
+      }
     },
     {
       "id": "2025-scworkshops-practical-quantum-pde",
@@ -60,8 +97,14 @@
       "location": "St. Louis, Missouri, USA",
       "publisher": "ACM, New York, NY, USA",
       "pages": "10 pages",
-      "tags": ["Quantum Computing", "PDE", "HPC"],
-      "links": { "doi": "https://doi.org/10.1145/3731599.3767550" }
+      "tags": [
+        "Quantum Computing",
+        "PDE",
+        "HPC"
+      ],
+      "links": {
+        "doi": "https://doi.org/10.1145/3731599.3767550"
+      }
     },
     {
       "id": "2025-qcuf-quantum-pde",
@@ -73,7 +116,10 @@
       "date": "July 2025",
       "location": "Oak Ridge, Tennessee, USA",
       "award": "Best Poster Award",
-      "tags": ["Quantum Computing", "PDE"],
+      "tags": [
+        "Quantum Computing",
+        "PDE"
+      ],
       "links": {}
     },
     {
@@ -84,8 +130,14 @@
       "venue": "Algorithms 18(4), 178",
       "year": 2025,
       "date": "March 2025",
-      "tags": ["Quantum Computing", "Genetic Algorithms", "Fuzzy Logic"],
-      "links": { "doi": "https://doi.org/10.3390/a18040178" }
+      "tags": [
+        "Quantum Computing",
+        "Genetic Algorithms",
+        "Fuzzy Logic"
+      ],
+      "links": {
+        "doi": "https://doi.org/10.3390/a18040178"
+      }
     },
     {
       "id": "2025-algorithms-efficient-quantum-pde",
@@ -95,8 +147,13 @@
       "venue": "Algorithms 18(3), 176",
       "year": 2025,
       "date": "March 2025",
-      "tags": ["Quantum Computing", "PDE"],
-      "links": { "doi": "https://doi.org/10.3390/a18030176" }
+      "tags": [
+        "Quantum Computing",
+        "PDE"
+      ],
+      "links": {
+        "doi": "https://doi.org/10.3390/a18030176"
+      }
     }
   ]
 }
