@@ -5,7 +5,7 @@ All visible site content is loaded from JSON. The HTML files are lightweight pag
 ## Files
 
 - `site.json` — global navigation, page titles/descriptions, home copy, section labels, and contact copy.
-- `profile.json` — portrait, biography, education, research experience, interests, and skills.
+- `profile.json` — portrait, biography, education, research and work experience, memberships, certifications, interests, and grouped skills.
 - `publications.json` — publications, papers, posters, awards, and publication links.
 - `projects.json` — research index entries plus the content for each research detail page.
 - `links.json` — email and external profiles used by About and Contact.
@@ -73,9 +73,9 @@ Every object in `projects.json` appears on `research.html` and automatically get
 
 Edit `site.json`. The Home page intentionally has no Explore/directory block; primary navigation lives in the shared header.
 
-## Change portrait, biography, education, or research experience
+## Change portrait, biography, education, experience, or skills
 
-Edit `profile.json`. `portrait` may be a local asset path or an HTTPS image URL.
+Edit `profile.json`. Research roles use `experience`; non-research roles use `workExperience`. `memberships` and `certifications` are simple string arrays. `skills` is a map of display-group labels to string arrays. `portrait` may be a local asset path or an HTTPS image URL.
 
 ## Change contact/profile links
 
