@@ -3,36 +3,60 @@
     "name": "Devon Bontrager",
     "url": "https://dbontr.github.io/",
     "navigation": [
-      { "key": "home", "label": "Home", "href": "index.html" },
-      { "key": "publications", "label": "Publications", "href": "publications.html" },
-      { "key": "research", "label": "Research", "href": "research.html" },
-      { "key": "about", "label": "About", "href": "about.html" },
-      { "key": "contact", "label": "Contact", "href": "contact.html" }
+      {
+        "key": "home",
+        "label": "Home",
+        "href": "index.html"
+      },
+      {
+        "key": "publications",
+        "label": "Publications",
+        "href": "publications.html"
+      },
+      {
+        "key": "research",
+        "label": "Research",
+        "href": "research.html"
+      },
+      {
+        "key": "about",
+        "label": "About",
+        "href": "about.html"
+      },
+      {
+        "key": "contact",
+        "label": "Contact",
+        "href": "contact.html"
+      }
     ],
     "footer": {
       "copyright": "Devon Bontrager",
-      "link": { "label": "Contact", "href": "contact.html" }
+      "link": {
+        "label": "Contact",
+        "href": "contact.html"
+      }
     }
   },
   "pages": {
     "home": {
       "browserTitle": "Devon Bontrager",
-      "description": "Devon Bontrager — electrical engineering, computational physics, quantum computing, optimization, and scientific software.",
+      "description": "Devon Bontrager — electrical engineering, computational physics, high-energy physics, quantum computing, optimization, and scientific software.",
       "canonical": "https://dbontr.github.io/",
       "intro": {
-        "affiliation": "Electrical Engineering · University of Kansas",
+        "affiliation": "Electrical Engineering · University of Kansas · Mathematics & Statistics",
         "name": "Devon Bontrager",
-        "role": "Researcher interested in computational methods for physics and engineering.",
+        "role": "Electrical engineering student and researcher working across computational physics and quantum computing.",
         "paragraphs": [
-          "My work spans quantum computing, computational physics, numerical optimization, and high-performance scientific software. I am particularly interested in algorithms and computational systems that make difficult scientific problems more tractable."
+          "My work spans particle-track reconstruction, quantum algorithms for scientific PDEs, quantum-circuit benchmarking, numerical optimization, and high-performance scientific software. I am particularly interested in algorithms and computational systems that make difficult scientific problems more tractable."
         ],
         "interestsLabel": "Research interests",
         "interests": [
           "quantum computing",
           "computational physics",
+          "high-energy physics",
+          "particle tracking",
           "optimization",
-          "scientific computing",
-          "high-performance algorithms"
+          "scientific computing"
         ]
       }
     },
@@ -57,7 +81,7 @@
     },
     "about": {
       "browserTitle": "About — Devon Bontrager",
-      "description": "About Devon Bontrager, a researcher at the University of Kansas.",
+      "description": "About Devon Bontrager, an electrical engineering student and researcher at the University of Kansas.",
       "canonical": "https://dbontr.github.io/about.html",
       "heading": "About",
       "sections": {
@@ -66,7 +90,9 @@
         "experience": "Research experience",
         "focus": "Current interests",
         "skills": "Methods & tools",
-        "profiles": "Elsewhere"
+        "profiles": "Elsewhere",
+        "work": "Additional experience",
+        "professional": "Memberships & certifications"
       }
     },
     "contact": {
