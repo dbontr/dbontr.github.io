@@ -25,7 +25,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .skip-link:focus{transform:none}
 
 .site-header{border-bottom:1px solid var(--line);background:rgba(255,255,255,.98)}
-.header-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.header-inner{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:32px}
 .identity{font-size:15px;font-weight:650;letter-spacing:-.012em;white-space:nowrap}
 .site-nav{display:flex;align-items:center;gap:23px;flex-wrap:wrap}
 .site-nav a{font-size:13px;color:#535a62}
@@ -43,18 +43,18 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .home-portrait{margin:0;align-self:center}
 .home-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--soft)}
 
-.page-main{padding-top:clamp(72px,8vw,104px);padding-bottom:clamp(92px,10vw,132px)}
-.page-heading{max-width:760px;margin-bottom:clamp(48px,6vw,72px)}
-.page-heading h1{margin:0;font-size:clamp(38px,4.8vw,52px);line-height:1.08;font-weight:650;letter-spacing:-.035em}
-.page-heading p{margin:18px 0 0;max-width:720px;font-size:15px;line-height:1.68;color:var(--muted)}
+.page-main{padding-top:clamp(30px,3vw,42px);padding-bottom:clamp(64px,7vw,92px)}
+.page-heading{max-width:760px;margin-bottom:clamp(34px,4vw,48px)}
+.page-heading h1{margin:0;font-size:clamp(34px,4vw,44px);line-height:1.08;font-weight:650;letter-spacing:-.035em}
+.page-heading p{margin:12px 0 0;max-width:720px;font-size:15px;line-height:1.62;color:var(--muted)}
 
 .site-footer{border-top:1px solid var(--line)}
-.footer-inner{min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:12px;color:var(--muted)}
+.footer-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:12px;color:var(--muted)}
 .footer-inner a:hover{color:var(--accent)}
 
 @media(max-width:760px){
   :root{--pad:20px}
-  .header-inner{min-height:0;align-items:flex-start;padding-top:19px;padding-bottom:17px;flex-direction:column;gap:13px}
+  .header-inner{min-height:0;align-items:flex-start;padding-top:15px;padding-bottom:14px;flex-direction:column;gap:11px}
   .site-nav{gap:10px 17px}
   .site-nav a{font-size:12px}
   .home-hero{min-height:auto;grid-template-columns:1fr;gap:46px;padding:66px 0 80px}
@@ -62,7 +62,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .intro-role{font-size:20px}
   .intro-copy{font-size:15px}
   .home-portrait{width:min(72vw,300px)}
-  .page-main{padding-top:64px;padding-bottom:88px}
+  .page-main{padding-top:30px;padding-bottom:64px}
   .page-heading h1{font-size:38px}
 }
 
