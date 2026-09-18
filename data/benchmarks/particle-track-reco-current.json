@@ -1,0 +1,37 @@
+{
+  "project": "particle-track-reco",
+  "status": "current",
+  "source_revision": {
+    "merge_commit": "16ebe3becf9d9c965b9467684840d512d2b07d7c",
+    "merged_pull_request": 1,
+    "head_commit": "1c87353202f31158f8fea4fd3e407f6fab3d3124"
+  },
+  "workload": {
+    "dataset": "TrackML event000001000",
+    "selection": {
+      "tracks": 500,
+      "charged_only": true,
+      "minimum_pt_gev": 0.5,
+      "maximum_absolute_eta": 2.5,
+      "minimum_recorded_hits": 4,
+      "ordering": "highest pT first"
+    },
+    "measured_hits": 5605
+  },
+  "automatic_reconstruction": {
+    "efficiency": 1,
+    "matched_reference_tracks": 500,
+    "reference_tracks": 500,
+    "fake_rate": 0.09294,
+    "duplicate_rate": 0.04647
+  },
+  "front_end_diagnostic": {
+    "seed_recall": 0.998,
+    "seed_purity": 0.98397
+  },
+  "verification": {
+    "configured_tests_passed": 34,
+    "configured_tests_total": 34
+  },
+  "interpretation": "The 100% value is automatic reconstruction efficiency on this controlled subset. Seed recall is 99.8%; downstream reconstruction and recovery close the remaining reference track."
+}
