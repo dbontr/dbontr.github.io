@@ -1,23 +1,26 @@
 # References
 
-This site update is based on measured outputs from the current particle reconstruction code and primary sources for the external dataset and comparison implementation.
+The TrackReco research page uses the current reconstruction state plus primary external sources for TrackML and the comparison implementation.
 
-## Project and benchmark sources
+## Current project state
 
-- `dbontr/particle-track-reco` — clean-room reconstruction implementation used for the September 14, 2026 benchmark runs: https://github.com/dbontr/particle-track-reco
-- Optimization commit used for the published measurements: `06a5072` (`Optimize TrackML reconstruction and parallel scaling`).
-- Reproducible benchmark summary committed with this site: `data/benchmarks/particle-track-reco-2026-09-14.json`
-- `trackreco/mkFit` — upstream vectorized and parallelized tracking implementation used as the comparison reference: https://github.com/trackreco/mkFit
+- `dbontr/particle-track-reco` — clean-room C++ particle-track reconstruction implementation: https://github.com/dbontr/particle-track-reco
+- Current merged reconstruction revision: `16ebe3b` (`Improve TrackML fusion seed recovery` merged through pull request #1).
+- Validation source: `data/benchmarks/particle-track-reco-current.json`.
+- Controlled automatic result: 500 / 500 reference tracks reconstructed, 9.294% fake rate, 4.647% duplicate rate, and 34 / 34 configured tests passing.
+- Front-end diagnostic on the same workload: 99.8% seed recall and 98.397% seed purity. The 100% figure on the research page is end-to-end automatic reconstruction efficiency.
 
 ## Dataset sources
 
 - TrackML Particle Tracking Challenge data description and event format: https://www.kaggle.com/c/trackml-particle-identification/data
-- HSF Phoenix TrackML sample mirror used to obtain `event000001000`: https://github.com/HSF/phoenix/tree/main/packages/phoenix-ng/projects/phoenix-app/src/assets/files/TrackML
+- HSF Phoenix TrackML sample mirror used for `event000001000`: https://github.com/HSF/phoenix/tree/main/packages/phoenix-ng/projects/phoenix-app/src/assets/files/TrackML
 - Amrouche et al., “The Tracking Machine Learning challenge: Accuracy phase,” arXiv:1904.06778: https://arxiv.org/abs/1904.06778
 - Amrouche et al., “The Tracking Machine Learning challenge: Throughput phase,” arXiv:2105.01160: https://arxiv.org/abs/2105.01160
 
-## Benchmark interpretation
+## Technical comparison reference
 
-The published absolute mkFit comparison is deliberately limited to candidate building. Both implementations receive the same 500 TrackML tracks with the same three truth-derived seed hits on the same Intel Core Ultra 7 265K. `particle-track-reco` disables hit sharing, track refinement, and trajectory completion for this comparison; mkFit uses `TrackMLGeom`, `--seed-input cmssw`, `--build-ce`, one event thread, and the CEMX clone-engine timer.
+- `trackreco/mkFit` — vectorized and parallelized tracking implementation used as a technical comparison reference: https://github.com/trackreco/mkFit
 
-The article does not claim that this result establishes end-to-end superiority over a complete CMS reconstruction workflow, other detectors, other event occupancies, or other hardware. The published 1–8-thread values use seven 100-event repetitions per thread count; 16-thread raw measurements are retained in the benchmark JSON but omitted from the headline comparison because the `particle-track-reco` measurements were materially noisier at that point.
+## Interpretation
+
+The current 100% reconstruction result applies to the fixed 500-track TrackML validation subset described in the snapshot. It does not establish perfect efficiency for other events, detector geometries, occupancies, hardware, or experiment-specific reconstruction chains. The public TrackReco page therefore treats quality metrics as scoped validation evidence and does not publish older stage-matched throughput runs as current performance claims.
