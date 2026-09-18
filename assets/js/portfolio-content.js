@@ -209,14 +209,14 @@
   function renderExperienceRecords(items) {
     return items.map(item => {
       const href = safeURL(item.url || '');
-      return \`<div class="about-record"><div class="about-record-heading">\${href ? \`<a href="\${esc(href)}" target="_blank" rel="noopener"><strong>\${esc(item.organization || '')}</strong></a>\` : \`<strong>\${esc(item.organization || '')}</strong>\`}<small>\${esc(item.period || '')}</small></div><span>\${esc(item.role || '')}</span>\${item.summary ? \`<p>\${esc(item.summary)}</p>\` : ''}</div>\`;
+      return `<div class="about-record"><div class="about-record-heading">${href ? `<a href="${esc(href)}" target="_blank" rel="noopener"><strong>${esc(item.organization || '')}</strong></a>` : `<strong>${esc(item.organization || '')}</strong>`}<small>${esc(item.period || '')}</small></div><span>${esc(item.role || '')}</span>${item.summary ? `<p>${esc(item.summary)}</p>` : ''}</div>`;
     }).join('');
   }
 
   function renderSkillGroups(groups) {
     return Object.entries(groups || {})
       .filter(([, values]) => Array.isArray(values) && values.length)
-      .map(([label, values]) => \`<p class="skills-line"><strong>\${esc(label)}:</strong> \${values.map(esc).join(' · ')}</p>\`)
+      .map(([label, values]) => `<p class="skills-line"><strong>${esc(label)}:</strong> ${values.map(esc).join(' · ')}</p>`)
       .join('');
   }
 
@@ -234,24 +234,24 @@
     const sections = page?.sections || {};
     const portrait = safeURL(profile?.portrait || '');
     const professional = [
-      ...memberships.map(item => \`<li><strong>Membership:</strong> \${esc(item)}</li>\`),
-      ...certifications.map(item => \`<li><strong>Certification:</strong> \${esc(item)}</li>\`)
+      ...memberships.map(item => `<li><strong>Membership:</strong> ${esc(item)}</li>`),
+      ...certifications.map(item => `<li><strong>Certification:</strong> ${esc(item)}</li>`)
     ];
 
-    root.innerHTML = \`\${renderPageHeading(page)}
+    root.innerHTML = `${renderPageHeading(page)}
       <div class="about-layout">
-        <aside class="about-person">\${portrait ? \`<img src="\${esc(portrait)}" alt="\${esc(profile?.portraitAlt || profile?.name || '')}">\` : ''}<p>\${esc(profile?.title || '')}</p></aside>
+        <aside class="about-person">${portrait ? `<img src="${esc(portrait)}" alt="${esc(profile?.portraitAlt || profile?.name || '')}">` : ''}<p>${esc(profile?.title || '')}</p></aside>
         <div class="about-content">
-          <section class="about-section-block"><h2>\${esc(sections.background || 'Background')}</h2><p class="about-bio">\${esc(profile?.bio || '')}</p></section>
-          \${education.length ? \`<section class="about-section-block"><h2>\${esc(sections.education || 'Education')}</h2>\${education.map(item => \`<div class="about-record"><strong>\${esc(item.institution || '')}</strong><span>\${esc(item.program || '')}\${item.detail ? \` · \${esc(item.detail)}\` : ''}</span>\${item.status ? \`<small>\${esc(item.status)}</small>\` : ''}</div>\`).join('')}</section>\` : ''}
-          \${experience.length ? \`<section class="about-section-block"><h2>\${esc(sections.experience || 'Research experience')}</h2>\${renderExperienceRecords(experience)}</section>\` : ''}
-          \${workExperience.length ? \`<section class="about-section-block"><h2>\${esc(sections.work || 'Additional experience')}</h2>\${renderExperienceRecords(workExperience)}</section>\` : ''}
-          <section class="about-section-block"><h2>\${esc(sections.focus || 'Current interests')}</h2><ul class="about-focus-list">\${focus.map(item => \`<li>\${esc(item)}</li>\`).join('')}</ul></section>
-          <section class="about-section-block"><h2>\${esc(sections.skills || 'Methods & tools')}</h2><div class="skills-groups">\${renderSkillGroups(groups)}</div></section>
-          \${professional.length ? \`<section class="about-section-block"><h2>\${esc(sections.professional || 'Memberships & certifications')}</h2><ul class="about-professional-list">\${professional.join('')}</ul></section>\` : ''}
-          <section class="about-section-block"><h2>\${esc(sections.profiles || 'Elsewhere')}</h2><div class="profile-link-list">\${renderProfileLinks(links)}</div></section>
+          <section class="about-section-block"><h2>${esc(sections.background || 'Background')}</h2><p class="about-bio">${esc(profile?.bio || '')}</p></section>
+          ${education.length ? `<section class="about-section-block"><h2>${esc(sections.education || 'Education')}</h2>${education.map(item => `<div class="about-record"><strong>${esc(item.institution || '')}</strong><span>${esc(item.program || '')}${item.detail ? ` · ${esc(item.detail)}` : ''}</span>${item.status ? `<small>${esc(item.status)}</small>` : ''}</div>`).join('')}</section>` : ''}
+          ${experience.length ? `<section class="about-section-block"><h2>${esc(sections.experience || 'Research experience')}</h2>${renderExperienceRecords(experience)}</section>` : ''}
+          ${workExperience.length ? `<section class="about-section-block"><h2>${esc(sections.work || 'Additional experience')}</h2>${renderExperienceRecords(workExperience)}</section>` : ''}
+          <section class="about-section-block"><h2>${esc(sections.focus || 'Current interests')}</h2><ul class="about-focus-list">${focus.map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>
+          <section class="about-section-block"><h2>${esc(sections.skills || 'Methods & tools')}</h2><div class="skills-groups">${renderSkillGroups(groups)}</div></section>
+          ${professional.length ? `<section class="about-section-block"><h2>${esc(sections.professional || 'Memberships & certifications')}</h2><ul class="about-professional-list">${professional.join('')}</ul></section>` : ''}
+          <section class="about-section-block"><h2>${esc(sections.profiles || 'Elsewhere')}</h2><div class="profile-link-list">${renderProfileLinks(links)}</div></section>
         </div>
-      </div>\`;
+      </div>`;
   }
 
   function renderContact(page, profile, links) {
