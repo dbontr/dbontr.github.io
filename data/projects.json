@@ -93,7 +93,7 @@
           "heading": "Current validation",
           "paragraphs": [
             "The current merged default is validated on a fixed public TrackML subset built from event000001000: the 500 highest-pT charged particles with pT at least 0.5 GeV, |eta| at most 2.5, and at least four recorded hits. The selected workload contains 5,605 measured hits.",
-            "Starting from the measured hits, the automatic pipeline reconstructs all 500 reference tracks on this controlled subset. The configured native test suite also passes 34 of 34 tests. These measurements are a validation result for this workload, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
+            "Starting from the measured hits, the automatic pipeline reconstructs all 500 reference tracks on this controlled subset with one fake track and seven duplicate tracks. The configured native test suite passes 34 of 34 tests, and a four-window robustness matrix from the same public event spans 99.2–100% reconstruction efficiency. These measurements are scoped validation results, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
           ],
           "metrics": [
             {
@@ -102,14 +102,14 @@
               "note": "500 / 500 reference tracks"
             },
             {
-              "value": "9.294%",
+              "value": "0.197%",
               "label": "fake rate",
-              "note": "controlled automatic validation"
+              "note": "1 / 508 reconstructed tracks"
             },
             {
-              "value": "4.647%",
+              "value": "1.378%",
               "label": "duplicate rate",
-              "note": "controlled automatic validation"
+              "note": "7 / 508 reconstructed tracks"
             },
             {
               "value": "34 / 34",
@@ -145,15 +145,15 @@
         {
           "heading": "Validation scope",
           "paragraphs": [
-            "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. The front-end seed diagnostic is 99.8% recall with 98.397% purity; downstream recovery closes the remaining reference track in the complete reconstruction result.",
-            "The repository also contains tooling for controlled comparisons with mkFit and for larger promotion matrices, but the public project description does not treat older stage-matched timing runs as current evidence. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation."
+            "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. The front-end seed diagnostic also reaches 100% recall on this subset, with 99.082% purity; seed diagnostics remain supporting evidence rather than the focus of the project.",
+            "The repository also contains tooling for controlled comparisons with mkFit and for multi-window or multi-event quality matrices when additional TrackML events are available. The public project description does not treat older stage-matched timing runs as current evidence. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation."
           ]
         }
       ],
       "relatedPublications": [],
       "links": {
         "Current code (private)": "https://github.com/dbontr/particle-track-reco",
-        "Current reconstruction merge (private)": "https://github.com/dbontr/particle-track-reco/commit/16ebe3becf9d9c965b9467684840d512d2b07d7c",
+        "Current reconstruction merge (private)": "https://github.com/dbontr/particle-track-reco/commit/4decac5073f66a41a5c56c48ca7d2c068977283f",
         "Current validation snapshot": "data/benchmarks/particle-track-reco-current.json",
         "mkFit reference": "https://github.com/trackreco/mkFit",
         "TrackML dataset": "https://www.kaggle.com/c/trackml-particle-identification/data",
