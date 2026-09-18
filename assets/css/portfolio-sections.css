@@ -75,7 +75,7 @@ body[data-page="research"] .page-heading p{margin-top:10px}
 .about-record a:hover strong{color:var(--accent)}
 .about-focus-list{margin:0;padding-left:18px;columns:2;column-gap:36px}
 .about-focus-list li{break-inside:avoid;margin-bottom:8px;font-size:14px;color:#4e555c}
-.skills-line{margin:0;font-size:13px;line-height:1.75;color:#555d65}
+.skills-groups{display:grid;gap:8px}.skills-line{margin:0;font-size:13px;line-height:1.65;color:#555d65}.skills-line strong{color:#34383d;font-weight:650}.about-professional-list{margin:0;padding-left:18px}.about-professional-list li{margin:0 0 7px;font-size:13px;line-height:1.6;color:#555d65}.about-professional-list li:last-child{margin-bottom:0}
 .profile-link-list{display:grid;border-top:1px solid var(--line)}
 .profile-link-list a{display:flex;justify-content:space-between;gap:24px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}
 .profile-link-list a span{font-weight:600;color:var(--accent)}
