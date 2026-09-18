@@ -52,186 +52,109 @@
     {
       "id": "particle-track-reco",
       "title": "Particle Track Reconstruction",
-      "subtitle": "A clean-room C++ tracker measured against mkFit on the same TrackML workload",
+      "subtitle": "High-performance C++ reconstruction with helical estimation, interchangeable search, parallel conflict resolution, and reproducible validation",
       "year": "2025–2026",
       "category": "High-energy physics",
-      "summary": "The latest optimization pass raised automatic efficiency from 26.2% to 98.0%, cut fake and duplicate rates to about 4%, and produced a controlled candidate-building benchmark that leads mkFit through eight threads on this CPU.",
+      "summary": "A clean-room C++ particle-tracking system that treats reconstruction as both an estimation problem and a systems problem. The current automatic pipeline reconstructs all 500 reference tracks in the controlled TrackML validation subset while preserving modular search, parallel execution, geometry-aware recovery, and reproducible quality checks.",
       "visual": "assets/images/research/particle-track-reco/trackml-paths-hero.webp",
       "visualAlt": "Transverse detector view showing hundreds of measured TrackML particle trajectories radiating from the collision region.",
-      "visualCaption": "Transverse view of 500 charged-particle trajectories from TrackML event000001000. Lines connect measured hit coordinates; the image is generated directly from the benchmark data.",
+      "visualCaption": "Transverse view of the controlled 500-track TrackML validation subset from event000001000, generated from measured hit coordinates.",
       "tags": [
         "HEP",
         "Tracking",
         "C++",
         "EKF",
         "Search",
+        "Parallel Computing",
         "TrackML",
-        "mkFit",
         "HPC"
       ],
       "overview": [
-        "I built this project to treat particle tracking as both an estimation problem and a systems problem. The current engine combines helical EKF reconstruction, structure-of-arrays event storage, automatic seeding, geometry-aware trajectory completion, collaborative hit handling, packed binary input, and interchangeable search strategies.",
-        "The latest optimization pass changed the benchmark result substantially. On the same 500-track TrackML subset, the automatic pipeline now reaches 98.0% truth efficiency with a 4.28% fake rate and 4.47% duplicate rate. In a narrower truth-seeded candidate-building comparison, the current core is also faster than mkFit's clone-engine timed section from one through eight threads on this machine. That comparison is deliberately scoped to candidate building; it is not a claim about an entire CMS reconstruction chain."
+        "Particle Track Reconstruction is a native C++ research platform for studying the full tracking problem: forming track hypotheses from detector hits, propagating and fitting those hypotheses, resolving shared-hit conflicts, recovering incomplete trajectories, and validating both physics quality and computational performance.",
+        "The implementation combines helical EKF reconstruction with structure-of-arrays data layouts, automatic front-end hypothesis generation, multiple bounded search strategies, collaborative hit handling, geometry-aware trajectory completion, packed binary input, truth matching, and reproducible benchmark and release tooling."
       ],
       "sections": [
         {
-          "heading": "What I benchmarked",
+          "heading": "Reconstruction system",
           "paragraphs": [
-            "I kept the workload fixed while changing the implementation. The source is TrackML event000001000, reduced to the 500 highest-pT charged particles with pT at least 0.5 GeV, |eta| at most 2.5, and at least four recorded hits. The subset contains 5,605 measured hits.",
-            "Two measurements use that same subset. The automatic run starts from hits and lets particle-track-reco find its own seeds. The candidate-building comparison instead supplies the same three truth-derived seed hits per reference track to particle-track-reco and mkFit, removing seed finding from the timing question."
-          ],
-          "metrics": [
-            {
-              "value": "500",
-              "label": "reference tracks",
-              "note": "same selected TrackML event"
-            },
-            {
-              "value": "5,605",
-              "label": "measured hits",
-              "note": "after the controlled selection"
-            },
-            {
-              "value": "3",
-              "label": "seed hits / track",
-              "note": "for the mkFit comparison"
-            }
-          ]
-        },
-        {
-          "heading": "Automatic reconstruction now reaches 98% efficiency",
-          "paragraphs": [
-            "The September 12 baseline made the weak point obvious: automatic seeding recovered only 26.2% of the reference tracks, while 47.9% of reconstructed tracks were fake and 39.4% were duplicates. I used that failure as the optimization target rather than hiding it behind the perfect truth-seeded result.",
-            "The current default pipeline now covers 490 of the 500 truth particles during seeding and finishes at 98.0% reconstruction efficiency. The fake rate is 4.28% and the duplicate rate is 4.47%. It does this with 661 generated seeds, 99.37% seed purity, and no truth information supplied to the automatic seeder."
-          ],
-          "metrics": [
-            {
-              "value": "98.0%",
-              "label": "automatic efficiency",
-              "note": "490 / 500 reference tracks"
-            },
-            {
-              "value": "4.28%",
-              "label": "fake rate",
-              "note": "current automatic pipeline"
-            },
-            {
-              "value": "4.47%",
-              "label": "duplicate rate",
-              "note": "current automatic pipeline"
-            }
-          ],
-          "figures": [
-            {
-              "src": "assets/images/research/particle-track-reco/seeding-quality-2026-09-14.svg",
-              "alt": "Grouped bar chart showing the improvement in efficiency, fake rate, and duplicate rate from the September 12 automatic reconstruction to the current automatic reconstruction and matched truth seeds.",
-              "caption": "Same 500 reference tracks in every group. The current automatic pipeline moves from 26.2% to 98.0% efficiency while sharply reducing fake and duplicate tracks."
-            }
-          ]
-        },
-        {
-          "heading": "The full automatic pipeline is faster too",
-          "paragraphs": [
-            "The quality improvement did not come from accepting a large throughput regression. Across seven 100-event repetitions, median automatic-pipeline throughput rises from 235.5k reconstructed tracks per second on one thread to 535.0k on eight threads, while the 98.0% / 4.28% / 4.47% quality result stays unchanged.",
-            "The 16-thread measurements were noticeably noisier, so I am not using them for the headline scaling claim. The raw 16-thread runs are still included in the benchmark JSON."
-          ],
-          "figures": [
-            {
-              "src": "assets/images/research/particle-track-reco/automatic-scaling-2026-09-14.svg",
-              "alt": "Line chart showing median throughput of the current automatic particle reconstruction pipeline from one through eight threads.",
-              "caption": "Seven repetitions per thread count, 100 iterations per repetition. The quality metrics are unchanged across the plotted runs."
-            }
-          ]
-        },
-        {
-          "heading": "A controlled candidate-building comparison now favors particle-track-reco",
-          "paragraphs": [
-            "For the mkFit comparison I isolated the stage that can be matched most cleanly. Both programs receive the same 500 three-hit truth seeds on the same Intel Core Ultra 7 265K. particle-track-reco runs its candidate builder with hit sharing, track refinement, and trajectory completion disabled. mkFit uses TrackMLGeom, --seed-input cmssw, --build-ce, one event thread, and its CEMX clone-engine timer.",
-            "Using seven 100-event repetitions at each thread count, particle-track-reco reaches median throughputs of 0.762, 1.082, 1.540, and 1.931 million seed-tracks per second at 1, 2, 4, and 8 threads. mkFit reaches 0.234, 0.433, 0.757, and 1.091 million. On this controlled workload that is a 3.25x advantage at one thread, narrowing to 1.77x at eight threads."
-          ],
-          "metrics": [
-            {
-              "value": "3.25x",
-              "label": "faster at 1 thread",
-              "note": "median candidate-building throughput"
-            },
-            {
-              "value": "2.03x",
-              "label": "faster at 4 threads",
-              "note": "same seeds and CPU"
-            },
-            {
-              "value": "1.77x",
-              "label": "faster at 8 threads",
-              "note": "same controlled stage"
-            }
-          ],
-          "figures": [
-            {
-              "src": "assets/images/research/particle-track-reco/thread-scaling-2026-09-14.svg",
-              "alt": "Line chart comparing absolute candidate-building throughput for particle-track-reco and the mkFit clone engine at one, two, four, and eight threads.",
-              "caption": "Candidate-building only. Same 500 truth-seeded TrackML tracks, same CPU, seven 100-event repetitions. This is not a full detector-reconstruction or full CMS-stack comparison."
-            }
-          ]
-        },
-        {
-          "heading": "Truth-seeded reconstruction remains exact on this subset",
-          "paragraphs": [
-            "The faster candidate-building path did not trade away the controlled truth metrics. With the matched three-hit seeds, all 500 reference tracks are recovered with zero fake tracks and zero duplicates in the published comparison runs.",
-            "That result matters because it separates two questions that are easy to mix together: whether the builder can extend a good hypothesis correctly, and whether the automatic front end can propose good hypotheses in the first place. The current version is now strong on both for this TrackML subset."
-          ],
-          "metrics": [
-            {
-              "value": "100%",
-              "label": "truth efficiency",
-              "note": "500 / 500 matched"
-            },
-            {
-              "value": "0%",
-              "label": "fake rate",
-              "note": "truth-seeded comparison"
-            },
-            {
-              "value": "0%",
-              "label": "duplicate rate",
-              "note": "truth-seeded comparison"
-            }
-          ]
-        },
-        {
-          "heading": "What changed in the implementation",
-          "paragraphs": [
-            "The speedup came from removing overhead around the math rather than weakening the reconstruction. Sparse events now use objective-adaptive collaboration by default, so the engine can skip hit-sharing work when its measured conflict signal does not justify the cost. Dense hit IDs use compact lookup tables and stable counting-order logic instead of general hash routing on the common path.",
-            "Track refinement and geometry completion were also reworked to avoid repeated hash-set construction. Immutable TrackML geometry indices are cached between iterations, overlap counting uses compact inverted indices where possible, and trajectory completion can parallelize across tracks. The automatic seeding path was tightened at the same time, which is why the quality and throughput curves moved together instead of trading one for the other."
+            "The project is designed as a complete reconstruction engine rather than a single algorithm experiment. Its canonical path begins with detector hits and carries candidate tracks through hypothesis formation, filtering and branching, global conflict handling, optional refinement, and trajectory completion.",
+            "The architecture keeps the numerical tracking core separate from search policy, data movement, collaboration, and validation so each part can be studied without turning the codebase into a one-off benchmark."
           ],
           "items": [
-            "Helical EKF reconstruction with structure-of-arrays storage",
-            "Automatic, region, displaced, adaptive, ensemble, and fusion seeding paths",
-            "Objective-adaptive collaborative hit handling and compact dense-ID claim routing",
-            "Geometry-aware trajectory completion with cached detector-surface indices",
-            "Packed .ptrkbin I/O, truth matching, residual/pull validation, and benchmark/parity tooling",
-            "Interchangeable EKF, A*, ACO, PSO, simulated-annealing, and Hungarian search backends"
+            "Helical EKF propagation, gating, update, refit, residual, and pull analysis",
+            "Structure-of-arrays event and candidate storage with packed .ptrkbin input",
+            "Automatic, region, displaced, adaptive, ensemble, and fusion hypothesis-generation paths",
+            "Geometry-aware trajectory completion and incomplete-track recovery",
+            "Collaborative hit handling, global conflict resolution, and deterministic matching",
+            "Native C API plus CLI, benchmark, matrix, and release-validation executables"
           ]
         },
         {
-          "heading": "Reproducibility and limits",
+          "heading": "Current validation",
           "paragraphs": [
-            "These measurements were regenerated on September 14, 2026 from commit 06a5072 on Jupiter, using a Release build under Ubuntu 24.04 in WSL with GCC 13.3. All 33 repository tests pass on this host, including the LP18 scoreboard test that had previously been timing-sensitive.",
-            "The result is intentionally narrower than a claim that this is the fastest tracker in every detector or experiment. It is one public TrackML event subset on one CPU. The mkFit number covers its clone-engine candidate-building timer, and the particle-track-reco comparison is configured to isolate its corresponding candidate-building core. Full detector integration, different occupancies, accelerator backends, and experiment-specific reconstruction chains would require separate validation."
+            "The current merged default is validated on a fixed public TrackML subset built from event000001000: the 500 highest-pT charged particles with pT at least 0.5 GeV, |eta| at most 2.5, and at least four recorded hits. The selected workload contains 5,605 measured hits.",
+            "Starting from the measured hits, the automatic pipeline reconstructs all 500 reference tracks on this controlled subset. The configured native test suite also passes 34 of 34 tests. These measurements are a validation result for this workload, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
           ],
+          "metrics": [
+            {
+              "value": "100.0%",
+              "label": "automatic reconstruction efficiency",
+              "note": "500 / 500 reference tracks"
+            },
+            {
+              "value": "9.294%",
+              "label": "fake rate",
+              "note": "controlled automatic validation"
+            },
+            {
+              "value": "4.647%",
+              "label": "duplicate rate",
+              "note": "controlled automatic validation"
+            },
+            {
+              "value": "34 / 34",
+              "label": "configured tests",
+              "note": "current merged reconstruction state"
+            }
+          ]
+        },
+        {
+          "heading": "Search and estimation",
+          "paragraphs": [
+            "The reconstruction problem is exposed through interchangeable brancher policies instead of being hard-wired to one search heuristic. The engine supports deterministic EKF candidate building alongside bounded A*, ant-colony, particle-swarm, simulated-annealing, and Hungarian-style strategies.",
+            "This makes the codebase useful for studying where tracking quality comes from: the state estimator, the candidate-search policy, the hit-assignment objective, or the global conflict solver. Search budgets and quality controls remain bounded so comparisons can be reproduced."
+          ]
+        },
+        {
+          "heading": "Parallel and data-oriented implementation",
+          "paragraphs": [
+            "The systems side of the project focuses on keeping useful physics work dominant over bookkeeping. Dense hit IDs can use compact lookup structures, candidate data uses structure-of-arrays layouts, immutable geometry information is reused across iterations, and collaboration work can adapt to the measured conflict signal.",
+            "Thread sweeps, release gates, stability checks, backend policies, and parity tooling are part of the repository so performance changes can be evaluated together with efficiency, fake rate, duplicate rate, and reconstruction stability rather than as isolated timing numbers."
+          ]
+        },
+        {
+          "heading": "Research questions",
           "items": [
-            "Selection: 500 highest-pT charged tracks, pT >= 0.5 GeV, |eta| <= 2.5, at least four hits",
-            "Automatic study: seven repetitions, 100 iterations each, 1/2/4/8/16 threads; 1-8 published because 16-thread timings were noisier",
-            "Candidate-building study: same 500 truth-derived three-hit seeds for both implementations, seven 100-event repetitions per thread count",
-            "Published mkFit comparison: 1, 2, 4, and 8 threads; 16-thread raw measurements retained in the benchmark file"
+            "How should local track-state estimation and global hit assignment be coupled?",
+            "Which search policies give the best quality-compute tradeoff under bounded candidate growth?",
+            "How much collaboration between tracks is useful before synchronization and conflict bookkeeping dominate?",
+            "Which data layouts and geometry caches preserve reconstruction quality while improving CPU efficiency?",
+            "How should throughput claims be scoped so candidate-building, automatic front-end work, and full reconstruction are not conflated?"
+          ]
+        },
+        {
+          "heading": "Validation scope",
+          "paragraphs": [
+            "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. The front-end seed diagnostic is 99.8% recall with 98.397% purity; downstream recovery closes the remaining reference track in the complete reconstruction result.",
+            "The repository also contains tooling for controlled comparisons with mkFit and for larger promotion matrices, but the public project description does not treat older stage-matched timing runs as current evidence. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation."
           ]
         }
       ],
       "relatedPublications": [],
       "links": {
         "Current code (private)": "https://github.com/dbontr/particle-track-reco",
-        "Optimization commit (private)": "https://github.com/dbontr/particle-track-reco/commit/06a5072",
-        "Benchmark data": "data/benchmarks/particle-track-reco-2026-09-14.json",
+        "Current reconstruction merge (private)": "https://github.com/dbontr/particle-track-reco/commit/16ebe3becf9d9c965b9467684840d512d2b07d7c",
+        "Current validation snapshot": "data/benchmarks/particle-track-reco-current.json",
         "mkFit reference": "https://github.com/trackreco/mkFit",
         "TrackML dataset": "https://www.kaggle.com/c/trackml-particle-identification/data",
         "TrackML event mirror": "https://github.com/HSF/phoenix/tree/main/packages/phoenix-ng/projects/phoenix-app/src/assets/files/TrackML"
