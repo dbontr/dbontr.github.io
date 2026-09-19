@@ -52,10 +52,10 @@
     {
       "id": "particle-track-reco",
       "title": "Particle Track Reconstruction",
-      "subtitle": "High-performance C++ reconstruction with helical estimation, interchangeable search, parallel conflict resolution, and reproducible validation",
+      "subtitle": "End-to-end C++ track reconstruction with helical state estimation, global hit ownership, trajectory completion, and deterministic fragment closure",
       "year": "2025–2026",
       "category": "High-energy physics",
-      "summary": "A clean-room C++ particle-tracking system that treats reconstruction as both an estimation problem and a systems problem. The current automatic pipeline reconstructs all 500 reference tracks in the controlled TrackML validation subset while preserving modular search, parallel execution, geometry-aware recovery, and reproducible quality checks.",
+      "summary": "A clean-room C++ particle-track reconstruction system focused on turning detector hits and candidate trajectories into a final, globally consistent track collection. The reconstruction pipeline combines helical state estimation, shared-hit conflict handling, geometry-aware trajectory completion, and split-fragment suppression; on the controlled 500-track TrackML validation subset it returns exactly 500 tracks with 100% efficiency, 0% fake rate, and 0% duplicate rate.",
       "visual": "assets/images/research/particle-track-reco/trackml-paths-hero.webp",
       "visualAlt": "Transverse detector view showing hundreds of measured TrackML particle trajectories radiating from the collision region.",
       "visualCaption": "Transverse view of the controlled 500-track TrackML validation subset from event000001000, generated from measured hit coordinates.",
@@ -64,36 +64,36 @@
         "Tracking",
         "C++",
         "EKF",
-        "Search",
-        "Parallel Computing",
+        "Trajectory Completion",
+        "Hit Assignment",
         "TrackML",
         "HPC"
       ],
       "overview": [
-        "Particle Track Reconstruction is a native C++ research platform for studying the full tracking problem: forming track hypotheses from detector hits, propagating and fitting those hypotheses, resolving shared-hit conflicts, recovering incomplete trajectories, and validating both physics quality and computational performance.",
-        "The implementation combines helical EKF reconstruction with structure-of-arrays data layouts, automatic front-end hypothesis generation, multiple bounded search strategies, collaborative hit handling, geometry-aware trajectory completion, packed binary input, truth matching, and reproducible benchmark and release tooling."
+        "Particle Track Reconstruction is a native C++ research platform for studying how detector hits become a final, globally consistent set of trajectories. Its main emphasis is reconstruction closure: candidate propagation and fitting, hit ownership, conflict resolution, recovery of incomplete trajectories, and suppression of split or duplicate tracks.",
+        "The system combines helical state estimation, bounded interchangeable search, geometry-aware completion, deterministic global arbitration, and data-oriented execution. Hypothesis generation is part of the pipeline, but it is treated as an upstream support stage rather than the central result."
       ],
       "sections": [
         {
-          "heading": "Reconstruction system",
+          "heading": "Reconstruction focus",
           "paragraphs": [
-            "The project is designed as a complete reconstruction engine rather than a single algorithm experiment. Its canonical path begins with detector hits and carries candidate tracks through hypothesis formation, filtering and branching, global conflict handling, optional refinement, and trajectory completion.",
-            "The architecture keeps the numerical tracking core separate from search policy, data movement, collaboration, and validation so each part can be studied without turning the codebase into a one-off benchmark."
+            "The central engineering work is downstream of initial candidate formation. Short or competing candidates are propagated and fitted, extended across missing detector surfaces, compared for hit ownership, and then passed through closure logic that decides whether apparently separate fragments belong to one physical trajectory.",
+            "The closure path uses complementary evidence instead of one overlap threshold: final hit overlap, detector-surface topology, radial separation, local three-hit trajectory compatibility, and merged-helix consistency. This is designed to suppress split trajectories without simply merging nearby tracks that follow similar paths."
           ],
           "items": [
             "Helical EKF propagation, gating, update, refit, residual, and pull analysis",
-            "Structure-of-arrays event and candidate storage with packed .ptrkbin input",
-            "Automatic, region, displaced, adaptive, ensemble, and fusion hypothesis-generation paths",
-            "Geometry-aware trajectory completion and incomplete-track recovery",
-            "Collaborative hit handling, global conflict resolution, and deterministic matching",
-            "Native C API plus CLI, benchmark, matrix, and release-validation executables"
+            "Geometry-aware completion across missing detector surfaces",
+            "Deterministic shared-hit ownership and global conflict resolution",
+            "Duplicate and split-fragment suppression for both overlapping and non-overlapping track fragments",
+            "Interchangeable bounded search policies for candidate evolution",
+            "Structure-of-arrays event and candidate storage with packed .ptrkbin input"
           ]
         },
         {
           "heading": "Current validation",
           "paragraphs": [
-            "The current merged default is validated on a fixed public TrackML subset built from event000001000: the 500 highest-pT charged particles with pT at least 0.5 GeV, |eta| at most 2.5, and at least four recorded hits. The selected workload contains 5,605 measured hits.",
-            "Starting from the measured hits, the automatic pipeline reconstructs all 500 reference tracks on this controlled subset and returns exactly 500 reconstructed tracks, with zero fake tracks and zero duplicate tracks. The configured native test suite passes 34 of 34 tests, and all four disjoint 250-track robustness windows from the same public event close at 100% seed recall and 100% reconstruction efficiency. Across those windows, fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%. These measurements are scoped validation results, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
+            "The published configuration is validated on a fixed public TrackML subset built from event000001000: the 500 highest-pT charged particles with pT at least 0.5 GeV, |eta| at most 2.5, and at least four recorded hits. The selected workload contains 5,605 measured hits.",
+            "Starting from the measured hits, the automatic reconstruction pipeline returns exactly 500 tracks for the 500 reference trajectories, with zero fake tracks and zero duplicate tracks. The configured native test suite passes 34 of 34 tests. Four disjoint 250-track robustness windows from the same public event also reach 100% reconstruction efficiency; across those windows, fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%. These are scoped validation results, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
           ],
           "metrics": [
             {
@@ -114,15 +114,15 @@
             {
               "value": "34 / 34",
               "label": "configured tests",
-              "note": "current merged reconstruction state"
+              "note": "merged reconstruction state"
             }
           ]
         },
         {
           "heading": "Search and estimation",
           "paragraphs": [
-            "The reconstruction problem is exposed through interchangeable brancher policies instead of being hard-wired to one search heuristic. The engine supports deterministic EKF candidate building alongside bounded A*, ant-colony, particle-swarm, simulated-annealing, and Hungarian-style strategies.",
-            "This makes the codebase useful for studying where tracking quality comes from: the state estimator, the candidate-search policy, the hit-assignment objective, or the global conflict solver. Search budgets and quality controls remain bounded so comparisons can be reproduced."
+            "Candidate evolution is exposed through interchangeable brancher policies rather than being hard-wired to one search heuristic. The engine supports deterministic EKF candidate building alongside bounded A*, ant-colony, particle-swarm, simulated-annealing, and Hungarian-style strategies.",
+            "Separating search policy from the state estimator and closure stages makes it possible to study how reconstruction quality changes when candidate exploration changes, while keeping the downstream fitting, hit-assignment, completion, and conflict logic comparable."
           ]
         },
         {
@@ -136,17 +136,17 @@
           "heading": "Research questions",
           "items": [
             "How should local track-state estimation and global hit assignment be coupled?",
-            "Which search policies give the best quality-compute tradeoff under bounded candidate growth?",
-            "How much collaboration between tracks is useful before synchronization and conflict bookkeeping dominate?",
-            "Which data layouts and geometry caches preserve reconstruction quality while improving CPU efficiency?",
-            "How should throughput claims be scoped so candidate-building, automatic front-end work, and full reconstruction are not conflated?"
+            "How should incomplete trajectories be extended without pulling in hits from nearby particles?",
+            "How can overlapping and non-overlapping fragments be recognized as one trajectory without merging distinct tracks?",
+            "Which search policies give the best reconstruction quality-compute tradeoff under bounded candidate growth?",
+            "Which data layouts and geometry caches preserve reconstruction quality while improving CPU efficiency?"
           ]
         },
         {
           "heading": "Validation scope",
           "paragraphs": [
-            "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. The front-end seed diagnostic also reaches 100% recall on this subset, with 99.226% purity; seed diagnostics remain supporting evidence rather than the focus of the project.",
-            "The repository also contains tooling for controlled comparisons with mkFit and for multi-window or multi-event quality matrices when additional TrackML events are available. The public project description does not treat older stage-matched timing runs as current evidence. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation."
+            "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. It describes the final track collection after fitting, conflict resolution, trajectory completion, and fragment closure.",
+            "The repository also contains tooling for controlled comparisons with mkFit and for multi-window or multi-event quality matrices when additional TrackML events are available. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation."
           ]
         }
       ],

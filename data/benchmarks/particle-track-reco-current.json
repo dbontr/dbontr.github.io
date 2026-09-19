@@ -27,20 +27,10 @@
     "fake_rate": 0,
     "duplicate_rate": 0
   },
-  "front_end_diagnostic": {
-    "seed_count": 693,
-    "seed_recall": 1,
-    "seed_purity": 0.992259,
-    "seed_duplicate_rate": 0.272727
-  },
   "robustness_matrix": {
     "source_event": "TrackML event000001000",
     "windows": 4,
     "tracks_per_window": 250,
-    "seed_recall_range": [
-      1,
-      1
-    ],
     "reconstruction_efficiency_range": [
       1,
       1
@@ -59,5 +49,16 @@
     "configured_tests_total": 34,
     "canonical_repetitions": 12
   },
-  "interpretation": "The fixed 500-track subset closes at 100% automatic reconstruction efficiency with zero fake and zero duplicate tracks; seed recall also reaches 100%. Four disjoint 250-track windows from the same public event each reach 100% seed recall and 100% reconstruction efficiency. This remains single-event validation, not a multi-event result."
+  "interpretation": "The fixed 500-track subset closes at 100% automatic reconstruction efficiency with exactly 500 reconstructed tracks, zero fake tracks, and zero duplicate tracks. Four disjoint 250-track windows from the same public event each reach 100% reconstruction efficiency; across those windows, fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%. This is single-event validation, not a universal or multi-event result.",
+  "reconstruction_closure": {
+    "helical_state_estimation": true,
+    "global_hit_conflict_resolution": true,
+    "geometry_aware_trajectory_completion": true,
+    "fragment_suppression": [
+      "shared-hit overlap",
+      "detector-surface separation",
+      "three-hit linear-anchor compatibility",
+      "merged-helix consistency"
+    ]
+  }
 }
