@@ -2,9 +2,7 @@
   "project": "particle-track-reco",
   "status": "current",
   "source_revision": {
-    "merge_commit": "4decac5073f66a41a5c56c48ca7d2c068977283f",
-    "merged_pull_request": 2,
-    "head_commit": "69a92aeb81a720e6a168a27ce4fd990b3b841587"
+    "commit": "7b9f8785c43fba5eeca3cea3dc94248c27ccdade"
   },
   "workload": {
     "dataset": "TrackML event000001000",
@@ -19,46 +17,47 @@
     "measured_hits": 5605
   },
   "automatic_reconstruction": {
-    "reco_tracks": 508,
+    "reco_tracks": 500,
     "efficiency": 1,
-    "matched_tracks": 507,
+    "matched_tracks": 500,
     "matched_reference_tracks": 500,
     "reference_tracks": 500,
-    "fake_tracks": 1,
-    "duplicate_tracks": 7,
-    "fake_rate": 0.0019685,
-    "duplicate_rate": 0.0137795
+    "fake_tracks": 0,
+    "duplicate_tracks": 0,
+    "fake_rate": 0,
+    "duplicate_rate": 0
   },
   "front_end_diagnostic": {
-    "seed_count": 694,
+    "seed_count": 696,
     "seed_recall": 1,
-    "seed_purity": 0.990821,
-    "seed_duplicate_rate": 0.273775
+    "seed_purity": 0.990848,
+    "seed_duplicate_rate": 0.275862
   },
   "robustness_matrix": {
     "source_event": "TrackML event000001000",
     "windows": 4,
     "tracks_per_window": 250,
     "seed_recall_range": [
-      0.996,
+      1,
       1
     ],
     "reconstruction_efficiency_range": [
-      0.992,
+      1,
       1
     ],
     "fake_rate_range": [
-      0.003704,
-      0.014545
+      0.003817,
+      0.014925
     ],
     "duplicate_rate_range": [
-      0.023166,
-      0.083636
+      0.01938,
+      0.052239
     ]
   },
   "verification": {
     "configured_tests_passed": 34,
-    "configured_tests_total": 34
+    "configured_tests_total": 34,
+    "canonical_repetitions": 5
   },
-  "interpretation": "The 100% value is automatic reconstruction efficiency on the fixed 500-track subset. Seed recall also reaches 100% on that subset and is reported separately as a front-end diagnostic. The four-window matrix broadens validation within the same public event; it is not a multi-event result."
+  "interpretation": "The fixed 500-track subset closes at 100% automatic reconstruction efficiency with zero fake and zero duplicate tracks; seed recall also reaches 100%. Four disjoint 250-track windows from the same public event each reach 100% seed recall and 100% reconstruction efficiency. This remains single-event validation, not a multi-event result."
 }
