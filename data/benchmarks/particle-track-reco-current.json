@@ -2,7 +2,7 @@
   "project": "particle-track-reco",
   "status": "current",
   "source_revision": {
-    "commit": "7b9f8785c43fba5eeca3cea3dc94248c27ccdade"
+    "commit": "48a913c8bbb5d8aa31b4ff9e2ed013c035f73e76"
   },
   "workload": {
     "dataset": "TrackML event000001000",
@@ -28,10 +28,10 @@
     "duplicate_rate": 0
   },
   "front_end_diagnostic": {
-    "seed_count": 696,
+    "seed_count": 693,
     "seed_recall": 1,
-    "seed_purity": 0.990848,
-    "seed_duplicate_rate": 0.275862
+    "seed_purity": 0.992259,
+    "seed_duplicate_rate": 0.272727
   },
   "robustness_matrix": {
     "source_event": "TrackML event000001000",
@@ -46,18 +46,18 @@
       1
     ],
     "fake_rate_range": [
-      0.003817,
-      0.014925
+      0.003846,
+      0.011628
     ],
     "duplicate_rate_range": [
       0.01938,
-      0.052239
+      0.034615
     ]
   },
   "verification": {
     "configured_tests_passed": 34,
     "configured_tests_total": 34,
-    "canonical_repetitions": 5
+    "canonical_repetitions": 12
   },
   "interpretation": "The fixed 500-track subset closes at 100% automatic reconstruction efficiency with zero fake and zero duplicate tracks; seed recall also reaches 100%. Four disjoint 250-track windows from the same public event each reach 100% seed recall and 100% reconstruction efficiency. This remains single-event validation, not a multi-event result."
 }
