@@ -5,11 +5,11 @@ The TrackReco research page uses the current reconstruction state plus primary e
 ## Current project state
 
 - `dbontr/particle-track-reco` — clean-room C++ particle-track reconstruction implementation: https://github.com/dbontr/particle-track-reco
-- Current merged reconstruction revision: `4decac5` (`Improve TrackML reconstruction quality and validation`, pull request #2).
+- Current reconstruction revision: `7b9f878` (`Close TrackML reconstruction quality gaps`).
 - Validation source: `data/benchmarks/particle-track-reco-current.json`.
-- Controlled automatic result: 500 / 500 reference tracks reconstructed, 0.197% fake rate, 1.378% duplicate rate, and 34 / 34 configured tests passing.
-- Front-end diagnostic on the same workload: 100% seed recall, 99.082% seed purity, and 27.378% seed duplicate rate.
-- Robustness matrix: four disjoint 250-track windows from the same public event span 99.2–100% reconstruction efficiency.
+- Controlled automatic result: 500 / 500 reference tracks reconstructed with zero fake tracks, zero duplicate tracks, and 34 / 34 configured tests passing.
+- Front-end diagnostic on the same workload: 100% seed recall, 99.085% seed purity, and 27.586% seed duplicate rate.
+- Robustness matrix: all four disjoint 250-track windows from the same public event reach 100% seed recall and 100% reconstruction efficiency; fake rate spans 0.38–1.49% and duplicate rate spans 1.94–5.22%.
 
 ## Dataset sources
 
@@ -24,4 +24,4 @@ The TrackReco research page uses the current reconstruction state plus primary e
 
 ## Interpretation
 
-The 100% reconstruction result applies to the fixed 500-track TrackML validation subset described in the snapshot. The four-window matrix broadens validation within that same public event; it does not establish multi-event performance. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation. The public TrackReco page therefore treats quality metrics as scoped evidence and does not publish older stage-matched timing runs as current performance claims.
+The zero-fake, zero-duplicate reconstruction result applies to the fixed 500-track TrackML validation subset described in the snapshot. The four-window matrix broadens validation within that same public event and reaches 100% seed recall and 100% reconstruction efficiency in every window; it does not establish multi-event performance. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation. The public TrackReco page therefore treats quality metrics as scoped evidence and does not publish older stage-matched timing runs as current performance claims.
