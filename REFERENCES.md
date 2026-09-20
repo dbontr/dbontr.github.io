@@ -6,10 +6,13 @@ The TrackReco research page uses the merged reconstruction state plus primary ex
 
 - `dbontr/particle-track-reco` — clean-room C++ particle-track reconstruction implementation: https://github.com/dbontr/particle-track-reco
 - Current reconstruction revision: `48a913c` (`Tighten TrackML fragment closure`, merged through pull request #3).
-- Validation source: `data/benchmarks/particle-track-reco-current.json`.
+- Final-validation source: `data/benchmarks/particle-track-reco-current.json`.
+- Branch and ablation measurements: `data/benchmarks/particle-track-reco-evidence.json`.
 - Controlled automatic result: exactly 500 reconstructed tracks for 500 reference tracks, with 100% reconstruction efficiency, zero fake tracks, zero duplicate tracks, and 34 / 34 configured tests passing.
+- Closure ablation on the same controlled subset: disabling trajectory completion / closure leaves 693 reconstructed tracks, 27.27% duplicates, and 0.58% fakes while retaining 100% reference efficiency.
+- Branch comparison on the same subset: EKF, A*, ACO, PSO, and SA close at 100% efficiency with zero fake and duplicate tracks; Hungarian closes at 100% efficiency with one duplicate track.
+- Collaboration ablation: forced shared-hit collaboration does not improve final quality on the controlled subset and usually reduces throughput; the objective-adaptive policy selects its no-sharing fallback for all six branchers on this workload.
 - Robustness matrix: all four disjoint 250-track windows from the same public event reach 100% reconstruction efficiency; fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%.
-- Reconstruction emphasis: helical state estimation, global hit-conflict handling, geometry-aware trajectory completion, and split-fragment suppression. Hypothesis generation is an upstream support stage rather than the focus of the public project description.
 
 ## Dataset sources
 
@@ -24,4 +27,4 @@ The TrackReco research page uses the merged reconstruction state plus primary ex
 
 ## Interpretation
 
-The zero-fake, zero-duplicate reconstruction result applies to the fixed 500-track TrackML validation subset described in the snapshot. The four-window matrix broadens validation within that same public event and reaches 100% reconstruction efficiency in every window; it does not establish multi-event performance. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation.
+The zero-fake, zero-duplicate reconstruction result applies to the fixed 500-track TrackML validation subset. The branch and ablation plots use the current merged implementation and the same controlled subset unless their caption states otherwise. The four-window matrix and 1,000-track stress test broaden validation within the same public event; they do not establish multi-event performance. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation.

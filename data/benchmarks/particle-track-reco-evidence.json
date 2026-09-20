@@ -1,0 +1,332 @@
+{
+  "project": "particle-track-reco",
+  "source_revision": "48a913c8bbb5d8aa31b4ff9e2ed013c035f73e76",
+  "workload": "TrackML event000001000 controlled 500-track subset (5,605 measured hits)",
+  "branch_comparison": {
+    "threads": 1,
+    "repetitions": 3,
+    "rows": [
+      {
+        "brancher": "EKF",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 3.77945
+      },
+      {
+        "brancher": "A*",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 4.00471
+      },
+      {
+        "brancher": "ACO",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 3.79192
+      },
+      {
+        "brancher": "PSO",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 3.79714
+      },
+      {
+        "brancher": "SA",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 3.82433
+      },
+      {
+        "brancher": "Hungarian",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00199601,
+        "reco_tracks": 501,
+        "median_ms": 7.61924
+      }
+    ]
+  },
+  "collaboration_ablation": {
+    "threads": 8,
+    "repetitions": 5,
+    "rows": [
+      {
+        "brancher": "EKF",
+        "mode": "off",
+        "tracks_per_second": 179382,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": false,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "EKF",
+        "mode": "on",
+        "tracks_per_second": 167161,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": true,
+        "policy_fallback": false,
+        "claim_conflicts": 18
+      },
+      {
+        "brancher": "EKF",
+        "mode": "adaptive",
+        "tracks_per_second": 201320,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "A*",
+        "mode": "off",
+        "tracks_per_second": 179687,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": false,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "A*",
+        "mode": "on",
+        "tracks_per_second": 180770,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": true,
+        "policy_fallback": false,
+        "claim_conflicts": 15
+      },
+      {
+        "brancher": "A*",
+        "mode": "adaptive",
+        "tracks_per_second": 197944,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "ACO",
+        "mode": "off",
+        "tracks_per_second": 201749,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": false,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "ACO",
+        "mode": "on",
+        "tracks_per_second": 179511,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": true,
+        "policy_fallback": false,
+        "claim_conflicts": 18
+      },
+      {
+        "brancher": "ACO",
+        "mode": "adaptive",
+        "tracks_per_second": 201046,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "PSO",
+        "mode": "off",
+        "tracks_per_second": 173653,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": false,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "PSO",
+        "mode": "on",
+        "tracks_per_second": 171135,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": true,
+        "policy_fallback": false,
+        "claim_conflicts": 18
+      },
+      {
+        "brancher": "PSO",
+        "mode": "adaptive",
+        "tracks_per_second": 201852,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "SA",
+        "mode": "off",
+        "tracks_per_second": 201004,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": false,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "SA",
+        "mode": "on",
+        "tracks_per_second": 180087,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": true,
+        "policy_fallback": false,
+        "claim_conflicts": 18
+      },
+      {
+        "brancher": "SA",
+        "mode": "adaptive",
+        "tracks_per_second": 203770,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "Hungarian",
+        "mode": "off",
+        "tracks_per_second": 161545,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00199601,
+        "hit_sharing_enabled": false,
+        "policy_fallback": false,
+        "claim_conflicts": 0
+      },
+      {
+        "brancher": "Hungarian",
+        "mode": "on",
+        "tracks_per_second": 146239,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00199601,
+        "hit_sharing_enabled": true,
+        "policy_fallback": false,
+        "claim_conflicts": 40
+      },
+      {
+        "brancher": "Hungarian",
+        "mode": "adaptive",
+        "tracks_per_second": 155544,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00199601,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true,
+        "claim_conflicts": 0
+      }
+    ],
+    "dense_stress": {
+      "tracks": 1000,
+      "measured_hits": 11164,
+      "brancher": "EKF",
+      "threads": 8,
+      "repetitions": 5,
+      "off": {
+        "reco_tracks": 830,
+        "efficiency": 0.829,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00120482,
+        "tracks_per_second": 207136
+      },
+      "on": {
+        "reco_tracks": 830,
+        "efficiency": 0.829,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00120482,
+        "tracks_per_second": 179946,
+        "claim_conflicts": 8
+      },
+      "adaptive": {
+        "reco_tracks": 830,
+        "efficiency": 0.829,
+        "fake_rate": 0,
+        "duplicate_rate": 0.00120482,
+        "tracks_per_second": 203789,
+        "hit_sharing_enabled": false,
+        "policy_fallback": true
+      }
+    }
+  },
+  "closure_ablation": {
+    "threads": 1,
+    "repetitions": 5,
+    "rows": [
+      {
+        "configuration": "Full reconstruction",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 3.7669
+      },
+      {
+        "configuration": "No trajectory completion / closure",
+        "efficiency": 1,
+        "fake_rate": 0.00577201,
+        "duplicate_rate": 0.272727,
+        "reco_tracks": 693,
+        "median_ms": 0.978937
+      },
+      {
+        "configuration": "No refinement",
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0,
+        "reco_tracks": 500,
+        "median_ms": 3.6816
+      },
+      {
+        "configuration": "No completion / closure and no refinement",
+        "efficiency": 1,
+        "fake_rate": 0.00577201,
+        "duplicate_rate": 0.272727,
+        "reco_tracks": 693,
+        "median_ms": 0.885353
+      }
+    ]
+  }
+}

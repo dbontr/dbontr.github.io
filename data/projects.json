@@ -55,7 +55,7 @@
       "subtitle": "End-to-end C++ track reconstruction with helical state estimation, global hit ownership, trajectory completion, and deterministic fragment closure",
       "year": "2025–2026",
       "category": "High-energy physics",
-      "summary": "A clean-room C++ particle-track reconstruction system focused on turning detector hits and candidate trajectories into a final, globally consistent track collection. The reconstruction pipeline combines helical state estimation, shared-hit conflict handling, geometry-aware trajectory completion, and split-fragment suppression; on the controlled 500-track TrackML validation subset it returns exactly 500 tracks with 100% efficiency, 0% fake rate, and 0% duplicate rate.",
+      "summary": "A clean-room C++ particle-track reconstruction system focused on reconstruction closure: helical state estimation, hit ownership, trajectory completion, and fragment suppression. Measured ablations on the current revision show that completion/closure is the decisive quality step: disabling it leaves 693 tracks for 500 references with a 27.27% duplicate rate, while the full pipeline returns exactly 500 tracks with 0% fake and duplicate rates.",
       "visual": "assets/images/research/particle-track-reco/trackml-paths-hero.webp",
       "visualAlt": "Transverse detector view showing hundreds of measured TrackML particle trajectories radiating from the collision region.",
       "visualCaption": "Transverse view of the controlled 500-track TrackML validation subset from event000001000, generated from measured hit coordinates.",
@@ -70,23 +70,69 @@
         "HPC"
       ],
       "overview": [
-        "Particle Track Reconstruction is a native C++ research platform for studying how detector hits become a final, globally consistent set of trajectories. Its main emphasis is reconstruction closure: candidate propagation and fitting, hit ownership, conflict resolution, recovery of incomplete trajectories, and suppression of split or duplicate tracks.",
-        "The system combines helical state estimation, bounded interchangeable search, geometry-aware completion, deterministic global arbitration, and data-oriented execution. Hypothesis generation is part of the pipeline, but it is treated as an upstream support stage rather than the central result."
+        "Particle Track Reconstruction is a native C++ research platform for studying how detector hits become a final, globally consistent set of trajectories. Six interchangeable branch/search policies feed the same downstream reconstruction core, which handles fitting, hit ownership, trajectory completion, and fragment closure.",
+        "The measured evidence separates the contributions. Search policy changes compute cost more than final quality on the controlled subset; trajectory completion and fragment closure eliminate a large duplicate-track failure mode; and shared-hit collaboration is workload-dependent rather than automatically beneficial."
       ],
       "sections": [
         {
-          "heading": "Reconstruction focus",
+          "heading": "Reconstruction architecture",
           "paragraphs": [
-            "The central engineering work is downstream of initial candidate formation. Short or competing candidates are propagated and fitted, extended across missing detector surfaces, compared for hit ownership, and then passed through closure logic that decides whether apparently separate fragments belong to one physical trajectory.",
-            "The closure path uses complementary evidence instead of one overlap threshold: final hit overlap, detector-surface topology, radial separation, local three-hit trajectory compatibility, and merged-helix consistency. This is designed to suppress split trajectories without simply merging nearby tracks that follow similar paths."
+            "The branch policy is intentionally interchangeable. EKF, A*, ant colony, particle swarm, simulated annealing, and Hungarian-style search all feed a common downstream stack for helical state estimation, hit ownership, trajectory completion, fragment suppression, and final collection building.",
+            "This separation makes the reconstruction contribution measurable independently from candidate-search strategy."
           ],
-          "items": [
-            "Helical EKF propagation, gating, update, refit, residual, and pull analysis",
-            "Geometry-aware completion across missing detector surfaces",
-            "Deterministic shared-hit ownership and global conflict resolution",
-            "Duplicate and split-fragment suppression for both overlapping and non-overlapping track fragments",
-            "Interchangeable bounded search policies for candidate evolution",
-            "Structure-of-arrays event and candidate storage with packed .ptrkbin input"
+          "figures": [
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-architecture.svg",
+              "alt": "Code-drawn TrackReco architecture showing EKF, A star, ACO, PSO, simulated annealing, and Hungarian search policies feeding helical state estimation, hit conflict resolution, trajectory completion, fragment closure, and the final track collection.",
+              "caption": "Reconstruction architecture in the current implementation. The six search policies share the same downstream reconstruction and closure stages."
+            }
+          ]
+        },
+        {
+          "heading": "Closure ablation",
+          "paragraphs": [
+            "The strongest measured effect is downstream of branch generation. With the full reconstruction stack, the controlled 500-track subset closes to exactly 500 reconstructed tracks with 100% efficiency, 0% fake rate, and 0% duplicate rate.",
+            "Disabling trajectory completion and its fragment-closure path keeps efficiency at 100%, but the output expands to 693 tracks: 27.27% duplicates and 0.58% fakes. Disabling refinement alone does not change the final 500-track result. This isolates completion/closure as the step that removes the dominant redundant-fragment failure mode on this workload."
+          ],
+          "figures": [
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-closure-ablation.svg",
+              "alt": "Measured closure ablation. Full reconstruction has zero fake and duplicate rates. Without trajectory completion and closure, duplicate rate is 27.27 percent and fake rate is 0.58 percent while efficiency remains 100 percent.",
+              "caption": "Measured ablation at revision 48a913c. Rates are computed from the same controlled 500-track TrackML subset."
+            }
+          ]
+        },
+        {
+          "heading": "Branch-policy comparison",
+          "paragraphs": [
+            "Five of the six branch policies—EKF, A*, ACO, PSO, and simulated annealing—produce the same perfect final quality on the controlled subset: 100% efficiency, 0% fake rate, 0% duplicate rate, and exactly 500 reconstructed tracks. Hungarian-style assignment also reaches 100% efficiency and 0% fake rate, but leaves one duplicate track.",
+            "The policies differ more clearly in compute cost. On one thread, EKF, ACO, PSO, and SA cluster near 3.8 ms per event, A* is about 4.0 ms, and Hungarian is about 7.6 ms in the measured three-repetition median."
+          ],
+          "figures": [
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-branch-latency.svg",
+              "alt": "Horizontal bar chart of median single-thread reconstruction time: EKF 3.78 milliseconds, A star 4.00, ACO 3.79, PSO 3.80, simulated annealing 3.82, and Hungarian 7.62.",
+              "caption": "Measured branch-policy compute comparison. Same event subset, same reconstruction core, one thread, three-repetition medians."
+            },
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-branch-quality.svg",
+              "alt": "Duplicate-rate comparison across branch policies. EKF, A star, ACO, PSO, and simulated annealing are at zero percent; Hungarian is at 0.20 percent. All six have 100 percent efficiency and zero fake rate.",
+              "caption": "Final-track quality by branch policy. The downstream closure stack makes final quality largely insensitive to the search policy on this controlled subset."
+            }
+          ]
+        },
+        {
+          "heading": "Collaboration policy",
+          "paragraphs": [
+            "Shared-hit collaboration is not automatically better. At eight threads on the controlled 500-track subset, forcing hit sharing leaves final reconstruction quality unchanged for every branch but usually reduces throughput. The measured throughput change versus sharing disabled ranges from +0.6% for A* to -11.0% for ACO.",
+            "The objective-adaptive collaboration policy selects its no-sharing fallback for all six branchers on this sparse workload, avoiding collaboration when the conflict signal does not justify it. A denser 1,000-track stress subset from the same event gives the same qualitative result for EKF: off and forced-on both reconstruct 82.9% of references with identical fake/duplicate rates, while forced sharing reduces throughput by 13.1%; the adaptive policy again falls back to no sharing. The useful contribution is therefore workload-aware collaboration, not an always-on claim."
+          ],
+          "figures": [
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-collaboration-ablation.svg",
+              "alt": "Measured collaboration ablation showing throughput change when hit sharing is forced on versus off: EKF minus 6.8 percent, A star plus 0.6 percent, ACO minus 11.0 percent, PSO minus 1.5 percent, simulated annealing minus 10.4 percent, and Hungarian minus 9.5 percent. Final reconstruction quality is unchanged.",
+              "caption": "Measured collaboration ablation, eight threads and five-repetition medians. Adaptive collaboration disables sharing on this workload rather than paying the fixed-sharing overhead."
+            }
           ]
         },
         {
@@ -119,34 +165,20 @@
           ]
         },
         {
-          "heading": "Search and estimation",
-          "paragraphs": [
-            "Candidate evolution is exposed through interchangeable brancher policies rather than being hard-wired to one search heuristic. The engine supports deterministic EKF candidate building alongside bounded A*, ant-colony, particle-swarm, simulated-annealing, and Hungarian-style strategies.",
-            "Separating search policy from the state estimator and closure stages makes it possible to study how reconstruction quality changes when candidate exploration changes, while keeping the downstream fitting, hit-assignment, completion, and conflict logic comparable."
-          ]
-        },
-        {
-          "heading": "Parallel and data-oriented implementation",
-          "paragraphs": [
-            "The systems side of the project focuses on keeping useful physics work dominant over bookkeeping. Dense hit IDs can use compact lookup structures, candidate data uses structure-of-arrays layouts, immutable geometry information is reused across iterations, and collaboration work can adapt to the measured conflict signal.",
-            "Thread sweeps, release gates, stability checks, backend policies, and parity tooling are part of the repository so performance changes can be evaluated together with efficiency, fake rate, duplicate rate, and reconstruction stability rather than as isolated timing numbers."
-          ]
-        },
-        {
           "heading": "Research questions",
           "items": [
             "How should local track-state estimation and global hit assignment be coupled?",
             "How should incomplete trajectories be extended without pulling in hits from nearby particles?",
             "How can overlapping and non-overlapping fragments be recognized as one trajectory without merging distinct tracks?",
-            "Which search policies give the best reconstruction quality-compute tradeoff under bounded candidate growth?",
-            "Which data layouts and geometry caches preserve reconstruction quality while improving CPU efficiency?"
+            "When does collaborative hit sharing improve reconstruction enough to justify its synchronization cost?",
+            "Which search policies give the best reconstruction quality-compute tradeoff under bounded candidate growth?"
           ]
         },
         {
           "heading": "Validation scope",
           "paragraphs": [
             "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. It describes the final track collection after fitting, conflict resolution, trajectory completion, and fragment closure.",
-            "The repository also contains tooling for controlled comparisons with mkFit and for multi-window or multi-event quality matrices when additional TrackML events are available. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation."
+            "The branch, collaboration, and closure figures are measured from the current revision and are stored with their source values in the public evidence JSON. The robustness windows and 1,000-track stress subset come from the same TrackML event, so they broaden within-event evidence but do not establish multi-event or experiment-wide performance."
           ]
         }
       ],
@@ -157,7 +189,8 @@
         "mkFit reference": "https://github.com/trackreco/mkFit",
         "TrackML dataset": "https://www.kaggle.com/c/trackml-particle-identification/data",
         "TrackML event mirror": "https://github.com/HSF/phoenix/tree/main/packages/phoenix-ng/projects/phoenix-app/src/assets/files/TrackML",
-        "Current reconstruction revision (private)": "https://github.com/dbontr/particle-track-reco/commit/48a913c8bbb5d8aa31b4ff9e2ed013c035f73e76"
+        "Current reconstruction revision (private)": "https://github.com/dbontr/particle-track-reco/commit/48a913c8bbb5d8aa31b4ff9e2ed013c035f73e76",
+        "Measured branch and ablation data": "data/benchmarks/particle-track-reco-evidence.json"
       },
       "aliases": [
         "particle-track-building"
