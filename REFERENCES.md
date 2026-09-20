@@ -1,18 +1,17 @@
 # References
 
-The TrackReco research page uses the merged reconstruction state plus primary external sources for TrackML and the comparison implementation.
+The TrackReco research page uses the merged reconstruction state plus primary external sources for TrackML and mkFit.
 
 ## Current project state
 
 - `dbontr/particle-track-reco` — clean-room C++ particle-track reconstruction implementation: https://github.com/dbontr/particle-track-reco
-- Current reconstruction revision: `48a913c` (`Tighten TrackML fragment closure`, merged through pull request #3).
+- Current reconstruction revision: `48a913c`.
 - Final-validation source: `data/benchmarks/particle-track-reco-current.json`.
-- Branch and ablation measurements: `data/benchmarks/particle-track-reco-evidence.json`.
-- Controlled automatic result: exactly 500 reconstructed tracks for 500 reference tracks, with 100% reconstruction efficiency, zero fake tracks, zero duplicate tracks, and 34 / 34 configured tests passing.
+- Branch, closure, collaboration, thread-scaling, and mkFit timing measurements: `data/benchmarks/particle-track-reco-evidence.json`.
+- Controlled automatic result: exactly 500 reconstructed tracks for 500 reference tracks, with 100% reconstruction efficiency, zero fake tracks, and zero duplicate tracks.
 - Closure ablation on the same controlled subset: disabling trajectory completion / closure leaves 693 reconstructed tracks, 27.27% duplicates, and 0.58% fakes while retaining 100% reference efficiency.
-- Branch comparison on the same subset: EKF, A*, ACO, PSO, and SA close at 100% efficiency with zero fake and duplicate tracks; Hungarian closes at 100% efficiency with one duplicate track.
-- Collaboration ablation: forced shared-hit collaboration does not improve final quality on the controlled subset and usually reduces throughput; the objective-adaptive policy selects its no-sharing fallback for all six branchers on this workload.
-- Robustness matrix: all four disjoint 250-track windows from the same public event reach 100% reconstruction efficiency; fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%.
+- TrackReco thread scaling on the same subset: 115.6k tracks/s at one thread, 185.4k tracks/s at eight threads, and 39.8k tracks/s at sixteen threads; final quality is unchanged at every measured point.
+- Fresh mkFit same-machine timing reference uses `trackreco/mkFit` devel revision `ba370252` and the same controlled 500-track selection. TrackReco times its reconstruction engine after loading; mkFit reports its total event-loop and CloneEngine build-stage timers, so these timings are not identical stage scopes.
 
 ## Dataset sources
 
@@ -23,8 +22,8 @@ The TrackReco research page uses the merged reconstruction state plus primary ex
 
 ## Technical comparison reference
 
-- `trackreco/mkFit` — vectorized and parallelized tracking implementation used as a technical comparison reference: https://github.com/trackreco/mkFit
+- `trackreco/mkFit` — vectorized and parallelized charged-particle track reconstruction implementation: https://github.com/trackreco/mkFit
 
 ## Interpretation
 
-The zero-fake, zero-duplicate reconstruction result applies to the fixed 500-track TrackML validation subset. The branch and ablation plots use the current merged implementation and the same controlled subset unless their caption states otherwise. The four-window matrix and 1,000-track stress test broaden validation within the same public event; they do not establish multi-event performance. Different events, detector geometries, occupancies, hardware, and experiment-specific reconstruction chains require their own validation.
+The zero-fake, zero-duplicate reconstruction result applies to the fixed 500-track TrackML validation subset. Performance plots are same-machine measurements on that controlled selection unless their caption states otherwise. The mkFit comparison is a timing reference with explicitly different internal timing scopes, not a claim of stage-for-stage equivalence. The robustness windows and 1,000-track stress test broaden validation within the same public event; they do not establish multi-event performance.

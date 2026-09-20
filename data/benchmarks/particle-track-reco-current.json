@@ -44,11 +44,6 @@
       0.034615
     ]
   },
-  "verification": {
-    "configured_tests_passed": 34,
-    "configured_tests_total": 34,
-    "canonical_repetitions": 12
-  },
   "interpretation": "The fixed 500-track subset closes at 100% automatic reconstruction efficiency with exactly 500 reconstructed tracks, zero fake tracks, and zero duplicate tracks. Four disjoint 250-track windows from the same public event each reach 100% reconstruction efficiency; across those windows, fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%. This is single-event validation, not a universal or multi-event result.",
   "reconstruction_closure": {
     "helical_state_estimation": true,

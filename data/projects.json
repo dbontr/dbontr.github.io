@@ -75,17 +75,10 @@
       ],
       "sections": [
         {
-          "heading": "Reconstruction architecture",
+          "heading": "Reconstruction focus",
           "paragraphs": [
-            "The branch policy is intentionally interchangeable. EKF, A*, ant colony, particle swarm, simulated annealing, and Hungarian-style search all feed a common downstream stack for helical state estimation, hit ownership, trajectory completion, fragment suppression, and final collection building.",
-            "This separation makes the reconstruction contribution measurable independently from candidate-search strategy."
-          ],
-          "figures": [
-            {
-              "src": "assets/images/research/particle-track-reco/trackreco-architecture.svg",
-              "alt": "Code-drawn TrackReco architecture showing EKF, A star, ACO, PSO, simulated annealing, and Hungarian search policies feeding helical state estimation, hit conflict resolution, trajectory completion, fragment closure, and the final track collection.",
-              "caption": "Reconstruction architecture in the current implementation. The six search policies share the same downstream reconstruction and closure stages."
-            }
+            "The branch policy is intentionally interchangeable. EKF, A*, ant colony, particle swarm, simulated annealing, and Hungarian-style search all feed the same downstream reconstruction path for helical state estimation, hit ownership, trajectory completion, fragment suppression, and final collection building.",
+            "The measured ablations below separate search policy from the reconstruction machinery, which makes the downstream contribution visible without relying on a schematic illustration."
           ]
         },
         {
@@ -122,6 +115,34 @@
           ]
         },
         {
+          "heading": "Thread scaling",
+          "paragraphs": [
+            "The EKF reconstruction path scales from 115.6k reconstructed tracks/s at one thread to 185.4k tracks/s at eight threads on the controlled subset, a 1.60× throughput increase while preserving the same 100% efficiency and zero fake/duplicate result.",
+            "This event is small enough that sixteen threads are counterproductive: median throughput falls to 39.8k tracks/s. The scaling curve therefore shows the practical saturation point rather than implying linear speedup."
+          ],
+          "figures": [
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-thread-scaling.svg",
+              "alt": "TrackReco thread-scaling plot showing 115.6 thousand tracks per second at one thread, 150.3 thousand at two, 173.9 thousand at four, 185.4 thousand at eight, and 39.8 thousand at sixteen.",
+              "caption": "Measured TrackReco thread scaling on the controlled 500-track subset. Median of nine repetitions per thread count."
+            }
+          ]
+        },
+        {
+          "heading": "Same-machine mkFit timing reference",
+          "paragraphs": [
+            "A fresh mkFit devel build was run on the same Jupiter CPU using the same 500-track TrackML selection converted through the TrackML adapter. At one thread, TrackReco's full reconstruction-engine median is 4.33 ms, while mkFit reports 4.54 ms for its total event loop and 2.19 ms for its CloneEngine build stage. At eight threads, the corresponding medians are 2.70 ms, 2.30 ms, and 0.50 ms.",
+            "The timing scopes are not identical, so the figure is a same-machine implementation reference rather than a claim that the internal stages are equivalent. It does show that TrackReco is in the same millisecond-scale regime while performing its downstream completion and fragment-closure work."
+          ],
+          "figures": [
+            {
+              "src": "assets/images/research/particle-track-reco/trackreco-mkfit-comparison.svg",
+              "alt": "Grouped timing bars comparing TrackReco reconstruction-engine latency with mkFit total event-loop latency and mkFit CloneEngine build-stage latency at one and eight threads.",
+              "caption": "Fresh same-machine timing reference. TrackReco revision 48a913c; mkFit devel revision ba370252. Same controlled 500-track selection, nine measured repetitions after warm-up."
+            }
+          ]
+        },
+        {
           "heading": "Collaboration policy",
           "paragraphs": [
             "Shared-hit collaboration is not automatically better. At eight threads on the controlled 500-track subset, forcing hit sharing leaves final reconstruction quality unchanged for every branch but usually reduces throughput. The measured throughput change versus sharing disabled ranges from +0.6% for A* to -11.0% for ACO.",
@@ -139,7 +160,7 @@
           "heading": "Current validation",
           "paragraphs": [
             "The published configuration is validated on a fixed public TrackML subset built from event000001000: the 500 highest-pT charged particles with pT at least 0.5 GeV, |eta| at most 2.5, and at least four recorded hits. The selected workload contains 5,605 measured hits.",
-            "Starting from the measured hits, the automatic reconstruction pipeline returns exactly 500 tracks for the 500 reference trajectories, with zero fake tracks and zero duplicate tracks. The configured native test suite passes 34 of 34 tests. Four disjoint 250-track robustness windows from the same public event also reach 100% reconstruction efficiency; across those windows, fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%. These are scoped validation results, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
+            "Starting from the measured hits, the automatic reconstruction pipeline returns exactly 500 tracks for the 500 reference trajectories, with zero fake tracks and zero duplicate tracks. Four disjoint 250-track robustness windows from the same public event also reach 100% reconstruction efficiency; across those windows, fake rate spans 0.38–1.16% and duplicate rate spans 1.94–3.46%. These are scoped validation results, not a claim of perfect reconstruction for arbitrary detectors or occupancies."
           ],
           "metrics": [
             {
@@ -156,11 +177,6 @@
               "value": "0.0%",
               "label": "duplicate rate",
               "note": "0 / 500 reconstructed tracks"
-            },
-            {
-              "value": "34 / 34",
-              "label": "configured tests",
-              "note": "merged reconstruction state"
             }
           ]
         },
@@ -178,7 +194,7 @@
           "heading": "Validation scope",
           "paragraphs": [
             "The 100% figure is end-to-end automatic reconstruction efficiency on the fixed 500-track validation subset. It describes the final track collection after fitting, conflict resolution, trajectory completion, and fragment closure.",
-            "The branch, collaboration, and closure figures are measured from the current revision and are stored with their source values in the public evidence JSON. The robustness windows and 1,000-track stress subset come from the same TrackML event, so they broaden within-event evidence but do not establish multi-event or experiment-wide performance."
+            "The branch, collaboration, closure, thread-scaling, and mkFit timing figures are fresh measurements from the current TrackReco revision. The robustness windows and 1,000-track stress subset come from the same TrackML event, so they broaden within-event evidence but do not establish multi-event or experiment-wide performance."
           ]
         }
       ],

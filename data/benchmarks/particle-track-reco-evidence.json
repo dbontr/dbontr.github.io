@@ -328,5 +328,110 @@
         "median_ms": 0.885353
       }
     ]
+  },
+  "thread_scaling": {
+    "source_revision": "48a913c8bbb5d8aa31b4ff9e2ed013c035f73e76",
+    "brancher": "EKF",
+    "workload": "TrackML event000001000 controlled 500-track subset",
+    "repetitions": 9,
+    "statistic": "median",
+    "rows": [
+      {
+        "threads": 1,
+        "tracks_per_second": 115580,
+        "median_ms": 4.32602,
+        "speedup": 1,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0
+      },
+      {
+        "threads": 2,
+        "tracks_per_second": 150277,
+        "median_ms": 3.32719,
+        "speedup": 1.3001989963661533,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0
+      },
+      {
+        "threads": 4,
+        "tracks_per_second": 173901,
+        "median_ms": 2.8752,
+        "speedup": 1.5045942204533655,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0
+      },
+      {
+        "threads": 8,
+        "tracks_per_second": 185386,
+        "median_ms": 2.69707,
+        "speedup": 1.603962623291227,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0
+      },
+      {
+        "threads": 16,
+        "tracks_per_second": 39766.7,
+        "median_ms": 12.5733,
+        "speedup": 0.3440621214743035,
+        "efficiency": 1,
+        "fake_rate": 0,
+        "duplicate_rate": 0
+      }
+    ]
+  },
+  "mkfit_same_machine_reference": {
+    "trackreco_revision": "48a913c8bbb5d8aa31b4ff9e2ed013c035f73e76",
+    "mkfit_repository": "trackreco/mkFit",
+    "mkfit_revision": "ba37025247ff72c8edd2baea02b5b4ac335bdede",
+    "workload": "Same controlled 500-track TrackML selection converted to mkFit input",
+    "machine": "Same Jupiter CPU / WSL environment",
+    "repetitions": 9,
+    "statistic": "median after one warm-up run",
+    "timing_scope": {
+      "trackreco": "TrackReco reconstruction engine after event loading",
+      "mkfit_cloneengine_build": "mkFit internal CEMX CloneEngine build timer",
+      "mkfit_total_event": "mkFit internal total event-loop timer"
+    },
+    "rows": [
+      {
+        "threads": 1,
+        "cloneengine_build_ms": 2.19,
+        "total_event_ms": 4.54,
+        "build_speedup": 1,
+        "total_speedup": 1
+      },
+      {
+        "threads": 2,
+        "cloneengine_build_ms": 1.21,
+        "total_event_ms": 3.13,
+        "build_speedup": 1.8099173553719008,
+        "total_speedup": 1.450479233226837
+      },
+      {
+        "threads": 4,
+        "cloneengine_build_ms": 0.69,
+        "total_event_ms": 2.55,
+        "build_speedup": 3.173913043478261,
+        "total_speedup": 1.780392156862745
+      },
+      {
+        "threads": 8,
+        "cloneengine_build_ms": 0.5,
+        "total_event_ms": 2.3,
+        "build_speedup": 4.38,
+        "total_speedup": 1.973913043478261
+      },
+      {
+        "threads": 16,
+        "cloneengine_build_ms": 0.48,
+        "total_event_ms": 2.35,
+        "build_speedup": 4.5625,
+        "total_speedup": 1.9319148936170212
+      }
+    ]
   }
 }
